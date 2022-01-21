@@ -249,7 +249,7 @@ export default {
 
     const startDrag = (e, prop) => {
       // console.log(prop);
-      _this.parent.ctx.startDrag(e, prop);
+      _this.parent.proxy.startDrag(e, prop);
     };
 
     const showLeftDrawerCom = computed(() => {
@@ -257,7 +257,7 @@ export default {
     });
 
     const shLeftDrawer = () => {
-      _this.parent.ctx.shLeftDrawer();
+      _this.parent.proxy.shLeftDrawer();
     };
 
     const filterMethod = (node, filter) => {

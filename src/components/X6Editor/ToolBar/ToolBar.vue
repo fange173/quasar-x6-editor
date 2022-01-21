@@ -62,32 +62,32 @@ export default {
     const _this = getCurrentInstance();
 
     const undo = () => {
-      _this.parent.ctx.undo();
+      _this.parent.proxy.undo();
     };
     const redo = () => {
-      _this.parent.ctx.redo();
+      _this.parent.proxy.redo();
     };
     const zoomIn = () => {
-      _this.parent.ctx.zoomIn();
+      _this.parent.proxy.zoomIn();
     };
     const zoomOut = () => {
-      _this.parent.ctx.zoomOut();
+      _this.parent.proxy.zoomOut();
     };
     const centerContent = () => {
-      _this.parent.ctx.centerContent();
+      _this.parent.proxy.centerContent();
     };
     const shGird = () => {
-      _this.parent.ctx.shGird();
+      _this.parent.proxy.shGird();
     };
     const showData = () => {
-      _this.parent.ctx.showData();
+      _this.parent.proxy.showData();
     };
     const downloadData = () => {
-      _this.parent.ctx.downloadData();
+      _this.parent.proxy.downloadData();
     };
 
     const runWorkFlow = () => {
-      _this.parent.ctx.runWorkFlow();
+      _this.parent.proxy.runWorkFlow();
     }
 
     return {

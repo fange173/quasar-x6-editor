@@ -26,31 +26,31 @@ export default {
     const _this = getCurrentInstance();
 
     const showNode = () => {
-      _this.parent.ctx.showNode();
+      _this.parent.proxy.showNode();
     };
     const nodeSetting = () => {
-      _this.parent.ctx.nodeSetting();
+      _this.parent.proxy.nodeSetting();
     };
     const deleteNode = () => {
-      _this.parent.ctx.undo();
+      _this.parent.proxy.undo();
     };
     const deleteEdge = () => {
-      _this.parent.ctx.deleteEdge();
+      _this.parent.proxy.deleteEdge();
     };
     const undo = () => {
-      _this.parent.ctx.undo();
+      _this.parent.proxy.undo();
     };
     const redo = () => {
-      _this.parent.ctx.redo();
+      _this.parent.proxy.redo();
     };
     const showData = () => {
-      _this.parent.ctx.showData();
+      _this.parent.proxy.showData();
     };
     const downloadData = () => {
-      _this.parent.ctx.downloadData();
+      _this.parent.proxy.downloadData();
     };
     const refresh = () => {
-      _this.parent.ctx.refresh();
+      _this.parent.proxy.refresh();
     };
 
     return {

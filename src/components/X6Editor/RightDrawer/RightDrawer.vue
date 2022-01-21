@@ -55,7 +55,7 @@ export default {
     });
 
     const shRightDrawer = () => {
-      _this.parent.ctx.shRightDrawer();
+      _this.parent.proxy.shRightDrawer();
     };
 
     const nodeClickResponse = node => {
