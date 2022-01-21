@@ -1,0 +1,109 @@
+#page-container {
+  display: flex;
+  border: 1px solid #dfe3e8;
+}
+.x6-widget-stencil {
+  background: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+#container {
+  padding: 0;
+  height: 100%;
+}
+#rightDrawer {
+  background: #ffffff;
+  border-left: 1px solid #e0e0e0;
+}
+#leftDrawer {
+  background: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+#toolbar {
+  position: absolute;
+  left: calc(50% - 200px);
+  top: 50px;
+  /* bottom: 0px; */
+  height: auto;
+  width: auto;
+  /* background: #ebebeb; */
+  color: #5c5c5c;
+  background-color: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid #c9c9c9;
+  border-bottom: 0px solid #c9c9c9;
+  zoom: 1;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 24%);
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+}
+.float-button {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid #c9c9c9;
+  zoom: 1;
+}
+#titleBar {
+  background: #eeeeee;
+  height: 32px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 32px;
+  padding-left: 8px;
+  padding-right: 5px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  color: #1976d2;
+}
+.x6-widget-stencil-group-title {
+  background: #eeeeee;
+}
+#edit {
+  height: 100vh - 232px;
+}
+.x6-widget-selection-box {
+  pointer-events: none !important;
+  border-color: #1976d2 !important;
+  border-width: 2px;
+  opacity: 0.6;
+}
+.x6-widget-stencil-search-text {
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 24%);
+}
+.x6-widget-stencil-title {
+  text-align: center;
+  color: #1976d2;
+  font-weight: 700;
+}
+.x6-widget-stencil-title:hover {
+  color: #1976d2;
+}
+.inputTitle {
+  margin-left: 20px;
+}
+#minimap {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-left: 1px solid #e0e0e0;
+}
+#titleBar {
+  background: #eeeeee;
+  height: 32px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 32px;
+  padding-left: 8px;
+  padding-right: 5px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  color: #1976d2;
+}
