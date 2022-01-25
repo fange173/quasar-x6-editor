@@ -1,7 +1,7 @@
 <template>
   <div>
-    <q-drawer id="rightDrawer" v-model="showRightDrawerCom" show-if-above :width="300" side="right">
-      <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; left: -16px">
+    <q-drawer id="rightDrawer" v-model="showRightDrawerCom" show-if-above :width="300" :breakpoint="500" bordered side="right">
+      <div class="q-mini-drawer-hide absolute" style="top: 50%; left: -16px">
         <q-btn
           dense
           round
@@ -10,16 +10,16 @@
           icon="chevron_right"
           @click="shRightDrawer"
           style="z-index: 1"
-          class="float-button"
+          class="float-button blur"
         />
-      </div> -->
-      <q-bar>
+      </div>
+      <q-bar id="qBarTitle">
         <q-icon name="edit" />
         <div><b>编辑</b></div>
         <q-space />
-        <q-btn dense flat icon="close" @click="shRightDrawer" v-close-popup />
+        <q-btn dense flat icon="close" @click="shRightDrawer" />
       </q-bar>
-      <EditPanel id="edit" ref="editPanel" style="height: calc(100%)" />
+      <EditPanel id="edit" ref="editPanel" style="height: 100%" />
       <!-- <EditPanel id="edit" ref="editPanel" style="height: calc(100% - 270px)" /> -->
       <!-- <MiniMap id="minimap" /> -->
     </q-drawer>
@@ -32,7 +32,7 @@
         icon="chevron_left"
         @click="shRightDrawer"
         style="z-index: 1; margin-top: 25px"
-        class="float-button"
+        class="float-button blur"
       />
     </div>
   </div>

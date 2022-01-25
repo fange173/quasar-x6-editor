@@ -55,6 +55,7 @@
       </q-menu>
     </q-page>
     <ToolBar :zoom="zoom" />
+    <HelpDialog :openHelpDialog="openHelpDialog" />
   </div>
 </template>
 
@@ -69,12 +70,14 @@ import RightDrawer from './RightDrawer/RightDrawer.vue';
 const { Dnd } = Addon;
 import '@antv/x6-vue3-shape';
 import DefaultNode from './Node/DefaultNode.vue';
+import HelpDialog from './Dialog/HelpDialog.vue';
 
 export default defineComponent({
   components: {
     ToolBar,
     LeftDrawer,
     RightDrawer,
+    HelpDialog,
   },
   setup() {
     const $q = useQuasar();
@@ -91,10 +94,12 @@ export default defineComponent({
     // 画布缩放比例
     const zoom = ref(100);
     // 是否显示侧边栏
-    let showLeftDrawer = ref(true);
-    let showRightDrawer = ref(true);
+    const showLeftDrawer = ref(true);
+    const showRightDrawer = ref(true);
+    // 是否显示Dialog
+    const openHelpDialog = ref(false);
     // 是否显示网点
-    let showGird = true;
+    const showGird = ref(true);
     // 连线样式
     const edgeAttrs = {
       line: {
@@ -357,7 +362,7 @@ export default defineComponent({
           '</pre>',
         html: true,
         ok: false,
-        style: 'height: 500px; width: 560px',
+        style: 'width: 600px; max-width: 80vw',
       });
       data.nodes.find(ele => {
         return ele.id == choiceId.value;
@@ -370,7 +375,7 @@ export default defineComponent({
         message: '<pre>' + JSON.stringify(graph.toJSON(), null, '\t') + '</pre>',
         html: true,
         ok: false,
-        style: 'height: 500px; width: 560px',
+        style: 'width: 600px; max-width: 80vw',
       });
     };
     // 导出工作流数据
@@ -383,7 +388,8 @@ export default defineComponent({
         persistent: true,
       }).onOk(() => {
         const datastr =
-          'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(graph.toJSON(), null, '\t'));
+          'data:text/json;charset=utf-8,' +
+          encodeURIComponent(JSON.stringify(graph.toJSON(), null, '\t'));
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute('href', datastr);
         downloadAnchorNode.setAttribute('download', 'data.json');
@@ -395,11 +401,18 @@ export default defineComponent({
         });
       });
     };
+    // 查看帮助
+    const help = () => {
+      openHelpDialog.value = true;
+    };
+    const closeHelp = () => {
+      openHelpDialog.value = false;
+    };
     // 显示网格
     const shGird = () => {
-      if (showGird === true) graph.hideGrid();
+      if (showGird.value === true) graph.hideGrid();
       else graph.showGrid();
-      showGird = !showGird;
+      showGird.value = !showGird.value;
     };
     // 显示侧边栏
     const shLeftDrawer = () => {
@@ -674,7 +687,7 @@ export default defineComponent({
         },
         grid: {
           size: 10, // 网格大小 10px
-          visible: showGird, // 渲染网格背景
+          visible: showGird.value, // 渲染网格背景
           type: 'dot',
           args: {
             color: '#a0a0a0', // 网格线/点颜色
@@ -901,6 +914,9 @@ export default defineComponent({
       rightDrawer,
       startDrag,
       runWorkFlow,
+      openHelpDialog,
+      help,
+      closeHelp,
     };
   },
 });

@@ -1,12 +1,20 @@
 <template>
   <div>
-    <q-drawer id="leftDrawer" v-model="showLeftDrawerCom" show-if-above :width="300" side="left">
+    <q-drawer
+      id="leftDrawer"
+      v-model="showLeftDrawerCom"
+      show-if-above
+      :width="300"
+      :breakpoint="500"
+      bordered
+      side="left"
+    >
       <!-- <div id="titleBar">组件库</div> -->
-      <q-bar>
+      <q-bar id="qBarTitle">
         <q-icon name="inventory" />
         <div><b>组件库</b></div>
         <q-space />
-        <q-btn dense flat icon="close" @click="shLeftDrawer" v-close-popup />
+        <q-btn dense flat icon="close" @click="shLeftDrawer" />
       </q-bar>
       <div class="q-pa-md">
         <q-input outlined dense ref="filterRef" v-model="filter">
@@ -29,10 +37,16 @@
         >
           <template v-slot:default-header="prop">
             <div class="row items-center node-label" v-if="prop.node.icon">
-              <q-icon :name="prop.node.icon" color="primary" class="q-mr-sm" />
+              <q-icon :name="prop.node.icon" class="q-mr-sm" />
               <div>{{ prop.node.data.name }}</div>
             </div>
-            <div class="node" v-else style="cursor: move" @mousedown="startDrag($event, prop)" @touchstart.stop="startDrag($event, prop)">
+            <div
+              class="node"
+              v-else
+              style="cursor: move"
+              @mousedown="startDrag($event, prop)"
+              @touchstart.stop="startDrag($event, prop)"
+            >
               <div class="center">
                 {{ prop.node.data.name }}
               </div>
@@ -80,7 +94,7 @@
           </template>
         </q-tree>
       </div>
-      <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
+      <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
         <q-btn
           dense
           round
@@ -89,9 +103,9 @@
           icon="chevron_left"
           @click="shLeftDrawer"
           style="z-index: 1"
-          class="float-button"
+          class="float-button blur"
         />
-      </div> -->
+      </div>
     </q-drawer>
     <div class="q-mini-drawer-hide absolute" style="top: 50%; left: 0px">
       <q-btn
@@ -102,7 +116,7 @@
         icon="chevron_right"
         @click="shLeftDrawer"
         style="z-index: 1; margin-top: 25px"
-        class="float-button"
+        class="float-button blur"
       />
     </div>
   </div>

@@ -12,11 +12,11 @@
 }
 #rightDrawer {
   background: #ffffff;
-  border-left: 1px solid #e0e0e0;
+  /* border-left: 1px solid #e0e0e0; */
 }
 #leftDrawer {
   background: #ffffff;
-  border-right: 1px solid #e0e0e0;
+  /* border-right: 1px solid #e0e0e0; */
 }
 #toolbar {
   position: absolute;
@@ -27,13 +27,10 @@
   width: auto;
   /* background: #ebebeb; */
   color: #5c5c5c;
-  background-color: rgba(0, 0, 0, 0.01);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
   border: 1px solid #c9c9c9;
-  border-bottom: 0px solid #c9c9c9;
+  border-top: 0px solid #c9c9c9;
   zoom: 1;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 24%);
+  /* box-shadow: 0 1px 3px rgb(0 0 0 / 24%); */
   text-align: center;
   border-radius: 0 0 5px 5px;
   -webkit-border-radius: 0 0 5px 5px;
@@ -42,11 +39,13 @@
   -o-border-radius: 0 0 5px 5px;
 }
 .float-button {
+  border: 1px solid #c9c9c9;
+  zoom: 1;
+}
+.blur {
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
-  border: 1px solid #c9c9c9;
-  zoom: 1;
 }
 #titleBar {
   background: #eeeeee;
@@ -106,4 +105,8 @@
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
   color: #1976d2;
+}
+
+#qBarTitle {
+  background: #eeeeee;
 }

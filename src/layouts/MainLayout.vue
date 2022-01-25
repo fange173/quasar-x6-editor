@@ -8,7 +8,7 @@
 -->
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="my-header">
+    <q-header class="my-header">
       <q-toolbar>
         <q-toolbar-title class="text-black">
           <q-avatar>
@@ -38,6 +38,8 @@ export default {
 <style scoped>
 .my-header {
   background: #f1f4f6;
+  border-top: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
 }
 .my-page-container {
   background: #f1f4f6;
