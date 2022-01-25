@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="titleBar">编辑</div>
+    <!-- <div id="titleBar">编辑</div> -->
     <q-scroll-area style="height: 100%">
       <div class="q-gutter-md q-pl-md q-pr-md q-pt-md" v-if="clickType == 'node'">
         <div class="inputTitle row">

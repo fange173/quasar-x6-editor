@@ -12,7 +12,7 @@
       <q-toolbar>
         <q-toolbar-title class="text-black">
           <q-avatar>
-            <q-icon name="account_tree" size="28px" />
+            <q-icon name="map" size="28px" />
           </q-avatar>
           X6Editor
         </q-toolbar-title>

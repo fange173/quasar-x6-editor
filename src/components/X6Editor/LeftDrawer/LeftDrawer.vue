@@ -1,7 +1,13 @@
 <template>
   <div>
     <q-drawer id="leftDrawer" v-model="showLeftDrawerCom" show-if-above :width="300" side="left">
-      <div id="titleBar">组件库</div>
+      <!-- <div id="titleBar">组件库</div> -->
+      <q-bar>
+        <q-icon name="inventory" />
+        <div>组件库</div>
+        <q-space />
+        <q-btn dense flat icon="close" @click="shLeftDrawer" v-close-popup />
+      </q-bar>
       <div class="q-pa-md">
         <q-input outlined dense ref="filterRef" v-model="filter">
           <template v-slot:prepend>
@@ -26,7 +32,7 @@
               <q-icon :name="prop.node.icon" color="primary" class="q-mr-sm" />
               <div>{{ prop.node.data.name }}</div>
             </div>
-            <div class="node" v-else style="cursor: move" @mousedown="startDrag($event, prop)">
+            <div class="node" v-else style="cursor: move" @mousedown="startDrag($event, prop)" @touchstart.stop="startDrag($event, prop)">
               <div class="center">
                 {{ prop.node.data.name }}
               </div>
@@ -74,23 +80,25 @@
           </template>
         </q-tree>
       </div>
-      <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -48px">
+      <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
         <q-btn
+          dense
           round
           text-color="grey-7"
-          elevated
+          unelevated
           icon="chevron_left"
           @click="shLeftDrawer"
           style="z-index: 1"
           class="float-button"
         />
-      </div>
+      </div> -->
     </q-drawer>
-    <div class="q-mini-drawer-hide absolute" style="top: 50%; left: 8px">
+    <div class="q-mini-drawer-hide absolute" style="top: 50%; left: 0px">
       <q-btn
+        dense
         round
         text-color="grey-7"
-        elevated
+        unelevated
         icon="chevron_right"
         @click="shLeftDrawer"
         style="z-index: 1; margin-top: 25px"
