@@ -15,7 +15,7 @@
       </div> -->
       <q-bar>
         <q-icon name="edit" />
-        <div>编辑</div>
+        <div><b>编辑</b></div>
         <q-space />
         <q-btn dense flat icon="close" @click="shRightDrawer" v-close-popup />
       </q-bar>

@@ -4,7 +4,7 @@
       <!-- <div id="titleBar">组件库</div> -->
       <q-bar>
         <q-icon name="inventory" />
-        <div>组件库</div>
+        <div><b>组件库</b></div>
         <q-space />
         <q-btn dense flat icon="close" @click="shLeftDrawer" v-close-popup />
       </q-bar>
