@@ -100,18 +100,6 @@ export default defineComponent({
     const openHelpDialog = ref(false);
     // 是否显示网点
     const showGird = ref(true);
-    // 连线样式
-    const edgeAttrs = {
-      line: {
-        stroke: '#c2c8d5',
-        strokeWidth: 1.5,
-        targetMarker: {
-          name: 'classic',
-          width: 8,
-          height: 8,
-        },
-      },
-    };
     // 连接桩
     const ports = {
       groups: {
@@ -238,7 +226,7 @@ export default defineComponent({
               dependencyType: 'appFile',
             },
           ],
-          attrs: edgeAttrs,
+          shape: 'default-edge',
           zIndex: -1,
         },
         {
@@ -251,7 +239,7 @@ export default defineComponent({
               dependencyType: 'appFile',
             },
           ],
-          attrs: edgeAttrs,
+          shape: 'default-edge',
           zIndex: -1,
         },
         {
@@ -264,19 +252,19 @@ export default defineComponent({
               dependencyType: 'appFile',
             },
           ],
-          attrs: edgeAttrs,
+          shape: 'default-edge',
           zIndex: -1,
         },
         {
           source: '4557647d-19bc-b1d7-5aec-4963dfe83b28',
           target: 'ba2f49b7-912e-de79-50a3-8e6d4083f681',
-          attrs: edgeAttrs,
+          shape: 'default-edge',
           zIndex: -1,
         },
         {
           source: '35344a12-c8d7-1e2c-704f-b10a9b56e2c6',
           target: '7a65b4d8-12bd-bd09-170c-cf37cc0a568a',
-          attrs: edgeAttrs,
+          shape: 'default-edge',
           zIndex: -1,
         },
       ],
@@ -454,204 +442,22 @@ export default defineComponent({
         },
         true
       );
-      Graph.registerNode(
-        'default',
-        {
-          inherit: 'rect', // 继承自 Shape.Rect
-          width: 180, // 默认宽度
-          height: 36, // 默认高度
-          attrs: {
-            body: {
-              rx: 5, // 圆角矩形
-              ry: 5,
-              strokeWidth: 0,
-              fill: '#fff', // 填充颜色
-              stroke: '#c2c8d5', // 边框颜色
-              filter: {
-                name: 'dropShadow',
-                args: {
-                  dx: 0,
-                  dy: 1,
-                  blur: 3,
-                  opacity: 0.24,
-                },
-              },
-            },
-            label: {
-              fill: '#666',
-              fontSize: 14,
-              textWrap: {
-                width: -12, // 宽度减少 12px
-                height: '50%', // 高度为参照元素高度的一半
-                ellipsis: true, // 文本超出显示范围时，自动添加省略号
-                breakWord: true, // 是否截断单词
-              },
-            },
-          },
-        },
-        true
-      );
-      Graph.registerNode(
-        'success',
-        {
-          inherit: 'rect', // 继承自 Shape.Rect
-          width: 180, // 默认宽度
-          height: 36, // 默认高度
-          attrs: {
-            body: {
-              rx: 5, // 圆角矩形
-              ry: 5,
-              strokeWidth: 0,
-              fill: 'green', // 填充颜色
-              stroke: '#c2c8d5', // 边框颜色
-              filter: {
-                name: 'dropShadow',
-                args: {
-                  dx: 0,
-                  dy: 1,
-                  blur: 3,
-                  opacity: 0.24,
-                },
-              },
-            },
-            label: {
-              fill: 'white',
-              fontSize: 14,
-              textWrap: {
-                width: -12, // 宽度减少 12px
-                height: '50%', // 高度为参照元素高度的一半
-                ellipsis: true, // 文本超出显示范围时，自动添加省略号
-                breakWord: true, // 是否截断单词
-              },
-            },
-          },
-        },
-        true
-      );
-      Graph.registerNode(
-        'error',
-        {
-          inherit: 'rect', // 继承自 Shape.Rect
-          width: 180, // 默认宽度
-          height: 36, // 默认高度
-          attrs: {
-            body: {
-              rx: 5, // 圆角矩形
-              ry: 5,
-              strokeWidth: 0,
-              fill: 'red', // 填充颜色
-              stroke: '#c2c8d5', // 边框颜色
-              filter: {
-                name: 'dropShadow',
-                args: {
-                  dx: 0,
-                  dy: 1,
-                  blur: 3,
-                  opacity: 0.24,
-                },
-              },
-            },
-            label: {
-              fill: 'white',
-              fontSize: 14,
-              textWrap: {
-                width: -12, // 宽度减少 12px
-                height: '50%', // 高度为参照元素高度的一半
-                ellipsis: true, // 文本超出显示范围时，自动添加省略号
-                breakWord: true, // 是否截断单词
-              },
-            },
-          },
-        },
-        true
-      );
-      Graph.registerNode(
-        'warning',
-        {
-          inherit: 'rect', // 继承自 Shape.Rect
-          width: 180, // 默认宽度
-          height: 36, // 默认高度
-          attrs: {
-            body: {
-              rx: 5, // 圆角矩形
-              ry: 5,
-              strokeWidth: 0,
-              fill: 'orange', // 填充颜色
-              stroke: '#c2c8d5', // 边框颜色
-              filter: {
-                name: 'dropShadow',
-                args: {
-                  dx: 0,
-                  dy: 1,
-                  blur: 3,
-                  opacity: 0.24,
-                },
-              },
-            },
-            label: {
-              fill: 'white',
-              fontSize: 14,
-              textWrap: {
-                width: -12, // 宽度减少 12px
-                height: '50%', // 高度为参照元素高度的一半
-                ellipsis: true, // 文本超出显示范围时，自动添加省略号
-                breakWord: true, // 是否截断单词
-              },
-            },
-          },
-        },
-        true
-      );
-      Graph.registerNode(
-        'running',
-        {
-          inherit: 'rect', // 继承自 Shape.Rect
-          width: 180, // 默认宽度
-          height: 36, // 默认高度
-          attrs: {
-            body: {
-              rx: 5, // 圆角矩形
-              ry: 5,
-              strokeWidth: 0,
-              fill: 'blue', // 填充颜色
-              stroke: '#c2c8d5', // 边框颜色
-              filter: {
-                name: 'dropShadow',
-                args: {
-                  dx: 0,
-                  dy: 1,
-                  blur: 3,
-                  opacity: 0.24,
-                },
-              },
-            },
-            label: {
-              fill: 'white',
-              fontSize: 14,
-              textWrap: {
-                width: -12, // 宽度减少 12px
-                height: '50%', // 高度为参照元素高度的一半
-                ellipsis: true, // 文本超出显示范围时，自动添加省略号
-                breakWord: true, // 是否截断单词
-              },
-            },
-          },
-        },
-        true
-      );
-      Graph.registerConnector(
-        'pai',
-        (s, t) => {
-          const offset = 4;
-          const control = 80;
-          const v1 = { x: s.x, y: s.y + offset + control };
-          const v2 = { x: t.x, y: t.y - offset - control };
 
-          return `M ${s.x} ${s.y}
-          L ${s.x} ${s.y + offset}
-          C ${v1.x} ${v1.y} ${v2.x} ${v2.y} ${t.x} ${t.y - offset}
-          L ${t.x} ${t.y}
-          `;
+      Graph.registerEdge(
+        'default-edge',
+        {
+          inherit: 'edge',
+          attrs: {
+            line: {
+              stroke: '#c2c8d5',
+              strokeWidth: 1.5,
+              targetMarker: {
+                name: 'classic',
+                width: 8,
+                height: 8,
+              },
+            },
+          },
         },
         true
       );
@@ -663,7 +469,7 @@ export default defineComponent({
         type: 'dagre',
         ranksep: 40,
         nodesep: 60,
-        controlPoints: true,
+        controlPoints: false,
       });
       dagreLayout.layout(data);
 
@@ -725,15 +531,13 @@ export default defineComponent({
           allowMulti: false, // 是否允许在相同的起始节点和终止之间创建多条边
           allowBlank: false, // 是否允许连接到画布空白位置的点
           highlight: true, // 拖动边时，是否高亮显示所有可用的连接桩或节点
-          snap: {
-            radius: 20, // 连线时自动吸附
-          },
+          snap: true,
           router: {
             // 布局方式
             name: 'er',
             args: {
               offset: 'center',
-              // direction: 'T',
+              direction: 'V',
             },
           },
           connector: {
@@ -741,19 +545,12 @@ export default defineComponent({
             // name: 'pai',
             name: 'rounded',
             args: {
-              radius: 30,
+              radius: 45,
             },
           },
           anchor: 'center', // 锚点位置
           connectionPoint: {
             name: 'bbox', // 连线点
-          },
-          createEdge() {
-            // 创建连线方式
-            return new Shape.Edge({
-              attrs: edgeAttrs,
-              zIndex: -1,
-            });
           },
           validateConnection({
             // 在移动边的时候判断连接是否有效，如果返回 false，当鼠标放开的时候，不会连接到当前元素，否则会连接到当前元素
@@ -775,6 +572,13 @@ export default defineComponent({
             if (i) return false;
 
             return !!targetMagnet;
+          },
+          createEdge() {
+            // 创建连线方式
+            return graph.createEdge({
+              shape: 'default-edge',
+              zIndex: -1,
+            });
           },
         },
         highlighting: {
