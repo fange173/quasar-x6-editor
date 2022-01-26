@@ -83,7 +83,6 @@ export default {
     });
 
     const close = () => {
-      console.log('close');
       _this.parent.proxy.closeHelp();
     };
 

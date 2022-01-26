@@ -56,6 +56,7 @@
     </q-page>
     <ToolBar :zoom="zoom" />
     <HelpDialog :openHelpDialog="openHelpDialog" />
+    <CodeDialog :openCodeDialog="openCodeDialog" :data="jsonData" />
   </div>
 </template>
 
@@ -71,6 +72,7 @@ const { Dnd } = Addon;
 import '@antv/x6-vue3-shape';
 import DefaultNode from './Node/DefaultNode.vue';
 import HelpDialog from './Dialog/HelpDialog.vue';
+import CodeDialog from './Dialog/CodeDialog.vue';
 
 export default defineComponent({
   components: {
@@ -78,6 +80,7 @@ export default defineComponent({
     LeftDrawer,
     RightDrawer,
     HelpDialog,
+    CodeDialog,
   },
   setup() {
     const $q = useQuasar();
@@ -98,6 +101,8 @@ export default defineComponent({
     const showRightDrawer = ref(true);
     // 是否显示Dialog
     const openHelpDialog = ref(false);
+    const openCodeDialog = ref(false);
+    const jsonData = ref('');
     // 是否显示网点
     const showGird = ref(true);
     // 连接桩
@@ -336,35 +341,22 @@ export default defineComponent({
     };
     // 查看节点数据
     const showNode = () => {
-      $q.dialog({
-        title: '节点数据信息',
-        message:
-          '<pre>' +
-          JSON.stringify(
-            data.nodes.find(ele => {
-              return ele.id == choiceId.value;
-            }),
-            null,
-            '\t'
-          ) +
-          '</pre>',
-        html: true,
-        ok: false,
-        style: 'width: 600px; max-width: 80vw',
-      });
-      data.nodes.find(ele => {
-        return ele.id == choiceId.value;
-      });
+      jsonData.value = JSON.stringify(
+        data.nodes.find(ele => {
+          return ele.id == choiceId.value;
+        }),
+        null,
+        2
+      );
+      openCodeDialog.value = true;
     };
     // 查看工作流数据
     const showData = () => {
-      $q.dialog({
-        title: '流程数据信息',
-        message: '<pre>' + JSON.stringify(graph.toJSON(), null, '\t') + '</pre>',
-        html: true,
-        ok: false,
-        style: 'width: 600px; max-width: 80vw',
-      });
+      jsonData.value = JSON.stringify(graph.toJSON(), null, 2);
+      openCodeDialog.value = true;
+    };
+    const closeCode = () => {
+      openCodeDialog.value = false;
     };
     // 导出工作流数据
     const downloadData = () => {
@@ -721,6 +713,9 @@ export default defineComponent({
       openHelpDialog,
       help,
       closeHelp,
+      closeCode,
+      openCodeDialog,
+      jsonData,
     };
   },
 });
