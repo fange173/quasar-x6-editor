@@ -66,7 +66,7 @@
 <script lang="ts">
 import { DagreLayout } from '@antv/layout';
 import { Addon, Cell, Graph, Node, Shape } from '@antv/x6';
-import { useQuasar } from 'quasar';
+import { useQuasar, date } from 'quasar';
 import { defineComponent, onMounted, ref } from 'vue';
 import ToolBar from './ToolBar/ToolBar.vue';
 import LeftDrawer from './LeftDrawer/LeftDrawer.vue';
@@ -243,9 +243,7 @@ export default defineComponent({
       ],
     };
     // 初始化节点数据
-    const flowName = ref('');
-    const flowId = ref('');
-    const flowMaterialName = ref('');
+    const flow = ref({ name: '', id: '', materialName: ''});
     let data: any = { nodes: [], edges: [] };
 
     // 撤销
@@ -384,12 +382,13 @@ export default defineComponent({
         cancel: '取消',
         persistent: true,
       }).onOk(() => {
+        transformToJson();
         const datastr =
           'data:text/json;charset=utf-8,' +
-          encodeURIComponent(JSON.stringify(graph.toJSON(), null, '\t'));
+          encodeURIComponent(JSON.stringify(jsonData.value, null, '\t'));
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute('href', datastr);
-        downloadAnchorNode.setAttribute('download', 'data.json');
+        downloadAnchorNode.setAttribute('download', 'data' + date.formatDate(new Date(), 'YYYYMMDDHHmm') + '.json');
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
         $q.notify({
@@ -439,9 +438,9 @@ export default defineComponent({
       (dnd.value as any).start(node, e);
     };
     const transformToData = () => {
-      if (json.name) flowName.value = json.name;
-      if (json.externalId) flowId.value = json.externalId;
-      if (json.materialName) flowMaterialName.value = json.materialName;
+      if (json.name) flow.value.name = json.name;
+      if (json.externalId) flow.value.id = json.externalId;
+      if (json.materialName) flow.value.materialName = json.materialName;
       if (json.jobs.length !== 0) {
         const jobs = json.jobs;
         for (let i = 0, len = jobs.length; i < len; i++) {
@@ -768,6 +767,7 @@ export default defineComponent({
       closeCode,
       openCodeDialog,
       jsonData,
+      flow,
     };
   },
 });
