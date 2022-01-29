@@ -1,7 +1,7 @@
 <template>
   <div>
     <LeftDrawer :showLeftDrawer="showLeftDrawer" />
-    <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" />
+    <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
     <q-page id="container">
       <q-menu touch-position context-menu>
         <q-list dense style="min-width: 100px" v-if="choiceType == 'node'">
@@ -243,7 +243,7 @@ export default defineComponent({
       ],
     };
     // 初始化节点数据
-    const flow = ref({ name: '', id: '', materialName: ''});
+    const flow = ref({ name: '', id: '', materialName: '' });
     let data: any = { nodes: [], edges: [] };
 
     // 撤销
@@ -279,14 +279,26 @@ export default defineComponent({
     // 删除节点
     const deleteNode = () => {
       graph.removeNode(choiceId.value);
+      $q.notify({
+        message: '删除节点成功！',
+        type: 'positive',
+      });
     };
     // 删除连线
     const deleteEdge = () => {
       graph.removeEdge(choiceId.value);
+      $q.notify({
+        message: '删除连线成功！',
+        type: 'positive',
+      });
     };
     // 清空
     const refresh = () => {
       graph.clearCells();
+      $q.notify({
+        message: '清空画布成功！',
+        type: 'positive',
+      });
     };
     // 节点选项
     const nodeSetting = () => {
@@ -357,9 +369,9 @@ export default defineComponent({
         }
       }
       jsonData.value = {
-        name: '测试工作流20220128-1',
-        externalId: 'w-workflow-20220128',
-        materialName: 'w',
+        name: flow.value.name,
+        externalId: flow.value.id,
+        materialName: flow.value.materialName,
         jobs: jobs,
         dependencies: dependencies,
       };
@@ -388,11 +400,14 @@ export default defineComponent({
           encodeURIComponent(JSON.stringify(jsonData.value, null, '\t'));
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute('href', datastr);
-        downloadAnchorNode.setAttribute('download', 'data' + date.formatDate(new Date(), 'YYYYMMDDHHmm') + '.json');
+        downloadAnchorNode.setAttribute(
+          'download',
+          'data' + date.formatDate(new Date(), 'YYYYMMDDHHmm') + '.json'
+        );
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
         $q.notify({
-          message: '正在下载中,请稍后...',
+          message: '正在下载中，请稍候...',
           color: 'primary',
         });
       });
@@ -689,6 +704,10 @@ export default defineComponent({
         // eslint-disable-next-line
         rightDrawer.value.edgeClickResponse(edge);
         console.log('edge', edge);
+      });
+      graph.on('blank:click', ({}) => {
+        // eslint-disable-next-line
+        rightDrawer.value.blankClickResponse();
       });
     }
 

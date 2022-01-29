@@ -69,26 +69,26 @@
                 </svg>
               </div>
               <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-3 text-"><strong>externalId：</strong></div>
                   <div class="col-9">{{ prop.node.id }}</div>
-                </div>
+                </div> -->
                 <div class="row">
-                  <div class="col-3"><strong>cpuCores：</strong></div>
-                  <div class="col-9">{{ prop.node.data.cpuCores }}</div>
+                  <div class="col-3"><strong>name：</strong></div>
+                  <div class="col-9">{{ prop.node.data.name }}</div>
                 </div>
                 <div class="row">
                   <div class="col-3"><strong>appUseCase：</strong></div>
                   <div class="col-9">{{ prop.node.data.appUseCase }}</div>
                 </div>
                 <div class="row">
-                  <div class="col-3"><strong>name：</strong></div>
-                  <div class="col-9">{{ prop.node.data.name }}</div>
+                  <div class="col-3"><strong>cpuCores：</strong></div>
+                  <div class="col-9">{{ prop.node.data.cpuCores }}</div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-3"><strong>status：</strong></div>
                   <div class="col-9">{{ prop.node.data.status }}</div>
-                </div>
+                </div> -->
               </q-tooltip>
             </div>
           </template>
