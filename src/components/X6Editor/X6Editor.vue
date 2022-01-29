@@ -537,13 +537,13 @@ export default defineComponent({
       graph = new Graph({
         container: document.getElementById('container') as HTMLElement, // 画布容器
         autoResize: true,
-        minimap: {
-          // 缩略图
-          enabled: true,
-          container: document.getElementById('minimapContainer') as HTMLElement,
-        },
+        // minimap: {
+        //   // 缩略图
+        //   enabled: true,
+        //   container: document.getElementById('minimapContainer') as HTMLElement,
+        // },
         // width: window.innerWidth,
-        height: window.innerHeight - 51,
+        height: window.innerHeight - 52,
         background: {
           color: '#f7f7fa', // 设置画布背景颜色
         },
