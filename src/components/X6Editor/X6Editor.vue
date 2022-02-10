@@ -13,6 +13,10 @@
           </q-item>
           <q-separator />
           <q-item clickable v-close-popup>
+            <q-item-section @click="addNode">添加</q-item-section>
+          </q-item>
+          <q-separator />
+          <q-item clickable v-close-popup>
             <q-item-section @click="deleteNode">删除</q-item-section>
           </q-item>
         </q-list>
@@ -21,6 +25,7 @@
           <q-item clickable v-close-popup>
             <q-item-section @click="showEdge">查看</q-item-section>
           </q-item>
+          <q-separator />
           <q-item clickable v-close-popup>
             <q-item-section @click="deleteEdge">删除</q-item-section>
           </q-item>
@@ -65,7 +70,7 @@
 
 <script lang="ts">
 import { DagreLayout } from '@antv/layout';
-import { Addon, Cell, Graph, Node, Shape } from '@antv/x6';
+import { Addon, Cell, Graph, Node } from '@antv/x6';
 import { useQuasar, date } from 'quasar';
 import { defineComponent, onMounted, ref } from 'vue';
 import ToolBar from './ToolBar/ToolBar.vue';
@@ -107,7 +112,7 @@ export default defineComponent({
     const openCodeDialog = ref(false);
     const jsonData = ref({});
     // 是否显示网点
-    const showGird = ref(true);
+    const showGird = ref(false);
     // 连接桩
     const ports = {
       groups: {
@@ -146,7 +151,7 @@ export default defineComponent({
       ],
     };
     // 原始json数据
-    const json = {
+    let json: any = {
       name: '测试工作流20220128-1',
       externalId: 'w-workflow-20220128',
       materialName: 'w',
@@ -276,6 +281,43 @@ export default defineComponent({
     const centerContent = () => {
       graph.centerContent(); // 将画布内容中心与视口中心对齐
     };
+    const createUuid = () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    // 添加节点
+    const addNode = () => {
+      const source = graph.toJSON().cells.find((ele) => {
+        return ele.id == choiceId.value;
+      });
+      const targetId = createUuid();
+      graph.addNode({
+        id: targetId,
+        data: {
+          name: '未命名节点',
+          cpuCores: '',
+          appUseCase: '',
+          status: 'default',
+        },
+        shape: 'default-node',
+        ports: { ...ports },
+        x: source?.position.x,
+        y: source?.position.y + 160
+      });
+      graph.addEdge({
+        source: source?.id,
+        target: targetId,
+        shape: 'default-edge',
+        zIndex: -1,
+      })
+      $q.notify({
+        message: '添加节点成功！',
+        type: 'positive',
+      });
+    };
     // 删除节点
     const deleteNode = () => {
       graph.removeNode(choiceId.value);
@@ -326,6 +368,7 @@ export default defineComponent({
     const showNode = () => {
       transformToJson();
       jsonData.value = JSON.stringify(
+        // eslint-disable-next-line
         (jsonData.value as any).jobs.find((ele: { externalId: string }) => {
           return ele.externalId == choiceId.value;
         }),
@@ -338,6 +381,7 @@ export default defineComponent({
     const showEdge = () => {
       transformToJson();
       jsonData.value = JSON.stringify(
+        // eslint-disable-next-line
         (jsonData.value as any).dependencies.find((ele: { externalId: string }) => {
           return ele.externalId == choiceId.value;
         }),
@@ -348,23 +392,30 @@ export default defineComponent({
     };
     // x6数据转json
     const transformToJson = () => {
-      const data = graph.toJSON().cells;
+      const x6Data = graph.toJSON().cells;
       let jobs: any = [];
       let dependencies: any = [];
-      for (let i = 0, len = data.length; i < len; i++) {
-        if (data[i].shape === 'default-edge') {
+      for (let i = 0, len = x6Data.length; i < len; i++) {
+        if (x6Data[i].shape === 'default-edge') {
+          // eslint-disable-next-line
           dependencies.push({
-            externalId: data[i].id,
-            jobExternalId: data[i].target.cell,
-            jobDependencyExternalId: data[i].source.cell,
-            fileDependencies: data[i].fileDependencies,
+            externalId: x6Data[i].id,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            jobExternalId: x6Data[i].target.cell,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            jobDependencyExternalId: x6Data[i].source.cell,
+            fileDependencies: x6Data[i].fileDependencies,
           });
         } else {
+          // eslint-disable-next-line
           jobs.push({
-            externalId: data[i].id,
-            cpuCores: data[i].data.cpuCores,
-            appUseCase: data[i].data.appUseCase,
-            name: data[i].data.name,
+            externalId: x6Data[i].id,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            cpuCores: x6Data[i].data.cpuCores,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            appUseCase: x6Data[i].data.appUseCase,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            name: x6Data[i].data.name,
           });
         }
       }
@@ -425,6 +476,17 @@ export default defineComponent({
       else graph.showGrid();
       showGird.value = !showGird.value;
     };
+    // 自动布局
+    const layout = () => {
+      transformToJson();
+      json = jsonData.value;
+      transformToData();
+      graph.dispose();
+      initGraph();
+      initDnd();
+      initEvent();
+      centerContent();
+    };
     // 显示侧边栏
     const shLeftDrawer = () => {
       showLeftDrawer.value = !showLeftDrawer.value;
@@ -459,6 +521,7 @@ export default defineComponent({
       if (json.jobs.length !== 0) {
         const jobs = json.jobs;
         for (let i = 0, len = jobs.length; i < len; i++) {
+          // eslint-disable-next-line
           data.nodes.push({
             id: jobs[i].externalId,
             data: {
@@ -475,6 +538,7 @@ export default defineComponent({
       if (json.dependencies.length !== 0) {
         const dependencies = json.dependencies;
         for (let i = 0, len = dependencies.length; i < len; i++) {
+          // eslint-disable-next-line
           data.edges.push({
             id: dependencies[i].externalId,
             source: dependencies[i].jobDependencyExternalId,
@@ -763,6 +827,7 @@ export default defineComponent({
       zoomOut,
       centerContent,
       choiceType,
+      addNode,
       deleteNode,
       deleteEdge,
       refresh,
@@ -772,6 +837,7 @@ export default defineComponent({
       showData,
       downloadData,
       shGird,
+      layout,
       shLeftDrawer,
       shRightDrawer,
       showLeftDrawer,

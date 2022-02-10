@@ -22,6 +22,9 @@
       <q-btn flat dense icon="grid_4x4" @click="shGird">
         <q-tooltip :offset="[8, 8]"> 显示网点 </q-tooltip>
       </q-btn>
+      <q-btn flat dense icon="auto_awesome_mosaic" @click="layout">
+        <q-tooltip :offset="[8, 8]"> 自动布局 </q-tooltip>
+      </q-btn>
       <q-separator vertical inset class="q-ml-xs" />
       <q-btn flat dense icon="visibility" @click="showData" class="q-ml-xs">
         <q-tooltip :offset="[8, 8]"> 查看 json </q-tooltip>
@@ -82,6 +85,9 @@ export default {
     const shGird = () => {
       _this.parent.proxy.shGird();
     };
+    const layout = () => {
+      _this.parent.proxy.layout();
+    };
     const showData = () => {
       _this.parent.proxy.showData();
     };
@@ -104,6 +110,7 @@ export default {
       zoomOut,
       centerContent,
       shGird,
+      layout,
       showData,
       downloadData,
       runWorkFlow,

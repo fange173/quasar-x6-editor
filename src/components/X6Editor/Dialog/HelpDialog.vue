@@ -8,7 +8,7 @@
           </div>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <q-splitter v-model="splitterModel">
+          <q-splitter :limits="[20, 30]" v-model="splitterModel">
             <template v-slot:before>
               <q-tabs v-model="tab" vertical class="text-primary">
                 <q-tab name="如何新增" label="如何新增" />
