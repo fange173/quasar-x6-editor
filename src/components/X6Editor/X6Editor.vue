@@ -161,36 +161,42 @@ export default defineComponent({
           cpuCores: '2',
           appUseCase: 'ab08ad37-055b-b368-58aa-037620228cf8',
           name: 'Simulate1脚本',
+          htc: false,
         },
         {
           externalId: '4557647d-19bc-b1d7-5aec-4963dfe83b28',
           cpuCores: '1',
           appUseCase: 'f30223f0-a215-4402-38ba-067a917b095d',
           name: 'Simulate2脚本',
+          htc: false,
         },
         {
           externalId: '35344a12-c8d7-1e2c-704f-b10a9b56e2c6',
           cpuCores: '2',
           appUseCase: 'c0121580-1097-418f-14be-170e474fb8d3',
           name: 'Simulate3脚本',
+          htc: true,
         },
         {
           externalId: '8c6f878b-ffa0-e51b-93d2-0e65344d7f56',
           cpuCores: '2',
           appUseCase: 'f4f1357b-1bfc-6797-5030-b9822d910e73',
           name: 'Simulate4脚本',
+          htc: false,
         },
         {
           externalId: 'ba2f49b7-912e-de79-50a3-8e6d4083f681',
           cpuCores: '1',
           appUseCase: '1d6913e0-32bd-4563-a073-4900579da937',
           name: 'Simulate5脚本',
+          htc: false,
         },
         {
           externalId: '7a65b4d8-12bd-bd09-170c-cf37cc0a568a',
           cpuCores: '2',
           appUseCase: '81abf716-a0f8-f064-cabe-6e4e44442825',
           name: 'Simulate6脚本',
+          htc: false,
         },
       ],
       dependencies: [
@@ -421,6 +427,8 @@ export default defineComponent({
             appUseCase: x6Data[i].data.appUseCase,
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             name: x6Data[i].data.name,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            htc: x6Data[i].data.htc,
           });
         }
       }
@@ -534,6 +542,7 @@ export default defineComponent({
               cpuCores: jobs[i].cpuCores,
               appUseCase: jobs[i].appUseCase,
               status: 'default',
+              htc: jobs[i].htc,
             },
             shape: 'default-node',
             ports: { ...ports },

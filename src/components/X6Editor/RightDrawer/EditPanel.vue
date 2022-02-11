@@ -68,6 +68,25 @@
           </q-item>
         </template>
       </q-select>
+      <div class="inputTitle q-mt-sm">htc</div>
+      <q-btn-toggle
+        v-model="clickNode.htc"
+        class="q-mt-xs"
+        style="border: 1px solid #c2c2c2"
+        dense
+        spread
+        no-caps
+        outlined
+        unelevated
+        :ripple="false"
+        toggle-color="grey"
+        color="white"
+        text-color="black"
+        :options="[
+          { label: 'true', value: true },
+          { label: 'false', value: false },
+        ]"
+      />
       <div>
         <q-btn label="保存" color="primary" class="q-mb-md" @click="saveNode()" />
       </div>
@@ -182,6 +201,7 @@ export default {
         cpuCores: clickNode.value.cpuCores,
         appUseCase: clickNode.value.appUseCase,
         status: clickNode.value.status,
+        htc: clickNode.value.htc,
       };
       clickNodeSelf.value.setData(data);
       clickNodeSelf.value.store.data.position.x = clickNode.value.x;
@@ -213,6 +233,7 @@ export default {
         appUseCase: data.appUseCase,
         name: data.name,
         status: data.status,
+        htc: data.htc,
         x: clickNodeSelf.value.store.data.position.x,
         y: clickNodeSelf.value.store.data.position.y,
       };
