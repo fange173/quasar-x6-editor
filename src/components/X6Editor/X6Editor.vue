@@ -314,8 +314,13 @@ export default defineComponent({
         zIndex: -1,
       })
       $q.notify({
-        message: '添加节点成功！',
+        message: '添加节点成功！进行自动布局？',
         type: 'positive',
+        multiLine: true,
+        actions: [
+          { label: '否', color: 'white', handler: () => { } },
+          { label: '是', color: 'yellow', handler: () => { layout(); } }
+        ]
       });
     };
     // 删除节点
