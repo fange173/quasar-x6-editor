@@ -288,15 +288,15 @@ export default defineComponent({
       graph.centerContent(); // 将画布内容中心与视口中心对齐
     };
     const createUuid = () => {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0,
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      });
+    };
     // 添加节点
     const addNode = () => {
-      const source = graph.toJSON().cells.find((ele) => {
+      const source = graph.toJSON().cells.find(ele => {
         return ele.id == choiceId.value;
       });
       const targetId = createUuid();
@@ -307,26 +307,34 @@ export default defineComponent({
           cpuCores: '',
           appUseCase: '',
           status: 'default',
+          htc: false,
         },
         shape: 'default-node',
         ports: { ...ports },
         x: source?.position.x,
-        y: source?.position.y + 160
+        y: source?.position.y + 160,
       });
       graph.addEdge({
         source: source?.id,
         target: targetId,
         shape: 'default-edge',
         zIndex: -1,
-      })
+      });
+      checkHtc();
       $q.notify({
         message: '添加节点成功！进行自动布局？',
         type: 'positive',
         multiLine: true,
         actions: [
-          { label: '否', color: 'white', handler: () => { } },
-          { label: '是', color: 'yellow', handler: () => { layout(); } }
-        ]
+          { label: '否', color: 'white', handler: () => {} },
+          {
+            label: '是',
+            color: 'yellow',
+            handler: () => {
+              layout();
+            },
+          },
+        ],
       });
     };
     // 删除节点
@@ -401,7 +409,7 @@ export default defineComponent({
       );
       openCodeDialog.value = true;
     };
-    // x6数据转json
+    // x6数据转换成json数据
     const transformToJson = () => {
       const x6Data = graph.toJSON().cells;
       let jobs: any = [];
@@ -446,6 +454,7 @@ export default defineComponent({
       jsonData.value = JSON.stringify(jsonData.value, null, 2);
       openCodeDialog.value = true;
     };
+    // 关闭代码dialog
     const closeCode = () => {
       openCodeDialog.value = false;
     };
@@ -480,6 +489,7 @@ export default defineComponent({
     const help = () => {
       openHelpDialog.value = true;
     };
+    // 关闭帮助
     const closeHelp = () => {
       openHelpDialog.value = false;
     };
@@ -527,6 +537,7 @@ export default defineComponent({
       // eslint-disable-next-line
       (dnd.value as any).start(node, e);
     };
+    // json数据转换成x6数据
     const transformToData = () => {
       if (json.name) flow.value.name = json.name;
       if (json.externalId) flow.value.id = json.externalId;
@@ -576,7 +587,6 @@ export default defineComponent({
         },
         true
       );
-
       Graph.registerEdge(
         'default-edge',
         {
@@ -587,8 +597,8 @@ export default defineComponent({
               strokeWidth: 1.5,
               targetMarker: {
                 name: 'classic',
-                width: 8,
-                height: 8,
+                width: 10,
+                height: 12,
               },
             },
           },
@@ -665,7 +675,7 @@ export default defineComponent({
           allowMulti: false, // 是否允许在相同的起始节点和终止之间创建多条边
           allowBlank: false, // 是否允许连接到画布空白位置的点
           highlight: true, // 拖动边时，是否高亮显示所有可用的连接桩或节点
-          snap: true,
+          snap: true, // 自动吸附
           router: {
             // 布局方式
             name: 'er',
@@ -676,7 +686,6 @@ export default defineComponent({
           },
           connector: {
             // 连接器
-            // name: 'pai',
             name: 'rounded',
             args: {
               radius: 45,
@@ -704,13 +713,17 @@ export default defineComponent({
                 return true;
             });
             if (i) return false;
-
             return !!targetMagnet;
           },
           createEdge() {
             // 创建连线方式
             return graph.createEdge({
               shape: 'default-edge',
+              attrs: {
+                line: {
+                  strokeDasharray: '5 5',
+                },
+              },
               zIndex: -1,
             });
           },
@@ -774,10 +787,6 @@ export default defineComponent({
         //   return ele.id == node.id;
         // });
       });
-      graph.on('node:mousemove', ({ node }) => {
-        // eslint-disable-next-line
-        rightDrawer.value.nodeMouseMoveResponse(node);
-      });
       graph.on('edge:click', ({ edge }) => {
         // eslint-disable-next-line
         rightDrawer.value.edgeClickResponse(edge);
@@ -787,14 +796,56 @@ export default defineComponent({
         // eslint-disable-next-line
         rightDrawer.value.blankClickResponse();
       });
+      // 绑定拖动节点事件
+      graph.on('node:mousemove', ({ node }) => {
+        // eslint-disable-next-line
+        rightDrawer.value.nodeMouseMoveResponse(node);
+      });
+      // 绑定连线事件
+      graph.on('edge:connected', ({ edge }) => {
+        edge.attr({
+          line: {
+            strokeDasharray: '',
+          },
+        });
+      });
+      // 绑定节点数据更改事件
+      graph.on('node:change:data', ({ node }) => {
+        const data = node.getData();
+        const incomingEdges = graph.getIncomingEdges(node);
+        const outgoingEdges = graph.getOutgoingEdges(node);
+        console.log(outgoingEdges);
+        incomingEdges?.forEach(edge => {
+          if (data.status === 'running') {
+            edge.attr('line/strokeDasharray', 5);
+            edge.attr('line/style/animation', 'running-line 30s infinite linear');
+          } else {
+            edge.attr('line/strokeDasharray', '');
+            edge.attr('line/style/animation', '');
+          }
+        });
+        outgoingEdges?.forEach(edge => {
+          if (data.htc === true) {
+            edge.attr('line/strokeWidth', 5);
+          } else {
+            edge.attr('line/strokeWidth', 1.5);
+          }
+        });
+      });
+      // 绑定连线添加事件
+      graph.on('edge:added', () => {
+        checkHtc();
+      });
     }
 
+    // 设置节点状态
     const setNodeStatus = (index: number, status: string) => {
       const node = graph.getNodes()[index];
       let data: { name: string; status: string } = node.getData();
       node.setData({ name: data.name, status: status });
     };
 
+    // 模拟运行工作流
     const runWorkFlow = () => {
       setNodeStatus(0, 'running');
       setNodeStatus(1, 'default');
@@ -808,22 +859,35 @@ export default defineComponent({
         setNodeStatus(2, 'running');
         setTimeout(() => {
           setNodeStatus(1, 'success');
-          setNodeStatus(2, 'success');
           setNodeStatus(3, 'running');
           setNodeStatus(4, 'running');
-          setNodeStatus(5, 'running');
           setTimeout(() => {
             setNodeStatus(3, 'success');
             setTimeout(() => {
               setNodeStatus(4, 'warning');
-              setTimeout(() => {
-                setNodeStatus(5, 'error');
-              }, 1000);
-            }, 1000);
+            }, 3000);
           }, 1000);
         }, 1000);
-      }, 1000);
+        setTimeout(() => {
+          setNodeStatus(2, 'success');
+          setNodeStatus(5, 'running');
+          setTimeout(() => {
+            setNodeStatus(5, 'error');
+          }, 1000);
+        }, 3000);
+      }, 2000);
     };
+
+    // 检查是否有htc节点
+    const checkHtc = () => {
+      const nodes = graph.getNodes();
+      for(let i = 0, len = nodes.length; i < len; i++) {
+        if(nodes[i].getData().htc) {
+          nodes[i].setData({ htc: false });
+          nodes[i].setData({ htc: true });
+        }
+      }
+    }
 
     onMounted(() => {
       transformToData();
@@ -831,6 +895,7 @@ export default defineComponent({
       initGraph();
       initDnd();
       initEvent();
+      checkHtc();
       centerContent();
     });
 

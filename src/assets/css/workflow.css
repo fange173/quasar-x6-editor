@@ -106,3 +106,48 @@
 #qBarTitle {
   background: #eeeeee;
 }
+
+.left-side {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  padding: 9px;
+}
+.center {
+  width: 128px;
+  height: 36px;
+  font-size: 14px;
+  text-align: center;
+  /* 超过两行省略 */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  /* 截断单词换行 */
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.right-side {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  padding: 9px;
+}
+
+.status-icons {
+  font-size: 18px;
+}
+
+.running-status {
+  animation: breath 1s ease-in-out infinite;
+  -webkit-animation: breath 1s ease-in-out infinite;
+}
+
+@keyframes running-line {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+@keyframes breath {
+  0% {opacity: .2;}70% {opacity: 1;}to {opacity: .2;}
+}

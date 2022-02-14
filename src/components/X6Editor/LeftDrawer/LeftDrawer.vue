@@ -47,26 +47,18 @@
               @mousedown="startDrag($event, prop)"
               @touchstart.stop="startDrag($event, prop)"
             >
+              <div class="left-side">
+                <span class="material-icons status-icons" style="color: #808080;">
+                  settings_outlined
+                </span>
+              </div>
               <div class="center">
                 {{ prop.node.data.name }}
               </div>
               <div class="right-side">
-                <svg
-                  t="1642577466654"
-                  class="icon"
-                  viewBox="0 0 1024 1024"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  p-id="14516"
-                  width="16"
-                  height="16"
-                >
-                  <path
-                    d="M682.666667 0v256h256l-256-256z m-85.333334 0H170.666667a85.333333 85.333333 0 0 0-85.333334 85.333333v853.333334a85.333333 85.333333 0 0 0 85.333334 85.333333h682.666666a85.333333 85.333333 0 0 0 85.333334-85.333333V341.333333h-341.333334V0z m7.168 514.517333a42.666667 42.666667 0 1 1 70.997334 47.36L481.152 853.333333l-163.498667-109.013333a42.666667 42.666667 0 1 1 47.36-70.997333l92.501334 61.653333 146.986666-220.458667z"
-                    p-id="14517"
-                    fill="#666666"
-                  ></path>
-                </svg>
+                <span class="material-icons status-icons" style="color: #808080;">
+                  task
+                </span>
               </div>
               <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
                 <!-- <div class="row">
@@ -186,6 +178,7 @@ export default {
               cpuCores: '4',
               appUseCase: 'ab08ad37-055b-b368-58aa-037620228cf8',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -197,6 +190,7 @@ export default {
               cpuCores: '4',
               appUseCase: 'f30223f0-a215-4402-38ba-067a917b095d',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -208,6 +202,7 @@ export default {
               cpuCores: '4',
               appUseCase: 'c0121580-1097-418f-14be-170e474fb8d3',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -219,6 +214,7 @@ export default {
               cpuCores: '4',
               appUseCase: 'f4f1357b-1bfc-6797-5030-b9822d910e73',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -237,6 +233,7 @@ export default {
               cpuCores: '4',
               appUseCase: '79737114-e574-8956-bd45-8cf3b9fc8c88',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -248,6 +245,7 @@ export default {
               cpuCores: '4',
               appUseCase: '75ca097e-b868-4250-885b-138a824f4982',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -259,6 +257,7 @@ export default {
               cpuCores: '4',
               appUseCase: 'cec670a0-f6af-916f-7a52-ec9cbd102a9a',
               status: 'default',
+              htc: false,
             },
             ports: { ...ports },
           },
@@ -326,27 +325,6 @@ export default {
 /* .node:hover {
   background: #f5f5f5;
 } */
-.center {
-  width: 164px;
-  height: 36px;
-  font-size: 14px;
-  text-align: center;
-  /* 超过两行省略 */
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  /* 截断单词换行 */
-  word-break: break-all;
-  word-wrap: break-word;
-  padding-left: 9px;
-}
-.right-side {
-  display: flex;
-  width: 36px;
-  height: 36px;
-  padding: 9px;
-}
 .my-tooltip {
   border: 1px solid #ccd1dc;
   box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
