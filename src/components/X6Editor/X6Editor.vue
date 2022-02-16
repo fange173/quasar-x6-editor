@@ -77,7 +77,7 @@ import ToolBar from './ToolBar/ToolBar.vue';
 import LeftDrawer from './LeftDrawer/LeftDrawer.vue';
 import RightDrawer from './RightDrawer/RightDrawer.vue';
 const { Dnd } = Addon;
-import '@antv/x6-vue3-shape';
+import '@antv/x6-vue-shape';
 import DefaultNode from './Node/DefaultNode.vue';
 import HelpDialog from './Dialog/HelpDialog.vue';
 import CodeDialog from './Dialog/CodeDialog.vue';
@@ -580,7 +580,7 @@ export default defineComponent({
       Graph.registerNode(
         'default-node',
         {
-          inherit: 'vue3-shape',
+          inherit: 'vue-shape',
           width: 200,
           height: 36,
           component: DefaultNode,
