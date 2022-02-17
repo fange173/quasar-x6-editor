@@ -596,9 +596,9 @@ export default defineComponent({
               stroke: '#c2c8d5',
               strokeWidth: 1.5,
               targetMarker: {
-                name: 'classic',
-                width: 10,
-                height: 12,
+                name: 'path',
+                offsetX: -5,
+                d: 'M10.3,11.9L10.3,6.29L10.3,5.6L10.3,0L0,5.95L10.3,11.9Z',
               },
             },
           },
@@ -827,8 +827,14 @@ export default defineComponent({
         outgoingEdges?.forEach(edge => {
           if (data.htc === true) {
             edge.attr('line/strokeWidth', 5);
+            edge.attr('line/targetMarker/name', 'path');
+            edge.attr('line/targetMarker/offsetX', -8);
+            edge.attr('line/targetMarker/d', 'M5.5,15.499,15.8,21.447,15.8,15.846,25.5,21.447,25.5,9.552,15.8,15.152,15.8,9.552z');
           } else {
             edge.attr('line/strokeWidth', 1.5);
+            edge.attr('line/targetMarker/name', 'path');
+            edge.attr('line/targetMarker/offsetX', -5);
+            edge.attr('line/targetMarker/d', 'M10.3,11.9L10.3,6.29L10.3,5.6L10.3,0L0,5.95L10.3,11.9Z');
           }
         });
       });

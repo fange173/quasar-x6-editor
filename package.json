@@ -16,12 +16,12 @@
     "codemirror-editor-vue3": "^1.0.1",
     "core-js": "^3.21.0",
     "jsonlint": "^1.6.3",
-    "quasar": "^2.5.4",
+    "quasar": "^2.5.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^3.3.2",
+    "@quasar/app": "^3.3.3",
     "@types/node": "^17.0.16"
   },
   "browserslist": [
