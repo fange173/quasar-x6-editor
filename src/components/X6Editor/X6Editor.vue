@@ -2,7 +2,7 @@
   <div>
     <LeftDrawer :showLeftDrawer="showLeftDrawer" />
     <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
-    <q-page id="container">
+    <div id="container">
       <q-menu touch-position context-menu>
         <q-list dense style="min-width: 100px" v-if="choiceType == 'node'">
           <q-item clickable v-close-popup>
@@ -61,7 +61,7 @@
           </q-item>
         </q-list>
       </q-menu>
-    </q-page>
+    </div>
     <ToolBar :zoom="zoom" />
     <HelpDialog :openHelpDialog="openHelpDialog" />
     <CodeDialog :openCodeDialog="openCodeDialog" :data="jsonData" />
@@ -943,6 +943,6 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-@import url('src/assets/css/workflow.css');
+<style>
+@import url('./X6Editor.css');
 </style>

@@ -26,10 +26,6 @@ import { computed, getCurrentInstance } from 'vue';
 import { copyToClipboard, Notify } from 'quasar';
 import Codemirror from 'codemirror-editor-vue3';
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/keymap/sublime'; // sublime编辑器效果
-import "codemirror/theme/dracula.css"; // 配置里面也需要设置theme
-import "codemirror/mode/vue/vue.js"; // 配置里面也需要mode设置为vue
-import 'codemirror/addon/selection/active-line'; // 光标行背景高亮，配置里面也需要styleActiveLine设置为true
 import 'codemirror/mode/javascript/javascript.js';
 
 export default {
@@ -72,11 +68,9 @@ export default {
       close,
       showCodeDialog,
       cmOptions: {
-        tabSize: 2, // tab的空格个数
-        // theme: 'dracula', // 主题样式
-        styleActiveLine: false, // line选择是是否加亮
-        matchBrackets: true, // 括号匹配
         mode: 'application/json', // 实现代码高亮
+        tabSize: 2, // tab的空格个数
+        matchBrackets: true, // 括号匹配
         lineNumbers: true, // 是否显示行数
         readOnly: true, // 只读
       },

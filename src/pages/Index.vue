@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import X6Editor from "components/X6Editor/X6Editor.vue";
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "PageIndex",
