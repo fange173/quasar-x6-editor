@@ -2,15 +2,8 @@
   <X6Editor />
 </template>
 
-<script lang="ts">
-import X6Editor from "components/X6Editor/X6Editor.vue";
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "PageIndex",
-  components: { X6Editor },
-  setup() {
-    return {};
-  },
-});
+<script setup="props, { emit }" lang="ts">
+  import X6Editor from "src/components/X6Editor/X6Editor.vue";
 </script>
+
+<style lang="scss" scoped></style>

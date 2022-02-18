@@ -1,8 +1,28 @@
 {
-  "extends": "@quasar/app/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": ".",
-    "noImplicitThis": true,
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "types": [
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      "@intlify/vite-plugin-vue-i18n/client"
+    ],
+    "paths": {
+      "src/*": ["src/*"],
+      "/src/*": ["src/*"],
+      "~/*": ["src/*"]
+    },
     "allowJs": true
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
 }
