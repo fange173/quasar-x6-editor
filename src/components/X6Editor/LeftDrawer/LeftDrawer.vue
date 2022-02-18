@@ -95,7 +95,7 @@
           icon="chevron_left"
           @click="shLeftDrawer"
           style="z-index: 1"
-          class="float-button blur"
+          class="float-button back-blur"
         />
       </div>
     </q-drawer>
@@ -108,14 +108,13 @@
         icon="chevron_right"
         @click="shLeftDrawer"
         style="z-index: 1; margin-top: 25px"
-        class="float-button blur"
+        class="float-button back-blur"
       />
     </div>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 import { getCurrentInstance, computed, ref } from 'vue';
 
 export default {
@@ -300,34 +299,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
 
 <style scoped>
-.node-label {
-  height: 36px;
-  padding-top: -4px;
-  padding-bottom: -4px;
-  margin-top: -3px;
-  margin-bottom: 0;
-}
-.node {
-  display: flex;
-  width: 200px;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 4px;
-  background: #ffffff;
-  border: 1px solid #ccd1dc;
-  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
-  color: #5c5c5c;
-}
-/* .node:hover {
-  background: #f5f5f5;
-} */
-.my-tooltip {
-  border: 1px solid #ccd1dc;
-  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
-  color: #808080;
-}
+@import url('../X6Editor.css');
 </style>

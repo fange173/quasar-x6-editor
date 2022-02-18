@@ -68,9 +68,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { DagreLayout } from '@antv/layout';
-import { Addon, Cell, Graph, Node } from '@antv/x6';
+import { Addon, Graph } from '@antv/x6';
 import { useQuasar, date } from 'quasar';
 import { defineComponent, onMounted, ref } from 'vue';
 import ToolBar from './ToolBar/ToolBar.vue';
@@ -93,7 +93,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     // 声明画布
-    let graph: Graph;
+    let graph;
     // 声明dnd
     const dnd = ref({});
     // 选择的节点id
@@ -151,7 +151,7 @@ export default defineComponent({
       ],
     };
     // 原始json数据
-    let json: any = {
+    let json = {
       name: '测试工作流20220128-1',
       externalId: 'w-workflow-20220128',
       materialName: 'w',
@@ -255,7 +255,7 @@ export default defineComponent({
     };
     // 初始化节点数据
     const flow = ref({ name: '', id: '', materialName: '' });
-    let data: any = { nodes: [], edges: [] };
+    let data = { nodes: [], edges: [] };
 
     // 撤销
     const undo = () => {
@@ -376,7 +376,7 @@ export default defineComponent({
         persistent: true,
         ok: '继续',
         cancel: '取消',
-      }).onOk((data: string) => {
+      }).onOk((data) => {
         $q.notify({
           message: '选择了 ' + data,
           color: 'primary',
@@ -387,8 +387,7 @@ export default defineComponent({
     const showNode = () => {
       transformToJson();
       jsonData.value = JSON.stringify(
-        // eslint-disable-next-line
-        (jsonData.value as any).jobs.find((ele: { externalId: string }) => {
+        jsonData.value.jobs.find((ele) => {
           return ele.externalId == choiceId.value;
         }),
         null,
@@ -400,8 +399,7 @@ export default defineComponent({
     const showEdge = () => {
       transformToJson();
       jsonData.value = JSON.stringify(
-        // eslint-disable-next-line
-        (jsonData.value as any).dependencies.find((ele: { externalId: string }) => {
+        jsonData.value.dependencies.find((ele) => {
           return ele.externalId == choiceId.value;
         }),
         null,
@@ -412,30 +410,22 @@ export default defineComponent({
     // x6数据转换成json数据
     const transformToJson = () => {
       const x6Data = graph.toJSON().cells;
-      let jobs: any = [];
-      let dependencies: any = [];
+      let jobs = [];
+      let dependencies = [];
       for (let i = 0, len = x6Data.length; i < len; i++) {
         if (x6Data[i].shape === 'default-edge') {
-          // eslint-disable-next-line
           dependencies.push({
             externalId: x6Data[i].id,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             jobExternalId: x6Data[i].target.cell,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             jobDependencyExternalId: x6Data[i].source.cell,
             fileDependencies: x6Data[i].fileDependencies,
           });
         } else {
-          // eslint-disable-next-line
           jobs.push({
             externalId: x6Data[i].id,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             cpuCores: x6Data[i].data.cpuCores,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             appUseCase: x6Data[i].data.appUseCase,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             name: x6Data[i].data.name,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             htc: x6Data[i].data.htc,
           });
         }
@@ -532,10 +522,9 @@ export default defineComponent({
       else graph.resize(window.innerWidth, window.innerHeight - 52);
     }
     // dnd开始拖动
-    const startDrag = (e: any, prop: { node: Node.Metadata }) => {
+    const startDrag = (e, prop) => {
       const node = graph.createNode(prop.node);
-      // eslint-disable-next-line
-      (dnd.value as any).start(node, e);
+      dnd.value.start(node, e);
     };
     // json数据转换成x6数据
     const transformToData = () => {
@@ -545,7 +534,6 @@ export default defineComponent({
       if (json.jobs.length !== 0) {
         const jobs = json.jobs;
         for (let i = 0, len = jobs.length; i < len; i++) {
-          // eslint-disable-next-line
           data.nodes.push({
             id: jobs[i].externalId,
             data: {
@@ -563,7 +551,6 @@ export default defineComponent({
       if (json.dependencies.length !== 0) {
         const dependencies = json.dependencies;
         for (let i = 0, len = dependencies.length; i < len; i++) {
-          // eslint-disable-next-line
           data.edges.push({
             id: dependencies[i].externalId,
             source: dependencies[i].jobDependencyExternalId,
@@ -623,7 +610,7 @@ export default defineComponent({
       };
       // 渲染画布
       graph = new Graph({
-        container: document.getElementById('container') as HTMLElement, // 画布容器
+        container: document.getElementById('container'), // 画布容器
         autoResize: true,
         // minimap: {
         //   // 缩略图
@@ -705,10 +692,8 @@ export default defineComponent({
             const i = graph.toJSON().cells.find(ele => {
               if (
                 ele.shape === 'edge' &&
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                ele.target.cell === (sourceCell as Cell<Cell.Properties>).id &&
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                ele.source.cell === (targetCell as Cell<Cell.Properties>).id
+                ele.target.cell === sourceCell.id &&
+                ele.source.cell === targetCell.id
               )
                 return true;
             });
@@ -780,7 +765,6 @@ export default defineComponent({
       });
       // 绑定左键点击事件
       graph.on('node:click', ({ node }) => {
-        // eslint-disable-next-line
         rightDrawer.value.nodeClickResponse(node);
         console.log('node', node);
         // clickNode.value = data.nodes.find((ele)=>{
@@ -788,17 +772,14 @@ export default defineComponent({
         // });
       });
       graph.on('edge:click', ({ edge }) => {
-        // eslint-disable-next-line
         rightDrawer.value.edgeClickResponse(edge);
         console.log('edge', edge);
       });
       graph.on('blank:click', ({}) => {
-        // eslint-disable-next-line
         rightDrawer.value.blankClickResponse();
       });
       // 绑定拖动节点事件
       graph.on('node:mousemove', ({ node }) => {
-        // eslint-disable-next-line
         rightDrawer.value.nodeMouseMoveResponse(node);
       });
       // 绑定连线事件
@@ -845,9 +826,9 @@ export default defineComponent({
     }
 
     // 设置节点状态
-    const setNodeStatus = (index: number, status: string) => {
+    const setNodeStatus = (index, status) => {
       const node = graph.getNodes()[index];
-      let data: { name: string; status: string } = node.getData();
+      let data = node.getData();
       node.setData({ name: data.name, status: status });
     };
 
@@ -943,6 +924,6 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 @import url('./X6Editor.css');
 </style>

@@ -34,7 +34,7 @@
   border: 1px solid #c9c9c9;
   zoom: 1;
 }
-.blur {
+.back-blur {
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
@@ -146,4 +146,80 @@
 }
 @keyframes breath {
   0% {opacity: .2;}70% {opacity: 1;}to {opacity: .2;}
+}
+
+.CodeMirror-gutters {
+  left: 0 !important;
+}
+.CodeMirror-gutter-wrapper {
+  left: -35px !important;
+}
+
+.node-label {
+  height: 36px;
+  padding-top: -4px;
+  padding-bottom: -4px;
+  margin-top: -3px;
+  margin-bottom: 0;
+}
+.node {
+  display: flex;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #ccd1dc;
+  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
+  color: #5c5c5c;
+}
+/* .node:hover {
+  background: #f5f5f5;
+} */
+.my-tooltip {
+  border: 1px solid #ccd1dc;
+  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
+  color: #808080;
+}
+
+.default-node {
+  display: flex;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #ccd1dc;
+  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
+  color: #5c5c5c;
+}
+.htc-node-1 {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  z-index: -2;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #ccd1dc;
+  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
+  color: #5c5c5c;
+  opacity: 0.8;
+}
+.htc-node-2 {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  z-index: -3;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #ccd1dc;
+  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
+  color: #5c5c5c;
+  opacity: 0.6;
 }

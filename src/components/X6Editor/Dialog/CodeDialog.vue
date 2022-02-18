@@ -21,7 +21,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { computed, getCurrentInstance } from 'vue';
 import { copyToClipboard, Notify } from 'quasar';
 import Codemirror from 'codemirror-editor-vue3';
@@ -77,14 +76,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
 
 <style>
-.CodeMirror-gutters {
-  left: 0 !important;
-}
-.CodeMirror-gutter-wrapper {
-  left: -35px !important;
-}
+@import url('../X6Editor.css');
 </style>

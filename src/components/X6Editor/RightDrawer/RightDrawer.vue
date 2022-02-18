@@ -25,7 +25,7 @@
           icon="chevron_right"
           @click="shRightDrawer"
           style="z-index: 1"
-          class="float-button blur"
+          class="float-button back-blur"
         />
       </div>
       <!-- <EditPanel id="edit" ref="editPanel" style="height: calc(100% - 270px)" /> -->
@@ -40,14 +40,13 @@
         icon="chevron_left"
         @click="shRightDrawer"
         style="z-index: 1; margin-top: 25px"
-        class="float-button blur"
+        class="float-button back-blur"
       />
     </div>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 import { getCurrentInstance, computed, ref } from 'vue';
 import MiniMap from './MiniMap.vue';
 import EditPanel from './EditPanel.vue';
@@ -105,5 +104,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
+
+<style scoped>
+@import url('../X6Editor.css');
+</style>

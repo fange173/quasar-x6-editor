@@ -33,7 +33,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { inject, onMounted, ref } from 'vue';
 import { Dialog, Notify } from 'quasar';
 
@@ -87,45 +86,5 @@ export default {
 </script>
 
 <style scoped>
-.default-node {
-  display: flex;
-  width: 200px;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 4px;
-  background: #ffffff;
-  border: 1px solid #ccd1dc;
-  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
-  color: #5c5c5c;
-}
-.htc-node-1 {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  z-index: -2;
-  width: 200px;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 4px;
-  background: #ffffff;
-  border: 1px solid #ccd1dc;
-  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
-  color: #5c5c5c;
-  opacity: 0.8;
-}
-.htc-node-2 {
-  position: absolute;
-  top: -9px;
-  left: -9px;
-  z-index: -3;
-  width: 200px;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 4px;
-  background: #ffffff;
-  border: 1px solid #ccd1dc;
-  box-shadow: 0 2px 5px 1px rgb(0 0 0 / 6%);
-  color: #5c5c5c;
-  opacity: 0.6;
-}
+@import url('../X6Editor.css');
 </style>

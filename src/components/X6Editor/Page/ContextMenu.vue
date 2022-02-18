@@ -54,7 +54,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { getCurrentInstance } from 'vue';
 
 export default {
@@ -107,5 +106,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
+
+<style scoped>
+@import url('../X6Editor.css');
+</style>

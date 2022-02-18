@@ -9,7 +9,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { getCurrentInstance } from 'vue';
 import ContextMenu from './ContextMenu.vue';
 
@@ -66,5 +65,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
+
+<style scoped>
+@import url('../X6Editor.css');
+</style>

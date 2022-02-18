@@ -203,8 +203,7 @@
   </div>
 </template>
 
-<script lang="ts">
-/* eslint-disable */
+<script>
 import { ref, nextTick } from 'vue';
 import { Notify } from 'quasar';
 
@@ -214,10 +213,10 @@ export default {
       type: Object,
     },
   },
-  setup(props: any) {
-    const clickNode: any = ref();
-    const clickNodeSelf: any = ref();
-    const clickEdge: any = ref();
+  setup(props) {
+    const clickNode = ref();
+    const clickNodeSelf = ref();
+    const clickEdge = ref();
     const clickType = ref('');
     const thisFlow = ref({ name: '', id: '', materialName: '' });
 
@@ -256,7 +255,7 @@ export default {
     }
 
     // 左键点击事件响应方法
-    const nodeClickResponse = (node: any) => {
+    const nodeClickResponse = (node) => {
       clickType.value = 'node';
       clickNodeSelf.value = node;
       const data = clickNodeSelf.value.getData();
@@ -277,14 +276,14 @@ export default {
       //   return ele.id == node.id;
       // });
     };
-    const nodeMouseMoveResponse = (node: any) => {
+    const nodeMouseMoveResponse = (node) => {
       clickNodeSelf.value = node;
       if (clickNode.value) {
         clickNode.value.x = clickNodeSelf.value.store.data.position.x;
         clickNode.value.y = clickNodeSelf.value.store.data.position.y;
       }
     };
-    const edgeClickResponse = (edge: any) => {
+    const edgeClickResponse = (edge) => {
       clickType.value = 'edge';
       clickEdge.value = edge;
       // console.log('edge', edge);
@@ -311,5 +310,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
+
+<style scoped>
+@import url('../X6Editor.css');
+</style>

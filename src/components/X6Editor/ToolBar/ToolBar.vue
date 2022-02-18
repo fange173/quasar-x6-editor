@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="toolbar" class="row items-center blur">
+    <div id="toolbar" class="row items-center back-blur">
       <q-btn flat dense icon="undo" @click="undo" class="q-ml-xs">
         <q-tooltip :offset="[8, 8]"> 撤销 </q-tooltip>
       </q-btn>
@@ -55,7 +55,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { getCurrentInstance } from 'vue';
 
 export default {
@@ -118,5 +117,8 @@ export default {
     };
   },
 };
-/* eslint-disable */
 </script>
+
+<style scoped>
+@import url('../X6Editor.css');
+</style>
