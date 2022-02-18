@@ -31,6 +31,8 @@ export default defineConfig({
     alias: {
       src: resolve(__dirname, 'src'),
       '~': resolve(__dirname, 'src'),
+      '@antv/x6': '@antv/x6/lib',
+      '@antv/x6-vue-shape': '@antv/x6-vue-shape/lib',
     },
   },
   server: {

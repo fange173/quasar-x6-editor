@@ -9,7 +9,7 @@ specifiers:
   '@quasar/vite-plugin': ^1.0.4
   '@types/node': ^17.0.17
   '@unocss/reset': ^0.20.4
-  '@vitejs/plugin-vue': 1.7.0
+  '@vitejs/plugin-vue': 2.2.0
   axios: ^0.24.0
   codemirror: ^5.65.1
   codemirror-editor-vue3: ^1.0.1
@@ -19,7 +19,7 @@ specifiers:
   typescript: ^4.5.5
   unocss: ^0.23.0
   velocity-animate: ^1.5.2
-  vite: 2.2.4
+  vite: 2.8.4
   vite-plugin-pages: ^0.20.2
   vite-plugin-vue-layouts: ^0.6.0
   vue: ^3.2.31
@@ -44,16 +44,16 @@ dependencies:
   vue-router: 4.0.12_vue@3.2.31
 
 devDependencies:
-  '@intlify/vite-plugin-vue-i18n': 3.3.0_vite@2.2.4+vue-i18n@9.1.9
-  '@quasar/vite-plugin': 1.0.4_a58879cd007bd65f4bfb65c9ec2223a4
+  '@intlify/vite-plugin-vue-i18n': 3.3.0_vite@2.8.4+vue-i18n@9.1.9
+  '@quasar/vite-plugin': 1.0.4_9a0997abaa971124f2735472c82a69c3
   '@types/node': 17.0.17
-  '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/1.7.0
+  '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/2.2.0_vite@2.8.4+vue@3.2.31
   sass: 1.32.0
   typescript: 4.5.5
   unocss: 0.23.0_sass@1.32.0
-  vite: registry.npmmirror.com/vite/2.2.4
-  vite-plugin-pages: 0.20.2_vite@2.2.4
-  vite-plugin-vue-layouts: 0.6.0_a73ca29854bbf5b61ea536a7b379165d
+  vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
+  vite-plugin-pages: 0.20.2_vite@2.8.4
+  vite-plugin-vue-layouts: 0.6.0_38d013b3483c2295d006adc17a4cc10f
   vue-tsc: 0.31.4_typescript@4.5.5
 
 packages:
@@ -164,7 +164,7 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
-  /@intlify/vite-plugin-vue-i18n/3.3.0_vite@2.2.4+vue-i18n@9.1.9:
+  /@intlify/vite-plugin-vue-i18n/3.3.0_vite@2.8.4+vue-i18n@9.1.9:
     resolution: {integrity: sha512-RxtqVe8ia/5eEH+RFzRKMhO6eyYRGssNpVcaxOoocgKDJuA+1QHF5jZGnioIQpZcIwFxLUlf42C4YdAatIJFEw==}
     engines: {node: '>= 12'}
     peerDependencies:
@@ -183,7 +183,7 @@ packages:
       debug: 4.3.3
       fast-glob: 3.2.11
       source-map: 0.6.1
-      vite: registry.npmmirror.com/vite/2.2.4
+      vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
       vue-i18n: 9.1.9_vue@3.2.31
     transitivePeerDependencies:
       - supports-color
@@ -227,7 +227,7 @@ packages:
     resolution: {integrity: sha512-I2bj/qPVxFdd1SZmIao+moh2bSlgbqNHJAIAopzwxQL0fTMKWGaOQsOvSKrv4hmAhC1cL/SBHd4OWAUWa4dA/w==}
     dev: false
 
-  /@quasar/vite-plugin/1.0.4_a58879cd007bd65f4bfb65c9ec2223a4:
+  /@quasar/vite-plugin/1.0.4_9a0997abaa971124f2735472c82a69c3:
     resolution: {integrity: sha512-rH3QKL1p1bvAki62m2Jovh4I84iQifcPSMverzvMxjzKAqRhaxcDqBwJLC5WxnzJ8DWy/rAPI7pQAWlImG7Q7Q==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -236,7 +236,7 @@ packages:
       vue: ^3.0.0
     dependencies:
       quasar: 2.5.5
-      vite: registry.npmmirror.com/vite/2.2.4
+      vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
       vue: 3.2.31
     dev: true
 
@@ -1220,11 +1220,6 @@ packages:
     resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: ms/download/ms-2.1.2.tgz}
     dev: true
 
-  /nanoid/3.2.0:
-    resolution: {integrity: sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
   /normalize-path/3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -1308,9 +1303,6 @@ packages:
     resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
     dev: true
 
-  /picocolors/1.0.0:
-    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -1338,9 +1330,9 @@ packages:
     resolution: {integrity: sha512-OovjwIzs9Te46vlEx7+uXB0PLijpwjXGKXjVGGPIGubGpq7uh5Xgf6D6FiJ/SzJMBosHDp6a2hiXOS97iBXcaA==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanoid: 3.2.0
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
+      nanoid: registry.npmmirror.com/nanoid/3.2.0
+      picocolors: registry.npmmirror.com/picocolors/1.0.0
+      source-map-js: registry.npmmirror.com/source-map-js/1.0.2
 
   /promise/7.3.1:
     resolution: {integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==}
@@ -1482,14 +1474,6 @@ packages:
       chokidar: 3.5.3
     dev: true
 
-  /semver/7.3.5:
-    resolution: {integrity: sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
-    dev: true
-
   /shebang-command/2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
     engines: {node: '>=8'}
@@ -1522,10 +1506,6 @@ packages:
       mrmime: 1.0.0
       totalist: 3.0.0
     dev: true
-
-  /source-map-js/1.0.2:
-    resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
-    engines: {node: '>=0.10.0'}
 
   /source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
@@ -1654,7 +1634,7 @@ packages:
     resolution: {integrity: sha512-m6EXlCAMetKztO1ppBhGU1/1MR3IiEevO6ESq6rcrSQ3Q77xYSW13jkfXW88o4xMrkXJhy/U7j4wFR/twMB0Eg==}
     dev: false
 
-  /vite-plugin-pages/0.20.2_vite@2.2.4:
+  /vite-plugin-pages/0.20.2_vite@2.8.4:
     resolution: {integrity: sha512-A/N6Pez9sMzt7ZEfd1H7P9tmP6LrZwXMexV8xSiRahnUeNw+gz0W2dsPLJDZBvcixDZqoK8ggKdmyxgVBuTAfg==}
     peerDependencies:
       '@vue/compiler-sfc': '>=3'
@@ -1668,13 +1648,13 @@ packages:
       fast-glob: 3.2.11
       json5: 2.2.0
       local-pkg: 0.4.1
-      vite: registry.npmmirror.com/vite/2.2.4
+      vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
       yaml: 2.0.0-10
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-vue-layouts/0.6.0_a73ca29854bbf5b61ea536a7b379165d:
+  /vite-plugin-vue-layouts/0.6.0_38d013b3483c2295d006adc17a4cc10f:
     resolution: {integrity: sha512-7QX7o/NpCfs+hyXphwYfmPqAEQ6qd4uXsvI0VsovjGT2eCoEE5dMdP6L+uqqNWY4uqv7oCvtinecZmbzZv/9Rg==}
     peerDependencies:
       vite: ^2.5.0
@@ -1684,7 +1664,7 @@ packages:
       '@vue/compiler-sfc': 3.2.31
       debug: 4.3.3
       fast-glob: 3.2.11
-      vite: registry.npmmirror.com/vite/2.2.4
+      vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
       vue: 3.2.31
       vue-router: 4.0.12_vue@3.2.31
     transitivePeerDependencies:
@@ -1716,7 +1696,7 @@ packages:
       local-pkg: 0.4.1
       tinypool: 0.1.2
       tinyspy: 0.2.10
-      vite: registry.npmmirror.com/vite/2.8.1_sass@1.32.0
+      vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
     transitivePeerDependencies:
       - less
       - sass
@@ -1801,7 +1781,7 @@ packages:
     resolution: {integrity: sha512-nsnRPEfg9t3oDlwzm3WTAv0p83vceqCuxvRo/+N7hXbmtaO7WMGCMvJx0xyIuUDS4NgaEK31oMR9FnX9JNcEQQ==}
     dependencies:
       '@volar/shared': 0.31.4
-      semver: 7.3.5
+      semver: registry.npmmirror.com/semver/7.3.5
       upath: 2.0.1
       vscode-languageserver-protocol: 3.17.0-next.14
       vscode-languageserver-textdocument: 1.0.4
@@ -2150,13 +2130,18 @@ packages:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.17.2
     dev: false
 
-  registry.npmmirror.com/@vitejs/plugin-vue/1.7.0:
-    resolution: {integrity: sha512-aNa36roLdq58Ay7tQ70IEXnSGwobC1xaWk77/ZgLL7x+YeBkVsd1UkbFaKeIs6a5KkHbBGNxz6Kto+rW4wHs0g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-1.7.0.tgz}
+  registry.npmmirror.com/@vitejs/plugin-vue/2.2.0_vite@2.8.4+vue@3.2.31:
+    resolution: {integrity: sha512-wXigM1EwN2G7rZcwG6kLk9ivvIMhx2363tCEvMBiXcTu5nePM/12hUPVzPb83Uugt6U+zom1gTpJopi/Ow/jwg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-2.2.0.tgz}
+    id: registry.npmmirror.com/@vitejs/plugin-vue/2.2.0
     name: '@vitejs/plugin-vue'
-    version: 1.7.0
+    version: 2.2.0
     engines: {node: '>=12.0.0'}
     peerDependencies:
-      '@vue/compiler-sfc': ^3.2.6
+      vite: ^2.5.10
+      vue: ^3.2.25
+    dependencies:
+      vite: registry.npmmirror.com/vite/2.8.4_sass@1.32.0
+      vue: 3.2.31
     dev: true
 
   registry.npmmirror.com/@webgpu/glslang/0.0.15:
@@ -2483,14 +2468,6 @@ packages:
       esbuild-windows-arm64: registry.npmmirror.com/esbuild-windows-arm64/0.14.21
     dev: true
 
-  registry.npmmirror.com/esbuild/0.9.7:
-    resolution: {integrity: sha512-VtUf6aQ89VTmMLKrWHYG50uByMF4JQlVysb8dmg6cOgW8JnFCipmz7p+HNBl+RR3LLCuBxFGVauAe2wfnF9bLg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild/-/esbuild-0.9.7.tgz}
-    name: esbuild
-    version: 0.9.7
-    hasBin: true
-    requiresBuild: true
-    dev: true
-
   registry.npmmirror.com/eslint-utils/2.1.0:
     resolution: {integrity: sha512-w94dQYoauyvlDc43XnGB8lU3Zt713vNChgt4EWwhXAP2XkBvndfxF0AgIqKOOasjPIPzj9JqgwkwbCYD0/V3Zg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-utils/-/eslint-utils-2.1.0.tgz}
     name: eslint-utils
@@ -2676,7 +2653,6 @@ packages:
     version: 3.2.0
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/path-parse/-/path-parse-1.0.7.tgz}
@@ -2688,7 +2664,6 @@ packages:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/picocolors/-/picocolors-1.0.0.tgz}
     name: picocolors
     version: 1.0.0
-    dev: true
 
   registry.npmmirror.com/polyline-miter-util/1.0.1:
     resolution: {integrity: sha512-/3u91zz6mBerBZo6qnOJOTjv7EfPhKtsV028jMyj86YpzLRNmCCFfrX7IO9tCEQ2W4x45yc+vKOezjf7u2Nd6Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/polyline-miter-util/-/polyline-miter-util-1.0.1.tgz}
@@ -2774,12 +2749,21 @@ packages:
     hasBin: true
     dev: true
 
+  registry.npmmirror.com/semver/7.3.5:
+    resolution: {integrity: sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/semver/-/semver-7.3.5.tgz}
+    name: semver
+    version: 7.3.5
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
   registry.npmmirror.com/source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map-js/-/source-map-js-1.0.2.tgz}
     name: source-map-js
     version: 1.0.2
     engines: {node: '>=0.10.0'}
-    dev: true
 
   registry.npmmirror.com/source-map/0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map/-/source-map-0.6.1.tgz}
@@ -2801,26 +2785,11 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
-  registry.npmmirror.com/vite/2.2.4:
-    resolution: {integrity: sha512-vnIwSNci+phFMp6krhy+FbYzKL0R67Sdt9mVZ96S27AewrApSJjTqncJcalk8sf60BgcbW4+1C6DFIWkxquO9g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-2.2.4.tgz}
+  registry.npmmirror.com/vite/2.8.4_sass@1.32.0:
+    resolution: {integrity: sha512-GwtOkkaT2LDI82uWZKcrpRQxP5tymLnC7hVHHqNkhFNknYr0hJUlDLfhVRgngJvAy3RwypkDCWtTKn1BjO96Dw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-2.8.4.tgz}
+    id: registry.npmmirror.com/vite/2.8.4
     name: vite
-    version: 2.2.4
-    engines: {node: '>=12.0.0'}
-    hasBin: true
-    dependencies:
-      esbuild: registry.npmmirror.com/esbuild/0.9.7
-      postcss: registry.npmmirror.com/postcss/8.4.6
-      resolve: registry.npmmirror.com/resolve/1.22.0
-      rollup: registry.npmmirror.com/rollup/2.67.2
-    optionalDependencies:
-      fsevents: registry.npmmirror.com/fsevents/2.3.2
-    dev: true
-
-  registry.npmmirror.com/vite/2.8.1_sass@1.32.0:
-    resolution: {integrity: sha512-Typ8qjUnW0p53gBsJpisrKcZlEbUPZATja9BG6Z09QZjg9YrnEn/htkr/VH4WhnH7eNUQeSD+wKI1lHzQRWskw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-2.8.1.tgz}
-    id: registry.npmmirror.com/vite/2.8.1
-    name: vite
-    version: 2.8.1
+    version: 2.8.4
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
