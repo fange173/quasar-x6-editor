@@ -43,7 +43,6 @@
             <div
               class="node"
               v-else
-              style="cursor: move"
               @mousedown="startDrag($event, prop)"
               @touchstart.stop="startDrag($event, prop)"
             >

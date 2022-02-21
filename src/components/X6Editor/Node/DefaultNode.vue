@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="htc-node-1" v-if="data.htc" />
-    <div class="htc-node-2" v-if="data.htc" />
+    <div class="default-node htc-node-1" v-if="data.htc" />
+    <div class="default-node htc-node-2" v-if="data.htc" />
     <div class="default-node tooltip">
       <div class="left-side">
         <span class="material-icons status-icons cursor-pointer" style="color: #808080;" @click="nodeSetting">
