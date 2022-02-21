@@ -6,7 +6,9 @@
   "author": "Fange(fange173@qq.com)",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "copy": "./COPY.bat",
+    "preview": "./dist/spa/index.html"
   },
   "dependencies": {
     "@antv/layout": "^0.1.24",

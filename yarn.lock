@@ -73,9 +73,9 @@
     vue-demi "^0.7.4"
 
 "@antv/x6@^1.30.0":
-  version "1.30.0"
-  resolved "https://registry.npmmirror.com/@antv/x6/-/x6-1.30.0.tgz#04991625a3207e43e5c4acb75e3c8327a1bfcdfa"
-  integrity sha512-YYUSY1YdreTw4LxElQClXQqZ2msSefHZ2JFM9dM3NOMPn/VWNc6+GIvfxJ51HHWCNF23Hn126xxVBxYRu1zAuw==
+  version "1.30.1"
+  resolved "https://registry.npmmirror.com/@antv/x6/-/x6-1.30.1.tgz#8a34140587a3b471120a6cfc55f9458b70f63525"
+  integrity sha512-bdiiKqlHZyQiZ6MrpqE18cFNNO2aWt+ZwSkTE3UlxyPmkAr9JxISwkr771/Fwc10LOV1ImlTAUpfXd8fxYJaAQ==
   dependencies:
     csstype "^3.0.3"
     jquery "^3.5.1"
@@ -1388,9 +1388,9 @@
     webpack "^5"
 
 "@types/ws@^8.2.2":
-  version "8.2.2"
-  resolved "https://registry.npmmirror.com/@types/ws/-/ws-8.2.2.tgz#7c5be4decb19500ae6b3d563043cd407bf366c21"
-  integrity sha512-NOn5eIcgWLOo6qW8AcuLZ7G8PycXu0xTxxkS6Q18VWFxgPUSOwV0pBj2a/4viNZVu25i7RIB7GttdkAIUUXOOg==
+  version "8.2.3"
+  resolved "https://registry.npmmirror.com/@types/ws/-/ws-8.2.3.tgz#0bca6b03ba2f41e0fab782d4a573fe284aa907ae"
+  integrity sha512-ahRJZquUYCdOZf/rCsWg88S0/+cb9wazUBHv6HZEe3XdYaBe2zr/slM8J28X07Hn88Pnm4ezo7N8/ofnOgrPVQ==
   dependencies:
     "@types/node" "*"
 
@@ -1978,14 +1978,14 @@ braces@^3.0.1, braces@~3.0.2:
     fill-range "^7.0.1"
 
 browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.16.6, browserslist@^4.17.5, browserslist@^4.19.1:
-  version "4.19.1"
-  resolved "https://registry.npmmirror.com/browserslist/-/browserslist-4.19.1.tgz#4ac0435b35ab655896c31d53018b6dd5e9e4c9a3"
-  integrity sha512-u2tbbG5PdKRTUoctO3NBD8FQ5HdPh1ZXPHzp1rwaa5jTc+RV9/+RlWiAIKmjRPQF+xbGM9Kklj5bZQFa2s/38A==
+  version "4.19.3"
+  resolved "https://registry.npmmirror.com/browserslist/-/browserslist-4.19.3.tgz#29b7caad327ecf2859485f696f9604214bedd383"
+  integrity sha512-XK3X4xtKJ+Txj8G5c30B4gsm71s69lqXlkYui4s6EkKxuv49qjYlY6oVd+IFJ73d4YymtM3+djvvt/R/iJwwDg==
   dependencies:
-    caniuse-lite "^1.0.30001286"
-    electron-to-chromium "^1.4.17"
+    caniuse-lite "^1.0.30001312"
+    electron-to-chromium "^1.4.71"
     escalade "^3.1.1"
-    node-releases "^2.0.1"
+    node-releases "^2.0.2"
     picocolors "^1.0.0"
 
 buffer-crc32@^0.2.1, buffer-crc32@^0.2.13:
@@ -2065,7 +2065,7 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001286, caniuse-lite@^1.0.30001297:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001297, caniuse-lite@^1.0.30001312:
   version "1.0.30001312"
   resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz#e11eba4b87e24d22697dae05455d5aea28550d5f"
   integrity sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==
@@ -2749,7 +2749,7 @@ ejs@^2.3.1:
   resolved "https://registry.npmmirror.com/ejs/-/ejs-2.7.4.tgz#48661287573dcc53e366c7a1ae52c3a120eec9ba"
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
-electron-to-chromium@^1.4.17:
+electron-to-chromium@^1.4.71:
   version "1.4.71"
   resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.71.tgz#17056914465da0890ce00351a3b946fd4cd51ff6"
   integrity sha512-Hk61vXXKRb2cd3znPE9F+2pLWdIOmP7GjiTj45y6L3W/lO+hSnUSUhq+6lEaERWBdZOHbk2s3YV5c9xVl3boVw==
@@ -3099,9 +3099,9 @@ find-up@^5.0.0:
     path-exists "^4.0.0"
 
 follow-redirects@^1.0.0:
-  version "1.14.8"
-  resolved "https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
-  integrity sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==
+  version "1.14.9"
+  resolved "https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
+  integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
 
 fork-ts-checker-webpack-plugin@6.5.0:
   version "6.5.0"
@@ -4223,7 +4223,7 @@ node-loader@2.0.0:
   dependencies:
     loader-utils "^2.0.0"
 
-node-releases@^2.0.1:
+node-releases@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmmirror.com/node-releases/-/node-releases-2.0.2.tgz#7139fe71e2f4f11b47d4d2986aaf8c48699e0c01"
   integrity sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==
