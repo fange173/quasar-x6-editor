@@ -113,6 +113,7 @@
   border-bottom-left-radius: 3px;
   height: 34.1px;
   /* color: #1976d2; */
+  border-right: 1px solid #ccd1dc;
 }
 .center {
   width: 128px;
