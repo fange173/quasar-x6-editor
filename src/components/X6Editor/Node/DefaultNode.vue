@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div class="default-node htc-node-1" v-if="data.htc" />
-    <div class="default-node htc-node-2" v-if="data.htc" />
+    <div class="default-node htc-node-1" v-if="data.htc">
+      <div class="left-side" />
+    </div>
+    <div class="default-node htc-node-2" v-if="data.htc">
+      <div class="left-side" />
+    </div>
     <div class="default-node">
       <div class="left-side">
         <span class="material-icons status-icons" style="color: green;" v-if="data.status === 'success'">
