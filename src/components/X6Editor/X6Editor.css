@@ -145,7 +145,15 @@
   }
 }
 @keyframes breath {
-  0% {opacity: .2;}70% {opacity: 1;}to {opacity: .2;}
+  0% {
+    opacity: 0.2;
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
 }
 
 .CodeMirror-gutters {
@@ -201,6 +209,25 @@
   background: #f3f8ff;
   border-color: #2496ff;
   box-shadow: 0 0 3px 3px rgb(64 169 255 / 20%);
+}
+.x6-node-selected .default-node {
+  background: #f3f8ff;
+  border-color: #2496ff;
+  box-shadow: 0 0 3px 3px rgb(64 169 255 / 20%);
+}
+.x6-node-selected .htc-node-1 {
+  background: #f3f8ff;
+  border-color: #2496ff;
+  box-shadow: 0 0 3px 3px rgb(64 169 255 / 20%);
+}
+.x6-node-selected .htc-node-2 {
+  background: #f3f8ff;
+  border-color: #2496ff;
+  box-shadow: 0 0 3px 3px rgb(64 169 255 / 20%);
+}
+.x6-edge-selected path {
+  filter: drop-shadow(0 3px 3px rgb(64 169 255 / 80%));
+  -webkit-filter: drop-shadow(0 3px 3px rgb(64 169 255 / 80%));
 }
 .htc-node-1 {
   z-index: -2;
