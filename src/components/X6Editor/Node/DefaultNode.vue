@@ -2,16 +2,8 @@
   <div>
     <div class="default-node htc-node-1" v-if="data.htc" />
     <div class="default-node htc-node-2" v-if="data.htc" />
-    <div class="default-node tooltip">
+    <div class="default-node">
       <div class="left-side">
-        <span class="material-icons status-icons cursor-pointer" style="color: #808080;" @click="nodeSetting">
-          settings_outlined
-        </span>
-      </div>
-      <div class="center">
-        {{ data.name }}
-      </div>
-      <div class="right-side">
         <span class="material-icons status-icons" style="color: green;" v-if="data.status === 'success'">
           check_circle_outline
         </span>
@@ -28,13 +20,22 @@
           task
         </span>
       </div>
+      <div class="center">
+        {{ data.name }}
+      </div>
+      <div class="right-side">
+        <span class="material-icons status-icons cursor-pointer tooltip" @click="nodeSetting">
+          tune
+          <span class="tooltiptext">配置</span>
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { inject, onMounted, ref } from 'vue';
-import { Dialog, Notify } from 'quasar';
+import { Dialog, Notify, useQuasar } from 'quasar';
 
 export default {
   setup() {

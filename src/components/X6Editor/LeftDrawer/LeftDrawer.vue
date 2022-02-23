@@ -48,15 +48,15 @@
             >
               <div class="left-side">
                 <span class="material-icons status-icons" style="color: #808080;">
-                  settings_outlined
+                  task
                 </span>
               </div>
               <div class="center">
                 {{ prop.node.data.name }}
               </div>
               <div class="right-side">
-                <span class="material-icons status-icons" style="color: #808080;">
-                  task
+                <span class="material-icons status-icons">
+                  tune
                 </span>
               </div>
               <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
