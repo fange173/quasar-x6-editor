@@ -314,7 +314,7 @@
   bottom: calc(16px);
   width: 268px;
   height: 200px;
-  z-index: 9000;
+  z-index: 5999;
   border: 1px solid #ccd1dc;
   border-radius: 4px;
   box-shadow: 0 2px 5px 1px rgba(223, 104, 104, 0.06);
