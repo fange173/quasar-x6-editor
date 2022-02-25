@@ -28,7 +28,6 @@
           class="float-button back-blur"
         />
       </div>
-      <!-- <EditPanel id="edit" ref="editPanel" style="height: calc(100% - 270px)" /> -->
       <!-- <MiniMap id="minimap" /> -->
     </q-drawer>
     <div class="q-mini-drawer-hide absolute" style="top: 50%; right: 0px">

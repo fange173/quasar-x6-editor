@@ -59,6 +59,7 @@ export default {
     // 节点选项
     const nodeSetting = () => {
       Dialog.create({
+        title: '配置',
         options: {
           type: 'radio',
           model: 'opt1',
@@ -68,7 +69,7 @@ export default {
             { label: '在线配置参数', value: 'opt2' },
           ],
         },
-        persistent: true,
+        // persistent: true,
         ok: '继续',
         cancel: '取消',
       }).onOk((data) => {

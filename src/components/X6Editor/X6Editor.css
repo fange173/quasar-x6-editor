@@ -1,3 +1,8 @@
+.my-header {
+  background: #f1f4f6;
+  border-top: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
+}
 .x6-widget-stencil {
   background: #ffffff;
   border-right: 1px solid #e0e0e0;
@@ -12,7 +17,7 @@
 }
 #toolbar {
   position: absolute;
-  left: calc(50% - 200px);
+  left: calc(50% - 172.82px);
   top: 50px;
   /* bottom: 0px; */
   height: auto;
@@ -301,4 +306,33 @@
 
 .text-default {
   color: #808080;
+}
+
+#minimap {
+  position: absolute;
+  right: calc(16px);
+  bottom: calc(16px);
+  width: 268px;
+  height: 200px;
+  z-index: 9000;
+  border: 1px solid #ccd1dc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 1px rgba(223, 104, 104, 0.06);
+}
+
+.x6-widget-minimap {
+  padding: 0!important;
+  border-radius: 4px;
+}
+
+.q-btn-dropdown--simple * + .q-btn-dropdown__arrow {
+  margin-left: 0;
+}
+
+.toolbar-a {
+  border-radius: 4px;
+}
+
+.toolbar-a:hover {
+  background: #e8e8e8;
 }

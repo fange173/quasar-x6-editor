@@ -1,5 +1,145 @@
 <template>
   <div>
+    <q-header class="my-header">
+      <q-toolbar class="text-black">
+        <q-avatar>
+          <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-black.svg" />
+        </q-avatar>
+        <q-toolbar-title>
+          <div class="text-body1 text-bold q-px-sm">{{ flow.name }}</div>
+          <div class="text-body2 row items-center">
+            <div class="q-px-sm cursor-pointer non-selectable relative-position flex flex-center toolbar-a" v-ripple>
+              文件
+              <q-menu>
+                <q-list dense style="min-width: 100px;">
+                  <q-item clickable v-close-popup @click="showData">
+                    <q-item-section>
+                      查看数据
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable v-close-popup @click="downloadData">
+                    <q-item-section>
+                      导出数据
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable v-close-popup @click="showData">
+                    <q-item-section>
+                      保存！
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable v-close-popup @click="showData">
+                    <q-item-section>
+                      关闭！
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </div>
+            <div class="q-px-sm cursor-pointer non-selectable relative-position flex flex-center toolbar-a" v-ripple>
+              编辑
+              <q-menu>
+                <q-list dense style="min-width: 100px;">
+                  <q-item clickable v-close-popup @click="undo">
+                    <q-item-section>
+                      撤销
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable v-close-popup @click="redo">
+                    <q-item-section>
+                      重做
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable>
+                    <q-item-section>更多</q-item-section>
+                    <q-item-section side>
+                      <q-icon name="keyboard_arrow_right" />
+                    </q-item-section>
+                    <q-menu anchor="top end" self="top start">
+                      <q-list dense style="min-width: 100px">
+                        <q-item clickable>
+                          <q-item-section @click="refresh">清空</q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-menu>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </div>
+            <div class="q-px-sm cursor-pointer non-selectable relative-position flex flex-center toolbar-a" v-ripple>
+              视图
+              <q-menu>
+                <q-list dense style="min-width: 100px;">
+                  <q-item clickable @click="shMinimap">
+                    <q-item-section>
+                      显示缩略图
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!showMinimap" />
+                      <q-icon left name="check_box" class="q-mr-none" v-else />
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable @click="shGrid">
+                    <q-item-section>
+                      显示网点
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!showGrid" />
+                      <q-icon left name="check_box" class="q-mr-none" v-else />
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable @click="zoomIn">
+                    <q-item-section>
+                      放大
+                    </q-item-section>
+                    <q-item-section side>
+                      Ctrl+滚轮向上
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable @click="zoomOut">
+                    <q-item-section>
+                      缩小
+                    </q-item-section>
+                    <q-item-section side>
+                      Ctrl+滚轮向下
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable @click="centerContent">
+                    <q-item-section>
+                      居中
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable @click="layout">
+                    <q-item-section>
+                      自动布局
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable @click="zoomTo(1)">
+                    <q-item-section>
+                      重置比例
+                    </q-item-section>
+                  </q-item>
+                  <q-item clickable @click="zoomToFit">
+                    <q-item-section>
+                      适应内容
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </div>
+            <div class="q-px-sm cursor-pointer non-selectable relative-position flex flex-center toolbar-a" v-ripple @click="help">
+              帮助
+            </div>
+          </div>
+        </q-toolbar-title>
+        <q-btn dense push color="primary" icon="autorenew" label="运行" @click="runWorkFlow" />
+      </q-toolbar>
+    </q-header>
     <LeftDrawer :showLeftDrawer="showLeftDrawer" />
     <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
     <div id="container">
@@ -7,44 +147,34 @@
         <!-- <ContextMenu :choiceType="choiceType" /> -->
         <q-list dense style="min-width: 100px" v-if="choiceType == 'node'">
           <q-item clickable v-close-popup>
-            <q-item-section @click="showNode">查看</q-item-section>
-          </q-item>
-          <q-item clickable v-close-popup>
-            <q-item-section @click="nodeSetting">配置</q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable v-close-popup>
-            <q-item-section @click="addNode">添加</q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable v-close-popup>
             <q-item-section @click="deleteNode">删除</q-item-section>
+          </q-item>
+          <q-separator />
+          <!-- <q-item clickable v-close-popup>
+            <q-item-section @click="nodeSetting">配置</q-item-section>
+          </q-item> -->
+          <q-item clickable v-close-popup>
+            <q-item-section @click="showNode">查看数据</q-item-section>
+          </q-item>
+          <q-separator />
+          <q-item clickable v-close-popup>
+            <q-item-section @click="addNode">添加节点</q-item-section>
           </q-item>
         </q-list>
 
         <q-list dense style="min-width: 100px" v-if="choiceType == 'edge'">
           <q-item clickable v-close-popup>
-            <q-item-section @click="showEdge">查看</q-item-section>
+            <q-item-section @click="deleteEdge">删除</q-item-section>
           </q-item>
           <q-separator />
           <q-item clickable v-close-popup>
-            <q-item-section @click="deleteEdge">删除</q-item-section>
+            <q-item-section @click="showEdge">查看数据</q-item-section>
           </q-item>
         </q-list>
 
         <q-list dense style="min-width: 100px" v-if="choiceType == 'blank'">
           <q-item clickable v-close-popup>
-            <q-item-section @click="undo">撤销</q-item-section>
-          </q-item>
-          <q-item clickable v-close-popup>
-            <q-item-section @click="redo">重做</q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable v-close-popup>
-            <q-item-section @click="showData">查看</q-item-section>
-          </q-item>
-          <q-item clickable v-close-popup>
-            <q-item-section @click="downloadData">导出</q-item-section>
+            <q-item-section @click="showData">查看数据</q-item-section>
           </q-item>
           <q-separator />
           <q-item clickable>
@@ -63,7 +193,8 @@
         </q-list>
       </q-menu>
     </div>
-    <ToolBar :zoom="zoom" />
+    <div id="minimap" v-show="showMinimap" />
+    <ToolBar :zoom="zoom" :showGrid="showGrid" :showMinimap="showMinimap" />
     <HelpDialog :openHelpDialog="openHelpDialog" />
     <CodeDialog :openCodeDialog="openCodeDialog" :data="jsonData" />
   </div>
@@ -114,8 +245,10 @@ export default defineComponent({
     const openHelpDialog = ref(false);
     const openCodeDialog = ref(false);
     const jsonData = ref({});
+    // 是否显示缩略图
+    const showMinimap = ref(false);
     // 是否显示网点
-    const showGird = ref(false);
+    const showGrid = ref(false);
     // 连接桩
     const ports = {
       groups: {
@@ -286,6 +419,20 @@ export default defineComponent({
         }, 50);
       }
     };
+    // 缩放到指定比例
+    const zoomTo = num => {
+      graph.zoomTo(num);
+      setTimeout(() => {
+        zoom.value = Number((graph.zoom() * 100).toFixed(0));
+      }, 50);
+    };
+    // 缩放到适应内容
+    const zoomToFit = () => {
+      graph.zoomToFit();
+      setTimeout(() => {
+        zoom.value = Number((graph.zoom() * 100).toFixed(0));
+      }, 50);
+    };
     // 居中
     const centerContent = () => {
       graph.centerContent(); // 将画布内容中心与视口中心对齐
@@ -368,6 +515,7 @@ export default defineComponent({
     const nodeSetting = () => {
       $q.dialog({
         options: {
+          title: '配置',
           type: 'radio',
           model: 'opt1',
           // inline: true
@@ -376,10 +524,10 @@ export default defineComponent({
             { label: '在线配置参数', value: 'opt2' },
           ],
         },
-        persistent: true,
+        // persistent: true,
         ok: '继续',
         cancel: '取消',
-      }).onOk((data) => {
+      }).onOk(data => {
         $q.notify({
           message: '选择了 ' + data,
           color: 'primary',
@@ -390,7 +538,7 @@ export default defineComponent({
     const showNode = () => {
       transformToJson();
       jsonData.value = JSON.stringify(
-        jsonData.value.jobs.find((ele) => {
+        jsonData.value.jobs.find(ele => {
           return ele.externalId == choiceId.value;
         }),
         null,
@@ -402,7 +550,7 @@ export default defineComponent({
     const showEdge = () => {
       transformToJson();
       jsonData.value = JSON.stringify(
-        jsonData.value.dependencies.find((ele) => {
+        jsonData.value.dependencies.find(ele => {
           return ele.externalId == choiceId.value;
         }),
         null,
@@ -487,10 +635,14 @@ export default defineComponent({
       openHelpDialog.value = false;
     };
     // 显示网格
-    const shGird = () => {
-      if (showGird.value === true) graph.hideGrid();
+    const shGrid = () => {
+      if (showGrid.value === true) graph.hideGrid();
       else graph.showGrid();
-      showGird.value = !showGird.value;
+      showGrid.value = !showGrid.value;
+    };
+    // 显示缩略图
+    const shMinimap = () => {
+      showMinimap.value = !showMinimap.value;
     };
     // 自动布局
     const layout = () => {
@@ -615,11 +767,13 @@ export default defineComponent({
       graph = new Graph({
         container: document.getElementById('container'), // 画布容器
         autoResize: true,
-        // minimap: {
-        //   // 缩略图
-        //   enabled: true,
-        //   container: document.getElementById('minimapContainer') as HTMLElement,
-        // },
+        minimap: {
+          // 缩略图
+          enabled: true,
+          container: document.getElementById('minimap'),
+          width: 266,
+          height: 198,
+        },
         // width: window.innerWidth,
         height: window.innerHeight - 52,
         background: {
@@ -627,7 +781,7 @@ export default defineComponent({
         },
         grid: {
           size: 10, // 网格大小 10px
-          visible: showGird.value, // 渲染网格背景
+          visible: showGrid.value, // 渲染网格背景
           type: 'dot',
           args: {
             color: '#a0a0a0', // 网格线/点颜色
@@ -813,12 +967,18 @@ export default defineComponent({
             edge.attr('line/strokeWidth', 5);
             edge.attr('line/targetMarker/name', 'path');
             edge.attr('line/targetMarker/offsetX', -8);
-            edge.attr('line/targetMarker/d', 'M5.5,15.499,15.8,21.447,15.8,15.846,25.5,21.447,25.5,9.552,15.8,15.152,15.8,9.552z');
+            edge.attr(
+              'line/targetMarker/d',
+              'M5.5,15.499,15.8,21.447,15.8,15.846,25.5,21.447,25.5,9.552,15.8,15.152,15.8,9.552z'
+            );
           } else {
             edge.attr('line/strokeWidth', 1.5);
             edge.attr('line/targetMarker/name', 'path');
             edge.attr('line/targetMarker/offsetX', -5);
-            edge.attr('line/targetMarker/d', 'M10.3,11.9L10.3,6.29L10.3,5.6L10.3,0L0,5.95L10.3,11.9Z');
+            edge.attr(
+              'line/targetMarker/d',
+              'M10.3,11.9L10.3,6.29L10.3,5.6L10.3,0L0,5.95L10.3,11.9Z'
+            );
           }
         });
       });
@@ -871,13 +1031,13 @@ export default defineComponent({
     // 检查是否有htc节点
     const checkHtc = () => {
       const nodes = graph.getNodes();
-      for(let i = 0, len = nodes.length; i < len; i++) {
-        if(nodes[i].getData().htc) {
+      for (let i = 0, len = nodes.length; i < len; i++) {
+        if (nodes[i].getData().htc) {
           nodes[i].setData({ htc: false });
           nodes[i].setData({ htc: true });
         }
       }
-    }
+    };
 
     onMounted(() => {
       transformToData();
@@ -905,7 +1065,7 @@ export default defineComponent({
       showEdge,
       showData,
       downloadData,
-      shGird,
+      shGrid,
       layout,
       shLeftDrawer,
       shRightDrawer,
@@ -922,6 +1082,11 @@ export default defineComponent({
       openCodeDialog,
       jsonData,
       flow,
+      showMinimap,
+      shMinimap,
+      showGrid,
+      zoomTo,
+      zoomToFit,
     };
   },
 });
