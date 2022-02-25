@@ -4,6 +4,7 @@
     <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
     <div id="container">
       <q-menu touch-position context-menu>
+        <!-- <ContextMenu :choiceType="choiceType" /> -->
         <q-list dense style="min-width: 100px" v-if="choiceType == 'node'">
           <q-item clickable v-close-popup>
             <q-item-section @click="showNode">查看</q-item-section>
@@ -81,6 +82,7 @@ import '@antv/x6-vue-shape';
 import DefaultNode from './Node/DefaultNode.vue';
 import HelpDialog from './Dialog/HelpDialog.vue';
 import CodeDialog from './Dialog/CodeDialog.vue';
+import ContextMenu from './Container/ContextMenu.vue';
 
 export default defineComponent({
   components: {
@@ -89,6 +91,7 @@ export default defineComponent({
     RightDrawer,
     HelpDialog,
     CodeDialog,
+    ContextMenu,
   },
   setup() {
     const $q = useQuasar();

@@ -34,27 +34,32 @@
           <q-icon
             name="task"
             v-show="clickNode.status === 'default'"
-            style="color: #808080; font-size: 20px"
+            class="text-default"
+            style="font-size: 20px"
           ></q-icon>
           <q-icon
             name="check_circle_outline"
             v-show="clickNode.status === 'success'"
-            style="color: green; font-size: 20px"
+            class="text-positive"
+            style="font-size: 20px"
           ></q-icon>
           <q-icon
             name="cancel"
             v-show="clickNode.status === 'error'"
-            style="color: red; font-size: 20px"
+            class="text-red"
+            style="font-size: 20px"
           ></q-icon>
           <q-icon
             name="error_outline"
             v-show="clickNode.status === 'warning'"
-            style="color: orange; font-size: 20px"
+            class="text-warning"
+            style="font-size: 20px"
           ></q-icon>
           <q-icon
             name="directions_run"
             v-show="clickNode.status === 'running'"
-            style="color: blue; font-size: 20px"
+            class="text-primary"
+            style="font-size: 20px"
           ></q-icon>
         </template>
         <template v-slot:selected>
@@ -67,32 +72,32 @@
                 <q-icon
                   name="task"
                   v-show="scope.opt === 'default'"
-                  class="q-mr-sm"
-                  style="color: #808080; font-size: 20px"
+                  class="q-mr-sm text-default"
+                  style="font-size: 20px"
                 ></q-icon>
                 <q-icon
                   name="check_circle_outline"
                   v-show="scope.opt === 'success'"
-                  class="q-mr-sm"
-                  style="color: green; font-size: 20px"
+                  class="q-mr-sm text-positive"
+                  style="font-size: 20px"
                 ></q-icon>
                 <q-icon
                   name="cancel"
                   v-show="scope.opt === 'error'"
-                  class="q-mr-sm"
-                  style="color: red; font-size: 20px"
+                  class="q-mr-sm text-red"
+                  style="font-size: 20px"
                 ></q-icon>
                 <q-icon
                   name="error_outline"
                   v-show="scope.opt === 'warning'"
-                  class="q-mr-sm"
-                  style="color: orange; font-size: 20px"
+                  class="q-mr-sm text-warning"
+                  style="font-size: 20px"
                 ></q-icon>
                 <q-icon
                   name="directions_run"
                   v-show="scope.opt === 'running'"
-                  class="q-mr-sm"
-                  style="color: blue; font-size: 20px"
+                  class="q-mr-sm text-primary"
+                  style="font-size: 20px"
                 ></q-icon>
                 <q-item-label v-html="scope.opt" />
               </span>

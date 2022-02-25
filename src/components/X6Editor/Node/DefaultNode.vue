@@ -8,20 +8,25 @@
     </div>
     <div class="default-node">
       <div class="left-side">
-        <span class="material-icons status-icons" style="color: green;" v-if="data.status === 'success'">
+        <span class="material-icons status-icons tooltip text-positive" v-if="data.status === 'success'">
           check_circle_outline
+          <span class="tooltiptext bg-positive" style="left: 18%;">成功</span>
         </span>
-        <span class="material-icons status-icons" style="color: red;" v-else-if="data.status === 'error'">
+        <span class="material-icons status-icons tooltip text-red" v-else-if="data.status === 'error'">
           cancel
+          <span class="tooltiptext bg-red" style="left: 18%;">错误</span>
         </span>
-        <span class="material-icons status-icons" style="color: orange;" v-else-if="data.status === 'warning'">
+        <span class="material-icons status-icons tooltip text-warning" v-else-if="data.status === 'warning'">
           error_outline
+          <span class="tooltiptext bg-warning" style="left: 18%;">警告</span>
         </span>
-        <span class="material-icons status-icons running-status" style="color: blue;" v-else-if="data.status === 'running'">
+        <span class="material-icons status-icons running-status tooltip text-primary" v-else-if="data.status === 'running'">
           directions_run
+          <span class="tooltiptext bg-primary" style="left: 18%;">运行</span>
         </span>
-        <span class="material-icons status-icons" style="color: #808080;" v-else>
+        <span class="material-icons status-icons tooltip text-default" v-else>
           task
+          <span class="tooltiptext" style="left: 18%;">默认</span>
         </span>
       </div>
       <div class="center">

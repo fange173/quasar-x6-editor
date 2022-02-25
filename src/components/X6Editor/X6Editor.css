@@ -298,3 +298,7 @@
   -ms-transition: opacity 0.3s, top 0.3s;
   -o-transition: opacity 0.3s, top 0.3s;
 }
+
+.text-default {
+  color: #808080;
+}
