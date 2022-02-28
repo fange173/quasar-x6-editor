@@ -502,6 +502,7 @@ export default defineComponent({
       if (json.externalId) flow.value.id = json.externalId;
       if (json.materialName) flow.value.materialName = json.materialName;
       if (json.jobs.length !== 0) {
+        data.nodes = [];
         const jobs = json.jobs;
         for (let i = 0, len = jobs.length; i < len; i++) {
           data.nodes.push({
@@ -519,6 +520,7 @@ export default defineComponent({
         }
       }
       if (json.dependencies.length !== 0) {
+        data.edges = [];
         const dependencies = json.dependencies;
         for (let i = 0, len = dependencies.length; i < len; i++) {
           data.edges.push({
@@ -738,14 +740,12 @@ export default defineComponent({
       // 绑定左键点击事件
       graph.on('node:click', ({ node }) => {
         rightDrawer.value.nodeClickResponse(node);
-        console.log('node', node);
         // clickNode.value = data.nodes.find((ele)=>{
         //   return ele.id == node.id;
         // });
       });
       graph.on('edge:click', ({ edge }) => {
         rightDrawer.value.edgeClickResponse(edge);
-        console.log('edge', edge);
       });
       graph.on('blank:click', ({}) => {
         rightDrawer.value.blankClickResponse();
@@ -767,7 +767,6 @@ export default defineComponent({
         const data = node.getData();
         const incomingEdges = graph.getIncomingEdges(node);
         const outgoingEdges = graph.getOutgoingEdges(node);
-        console.log(outgoingEdges);
         incomingEdges?.forEach(edge => {
           if (data.status === 'running') {
             edge.attr('line/strokeDasharray', 5);

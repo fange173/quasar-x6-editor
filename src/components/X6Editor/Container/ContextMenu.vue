@@ -49,7 +49,7 @@
           </q-item-section>
           <q-menu anchor="top end" self="top start">
             <q-list dense style="min-width: 100px">
-              <q-item clickable>
+              <q-item clickable v-close-popup>
                 <q-item-section @click="$emit('refresh')">清空</q-item-section>
               </q-item>
             </q-list>

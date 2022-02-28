@@ -44,17 +44,13 @@
 
 <script>
 import { inject, onMounted, ref } from 'vue';
-import { Dialog, Notify, useQuasar } from 'quasar';
+import { Dialog, Notify } from 'quasar';
 
 export default {
   setup() {
     const getNode = inject('getNode');
     const node = getNode();
     const data = ref({ name: '', status: ''});
-
-    const contextMenu = (e) => {
-      console.log(e);
-    }
 
     // 节点选项
     const nodeSetting = () => {
@@ -89,7 +85,6 @@ export default {
 
     return {
       data,
-      contextMenu,
       nodeSetting,
     };
   },

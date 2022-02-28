@@ -267,7 +267,6 @@ export default {
     const filterRef = ref(null);
 
     const startDrag = (e, prop) => {
-      // console.log(prop);
       _this.parent.proxy.startDrag(e, prop);
     };
 

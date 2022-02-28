@@ -276,7 +276,6 @@ export default {
       };
       clickNode.value = thisNode;
 
-      // console.log('node', node);
       // clickNode.value = data.nodes.find((ele)=>{
       //   return ele.id == node.id;
       // });
@@ -291,11 +290,9 @@ export default {
     const edgeClickResponse = (edge) => {
       clickType.value = 'edge';
       clickEdge.value = edge;
-      // console.log('edge', edge);
     };
     const blankClickResponse = () => {
       clickType.value = 'blank';
-      console.log(props.flow);
       thisFlow.value.name = props.flow.name;
       thisFlow.value.id = props.flow.id;
       thisFlow.value.materialName = props.flow.materialName;
