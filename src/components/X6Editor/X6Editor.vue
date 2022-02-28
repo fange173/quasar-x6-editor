@@ -4,55 +4,7 @@
     <LeftDrawer :showLeftDrawer="showLeftDrawer" />
     <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
     <div id="container">
-      <q-menu touch-position context-menu>
-        <!-- <ContextMenu :choiceType="choiceType" /> -->
-        <q-list dense style="min-width: 100px" v-if="choiceType == 'node'">
-          <q-item clickable v-close-popup>
-            <q-item-section @click="deleteNode">删除</q-item-section>
-          </q-item>
-          <q-separator />
-          <!-- <q-item clickable v-close-popup>
-            <q-item-section @click="nodeSetting">配置</q-item-section>
-          </q-item> -->
-          <q-item clickable v-close-popup>
-            <q-item-section @click="showNode">查看数据</q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable v-close-popup>
-            <q-item-section @click="addNode">添加节点</q-item-section>
-          </q-item>
-        </q-list>
-
-        <q-list dense style="min-width: 100px" v-if="choiceType == 'edge'">
-          <q-item clickable v-close-popup>
-            <q-item-section @click="deleteEdge">删除</q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable v-close-popup>
-            <q-item-section @click="showEdge">查看数据</q-item-section>
-          </q-item>
-        </q-list>
-
-        <q-list dense style="min-width: 100px" v-if="choiceType == 'blank'">
-          <q-item clickable v-close-popup>
-            <q-item-section @click="showData">查看数据</q-item-section>
-          </q-item>
-          <q-separator />
-          <q-item clickable>
-            <q-item-section>更多</q-item-section>
-            <q-item-section side>
-              <q-icon name="keyboard_arrow_right" />
-            </q-item-section>
-            <q-menu anchor="top end" self="top start">
-              <q-list dense style="min-width: 100px">
-                <q-item clickable>
-                  <q-item-section @click="refresh">清空</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-item>
-        </q-list>
-      </q-menu>
+      <ContextMenu :choiceType="choiceType" @showNode="showNode" @nodeSetting="nodeSetting" @addNode="addNode" @deleteNode="deleteNode" @showEdge="showEdge" @deleteEdge="deleteEdge" @undo="undo" @redo="redo" @showData="showData" @downloadData="downloadData" @refresh="refresh" />
     </div>
     <div id="minimap" v-show="showMinimap" />
     <ToolBar :zoom="zoom" :showGrid="showGrid" :showMinimap="showMinimap" />
