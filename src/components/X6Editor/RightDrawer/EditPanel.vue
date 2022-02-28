@@ -68,38 +68,46 @@
         <template v-slot:option="scope">
           <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
             <q-item-section>
-              <span class="row" style="margin-left: -4px">
+              <span class="row" v-if="scope.opt === 'default'" style="margin-left: -4px">
                 <q-icon
                   name="task"
-                  v-show="scope.opt === 'default'"
                   class="q-mr-sm text-default"
                   style="font-size: 20px"
-                ></q-icon>
+                />
+                default - 默认
+                <!-- <q-item-label v-html="scope.opt" /> -->
+              </span>
+              <span class="row" v-else-if="scope.opt === 'success'" style="margin-left: -4px">
                 <q-icon
                   name="check_circle_outline"
-                  v-show="scope.opt === 'success'"
                   class="q-mr-sm text-positive"
                   style="font-size: 20px"
-                ></q-icon>
+                />
+                success - 成功
+              </span>
+              <span class="row" v-else-if="scope.opt === 'error'" style="margin-left: -4px">
                 <q-icon
                   name="cancel"
-                  v-show="scope.opt === 'error'"
                   class="q-mr-sm text-red"
                   style="font-size: 20px"
-                ></q-icon>
+                />
+                error - 错误
+              </span>
+              <span class="row" v-else-if="scope.opt === 'warning'" style="margin-left: -4px">
                 <q-icon
                   name="error_outline"
-                  v-show="scope.opt === 'warning'"
                   class="q-mr-sm text-warning"
                   style="font-size: 20px"
-                ></q-icon>
+                />
+                warning - 警告
+              </span>
+              <span class="row" v-else-if="scope.opt === 'running'" style="margin-left: -4px">
                 <q-icon
                   name="directions_run"
-                  v-show="scope.opt === 'running'"
                   class="q-mr-sm text-primary"
                   style="font-size: 20px"
-                ></q-icon>
-                <q-item-label v-html="scope.opt" />
+                />
+                running - 运行
               </span>
             </q-item-section>
           </q-item>

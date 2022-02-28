@@ -321,6 +321,12 @@ export default defineComponent({
     // 清空
     const refresh = () => {
       graph.clearCells();
+      // data.nodes = [];
+      // data.edges = [];
+      // graph.dispose();
+      // initGraph();
+      // initDnd();
+      // initEvent();
       $q.notify({
         message: '清空画布成功！',
         type: 'positive',
@@ -463,12 +469,14 @@ export default defineComponent({
     const layout = () => {
       transformToJson();
       json = jsonData.value;
+      console.log(json);
       transformToData();
+      console.log(data);
       graph.dispose();
       initGraph();
       initDnd();
       initEvent();
-      centerContent();
+      // centerContent();
     };
     // 显示侧边栏
     const shLeftDrawer = () => {
@@ -501,7 +509,7 @@ export default defineComponent({
       if (json.name) flow.value.name = json.name;
       if (json.externalId) flow.value.id = json.externalId;
       if (json.materialName) flow.value.materialName = json.materialName;
-      if (json.jobs.length !== 0) {
+      if (json.jobs) {
         data.nodes = [];
         const jobs = json.jobs;
         for (let i = 0, len = jobs.length; i < len; i++) {
@@ -519,7 +527,7 @@ export default defineComponent({
           });
         }
       }
-      if (json.dependencies.length !== 0) {
+      if (json.dependencies) {
         data.edges = [];
         const dependencies = json.dependencies;
         for (let i = 0, len = dependencies.length; i < len; i++) {
