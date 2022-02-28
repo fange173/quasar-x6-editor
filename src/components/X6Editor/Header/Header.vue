@@ -29,9 +29,9 @@
                     </q-item-section>
                   </q-item>
                   <q-separator />
-                  <q-item clickable v-close-popup @click="showData">
+                  <q-item clickable v-close-popup @click="saveData">
                     <q-item-section>
-                      保存！
+                      保存
                     </q-item-section>
                   </q-item>
                   <q-separator />
@@ -241,6 +241,9 @@ export default {
     const cancel = () => {
       file.value = null;
     }
+    const saveData = () => {
+      _this.parent.proxy.saveData();
+    }
     const importJson = () => {
       let reader = new FileReader();
       reader.readAsText(file.value);
@@ -270,6 +273,7 @@ export default {
       file,
       importJson,
       cancel,
+      saveData,
     };
   },
 };

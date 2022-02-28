@@ -16,7 +16,7 @@
 <script>
 import { DagreLayout } from '@antv/layout';
 import { Addon, Graph } from '@antv/x6';
-import { useQuasar, date } from 'quasar';
+import { useQuasar, date, LocalStorage } from 'quasar';
 import { defineComponent, onMounted, ref } from 'vue';
 import ToolBar from './ToolBar/ToolBar.vue';
 import Header from './Header/Header.vue';
@@ -478,10 +478,12 @@ export default defineComponent({
       if (showGrid.value === true) graph.hideGrid();
       else graph.showGrid();
       showGrid.value = !showGrid.value;
+      LocalStorage.set('showGrid', showGrid.value);
     };
     // 显示缩略图
     const shMinimap = () => {
       showMinimap.value = !showMinimap.value;
+      LocalStorage.set('showMinimap', showMinimap.value);
     };
     // 自动布局
     const layout = () => {
@@ -893,7 +895,30 @@ export default defineComponent({
       }
     };
 
+    // 保存流程数据到本地
+    const saveData = () => {
+      transformToJson();
+      LocalStorage.set('jsonData', jsonData.value);
+      $q.notify({
+        message: '保存数据成功！',
+        type: 'positive',
+      });
+    }
+
+    // 读取本地数据
+    const loadData = () => {
+      if(LocalStorage.getItem('showMinimap'))
+        showMinimap.value = LocalStorage.getItem('showMinimap');
+      if(LocalStorage.getItem('showGrid'))
+        showGrid.value = LocalStorage.getItem('showGrid');
+      if(LocalStorage.getItem('jsonData')) {
+        json = LocalStorage.getItem('jsonData');
+        transformToData();
+      }
+    }
+
     onMounted(() => {
+      loadData();
       transformToData();
       initShape();
       initGraph();
@@ -942,6 +967,7 @@ export default defineComponent({
       zoomTo,
       zoomToFit,
       importJson,
+      saveData,
     };
   },
 });
