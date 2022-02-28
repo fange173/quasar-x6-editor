@@ -12,6 +12,12 @@
               文件
               <q-menu>
                 <q-list dense style="min-width: 100px;">
+                  <q-item clickable v-close-popup @click="openFileDialog = true">
+                    <q-item-section>
+                      导入文件
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
                   <q-item clickable v-close-popup @click="showData">
                     <q-item-section>
                       查看数据
@@ -140,11 +146,35 @@
         <q-btn dense push color="primary" icon="autorenew" label="运行" @click="runWorkFlow" />
       </q-toolbar>
     </q-header>
+    <q-dialog persistent v-model="openFileDialog">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">选择文件</div>
+        </q-card-section>
+        <q-card-section class="q-px-md">
+          <q-file
+            v-model="file"
+            filled
+            counter
+            accept=".json"
+            style="width: 300px"
+          >
+            <template v-slot:prepend>
+              <q-icon name="attach_file" />
+            </template>
+          </q-file>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn flat label="取消" color="primary" @click="cancel" v-close-popup />
+          <q-btn flat label="确定" color="primary" @click="importJson" data-autofocus="true" :disabled="!file" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
 
 export default {
   props: {
@@ -160,6 +190,8 @@ export default {
   },
   setup() {
     const _this = getCurrentInstance();
+    const openFileDialog = ref(false);
+    const file = ref(null);
 
     const undo = () => {
       _this.parent.proxy.undo();
@@ -206,6 +238,17 @@ export default {
     const refresh = () => {
       _this.parent.proxy.refresh();
     };
+    const cancel = () => {
+      file.value = null;
+    }
+    const importJson = () => {
+      let reader = new FileReader();
+      reader.readAsText(file.value);
+      reader.onload = (() => {
+        _this.parent.proxy.importJson(JSON.parse(reader.result));
+        file.value = null;
+      });
+    }
 
     return {
       undo,
@@ -223,6 +266,10 @@ export default {
       zoomTo,
       zoomToFit,
       refresh,
+      openFileDialog,
+      file,
+      importJson,
+      cancel,
     };
   },
 };

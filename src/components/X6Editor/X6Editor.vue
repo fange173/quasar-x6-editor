@@ -285,7 +285,7 @@ export default defineComponent({
         shape: 'default-edge',
         zIndex: -1,
       });
-      checkHtc();
+      // checkHtc();
       $q.notify({
         message: '添加节点成功！执行自动布局？',
         type: 'positive',
@@ -487,13 +487,12 @@ export default defineComponent({
     const layout = () => {
       transformToJson();
       json = jsonData.value;
-      console.log(json);
       transformToData();
-      console.log(data);
       graph.dispose();
       initGraph();
       initDnd();
       initEvent();
+      checkHtc();
       centerContent();
     };
     // 显示侧边栏
@@ -559,6 +558,21 @@ export default defineComponent({
           });
         }
       }
+    };
+    // 导入文件
+    const importJson = (result) => {
+      json = result;
+      transformToData();
+      graph.dispose();
+      initGraph();
+      initDnd();
+      initEvent();
+      checkHtc();
+      centerContent();
+      $q.notify({
+        message: '导入文件成功！',
+        type: 'positive',
+      });
     };
     // 初始化自定义节点、连线形状
     const initShape = () => {
@@ -927,6 +941,7 @@ export default defineComponent({
       showGrid,
       zoomTo,
       zoomToFit,
+      importJson,
     };
   },
 });
