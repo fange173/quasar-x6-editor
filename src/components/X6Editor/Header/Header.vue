@@ -59,7 +59,7 @@
                     </q-item-section>
                     <q-menu anchor="top end" self="top start">
                       <q-list dense style="min-width: 100px">
-                        <q-item clickable>
+                        <q-item clickable v-close-popup>
                           <q-item-section @click="refresh">清空</q-item-section>
                         </q-item>
                       </q-list>
@@ -203,6 +203,9 @@ export default {
     const zoomToFit = () => {
       _this.parent.proxy.zoomToFit();
     };
+    const refresh = () => {
+      _this.parent.proxy.refresh();
+    };
 
     return {
       undo,
@@ -219,6 +222,7 @@ export default {
       shMinimap,
       zoomTo,
       zoomToFit,
+      refresh,
     };
   },
 };

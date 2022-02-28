@@ -287,13 +287,13 @@ export default defineComponent({
       });
       checkHtc();
       $q.notify({
-        message: '添加节点成功！进行自动布局？',
+        message: '添加节点成功！执行自动布局？',
         type: 'positive',
         multiLine: true,
         actions: [
-          { label: '否', color: 'white', handler: () => {} },
+          // { label: '否', color: 'white', handler: () => {} },
           {
-            label: '是',
+            label: '执行',
             color: 'yellow',
             handler: () => {
               layout();
@@ -304,39 +304,57 @@ export default defineComponent({
     };
     // 删除节点
     const deleteNode = () => {
-      graph.removeNode(choiceId.value);
-      $q.notify({
-        message: '删除节点成功！',
-        type: 'positive',
+      $q.dialog({
+        title: '删除节点',
+        message: '确定要删除该节点吗？',
+        ok: '确定',
+        cancel: '取消',
+        // persistent: true,
+      }).onOk(() => {
+        graph.removeNode(choiceId.value);
+        $q.notify({
+          message: '删除节点成功！',
+          type: 'positive',
+        });
       });
     };
     // 删除连线
     const deleteEdge = () => {
-      graph.removeEdge(choiceId.value);
-      $q.notify({
-        message: '删除连线成功！',
-        type: 'positive',
+      $q.dialog({
+        title: '删除连线',
+        message: '确定要删除该连线吗？',
+        ok: '确定',
+        cancel: '取消',
+        // persistent: true,
+      }).onOk(() => {
+        graph.removeEdge(choiceId.value);
+        $q.notify({
+          message: '删除连线成功！',
+          type: 'positive',
+        });
       });
     };
     // 清空
     const refresh = () => {
-      graph.clearCells();
-      // data.nodes = [];
-      // data.edges = [];
-      // graph.dispose();
-      // initGraph();
-      // initDnd();
-      // initEvent();
-      $q.notify({
-        message: '清空画布成功！',
-        type: 'positive',
+      $q.dialog({
+        title: '清空画布',
+        message: '确定要清空画布（包括所有节点和连线）吗？',
+        ok: '确定',
+        cancel: '取消',
+        // persistent: true,
+      }).onOk(() => {
+        graph.clearCells();
+        $q.notify({
+          message: '清空画布成功！',
+          type: 'positive',
+        });
       });
     };
     // 节点选项
     const nodeSetting = () => {
       $q.dialog({
         options: {
-          title: '配置',
+          title: '配置节点',
           type: 'radio',
           model: 'opt1',
           // inline: true
@@ -423,11 +441,11 @@ export default defineComponent({
     // 导出工作流数据
     const downloadData = () => {
       $q.dialog({
-        title: '提示',
-        message: '确定要下载该流程数据吗？',
+        title: '导出数据',
+        message: '确定要导出该流程数据（Json格式）吗？',
         ok: '确定',
         cancel: '取消',
-        persistent: true,
+        // persistent: true,
       }).onOk(() => {
         transformToJson();
         const datastr =
@@ -476,7 +494,7 @@ export default defineComponent({
       initGraph();
       initDnd();
       initEvent();
-      // centerContent();
+      centerContent();
     };
     // 显示侧边栏
     const shLeftDrawer = () => {
