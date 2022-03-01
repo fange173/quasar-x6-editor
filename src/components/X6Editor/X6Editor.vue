@@ -531,8 +531,12 @@ export default defineComponent({
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
       else graph.resize(window.innerWidth, window.innerHeight - 52);
     };
-    function shRightDrawer() {
+    const shRightDrawer = () => {
       showRightDrawer.value = !showRightDrawer.value;
+      if (showRightDrawer.value)
+        document.getElementById('minimap').style.right = 'calc(316px)';
+      else
+        document.getElementById('minimap').style.right = 'calc(16px)';
       if (showLeftDrawer.value === true && showRightDrawer.value === true)
         graph.resize(window.innerWidth - 600, window.innerHeight - 52);
       else if (showLeftDrawer.value === true && showRightDrawer.value === false)
@@ -731,8 +735,8 @@ export default defineComponent({
           // 缩略图
           enabled: true,
           container: document.getElementById('minimap'),
-          width: 266,
-          height: 198,
+          width: 200,
+          height: 150,
         },
         // width: window.innerWidth,
         height: window.innerHeight - 52,

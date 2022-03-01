@@ -310,15 +310,15 @@
 
 #minimap {
   position: absolute;
-  right: calc(16px);
+  right: calc(316px);
   bottom: calc(16px);
-  width: 268px;
-  height: 200px;
+  width: 200px;
+  height: 152px;
   z-index: 5999;
-  border: 1px solid #ccd1dc;
   border-radius: 4px;
-  box-shadow: 0 2px 5px 1px rgba(223, 104, 104, 0.06);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 24%);
   opacity: 0.8;
+  border: 1px solid #c9c9c9;
 }
 
 .x6-widget-minimap {
