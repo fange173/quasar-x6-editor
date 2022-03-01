@@ -14,7 +14,7 @@
         <q-icon name="inventory" />
         <div><b>组件库</b></div>
         <q-space />
-        <q-btn dense flat icon="close" @click="shLeftDrawer" />
+        <!-- <q-btn dense flat icon="close" @click="shLeftDrawer" /> -->
       </q-bar>
       <div class="q-pa-md">
         <q-input outlined dense ref="filterRef" v-model="filter">
@@ -85,7 +85,7 @@
           </template>
         </q-tree>
       </div>
-      <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
+      <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
         <q-btn
           dense
           round
@@ -96,9 +96,9 @@
           style="z-index: 1"
           class="float-button back-blur"
         />
-      </div>
+      </div> -->
     </q-drawer>
-    <div class="q-mini-drawer-hide absolute" style="top: 50%; left: 0px">
+    <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; left: 0px">
       <q-btn
         dense
         round
@@ -109,7 +109,7 @@
         style="z-index: 1; margin-top: 25px"
         class="float-button back-blur"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 

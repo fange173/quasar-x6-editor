@@ -136,7 +136,7 @@
       <q-btn flat dense icon="center_focus_weak" @click="centerContent">
         <q-tooltip :offset="[8, 8]"> 居中 </q-tooltip>
       </q-btn>
-      <q-btn flat dense icon="timeline" @click="layout">
+      <q-btn flat dense icon="timeline" @click="layout" class="q-mr-xs">
         <q-tooltip :offset="[8, 8]"> 自动布局 </q-tooltip>
       </q-btn>
       <!-- <q-btn flat dense icon="autorenew" @click="runWorkFlow" class="q-mr-xs">

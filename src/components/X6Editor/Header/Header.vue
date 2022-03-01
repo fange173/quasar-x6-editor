@@ -2,9 +2,10 @@
   <div>
     <q-header class="my-header">
       <q-toolbar class="text-black">
-        <q-avatar>
+        <q-btn flat round dense icon="menu" @click="shLeftDrawer" />
+        <!-- <q-avatar style="margin-right: -4px">
           <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-black.svg" />
-        </q-avatar>
+        </q-avatar> -->
         <q-toolbar-title>
           <div class="text-body1 text-bold q-px-sm">{{ flow.name }}</div>
           <div class="text-body2 row items-center">
@@ -144,8 +145,10 @@
           </div>
         </q-toolbar-title>
         <q-btn dense push color="primary" icon="autorenew" label="运行" @click="runWorkFlow" />
+        <q-btn flat round dense icon="menu" @click="shRightDrawer" class="q-ml-md" />
       </q-toolbar>
     </q-header>
+
     <q-dialog persistent v-model="openFileDialog">
       <q-card>
         <q-card-section>
@@ -252,6 +255,12 @@ export default {
         file.value = null;
       });
     }
+    const shLeftDrawer = () => {
+      _this.parent.proxy.shLeftDrawer();
+    };
+    const shRightDrawer = () => {
+      _this.parent.proxy.shRightDrawer();
+    };
 
     return {
       undo,
@@ -274,6 +283,8 @@ export default {
       importJson,
       cancel,
       saveData,
+      shLeftDrawer,
+      shRightDrawer,
     };
   },
 };

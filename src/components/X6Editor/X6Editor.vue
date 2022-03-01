@@ -212,10 +212,12 @@ export default defineComponent({
     const undo = () => {
       graph.undo();
     };
+
     // 重做
     const redo = () => {
       graph.redo();
     };
+
     // 放大
     const zoomIn = () => {
       if (zoom.value <= 280) {
@@ -225,6 +227,7 @@ export default defineComponent({
         }, 50);
       }
     };
+
     // 缩小
     const zoomOut = () => {
       if (zoom.value >= 70) {
@@ -234,6 +237,7 @@ export default defineComponent({
         }, 50);
       }
     };
+
     // 缩放到指定比例
     const zoomTo = num => {
       graph.zoomTo(num);
@@ -241,6 +245,7 @@ export default defineComponent({
         zoom.value = Number((graph.zoom() * 100).toFixed(0));
       }, 50);
     };
+
     // 缩放到适应内容
     const zoomToFit = () => {
       graph.zoomToFit();
@@ -248,6 +253,7 @@ export default defineComponent({
         zoom.value = Number((graph.zoom() * 100).toFixed(0));
       }, 50);
     };
+
     // 居中
     const centerContent = () => {
       graph.centerContent(); // 将画布内容中心与视口中心对齐
@@ -259,6 +265,7 @@ export default defineComponent({
         return v.toString(16);
       });
     };
+
     // 添加节点
     const addNode = () => {
       const source = graph.toJSON().cells.find(ele => {
@@ -302,6 +309,7 @@ export default defineComponent({
         ],
       });
     };
+
     // 删除节点
     const deleteNode = () => {
       $q.dialog({
@@ -318,6 +326,7 @@ export default defineComponent({
         });
       });
     };
+
     // 删除连线
     const deleteEdge = () => {
       $q.dialog({
@@ -334,6 +343,7 @@ export default defineComponent({
         });
       });
     };
+    
     // 清空
     const refresh = () => {
       $q.dialog({
@@ -350,6 +360,7 @@ export default defineComponent({
         });
       });
     };
+
     // 节点选项
     const nodeSetting = () => {
       $q.dialog({
@@ -373,6 +384,7 @@ export default defineComponent({
         });
       });
     };
+
     // 查看节点数据
     const showNode = () => {
       transformToJson();
@@ -385,6 +397,7 @@ export default defineComponent({
       );
       openCodeDialog.value = true;
     };
+
     // 查看连线数据
     const showEdge = () => {
       transformToJson();
@@ -397,6 +410,7 @@ export default defineComponent({
       );
       openCodeDialog.value = true;
     };
+
     // x6数据转换成json数据
     const transformToJson = () => {
       const x6Data = graph.toJSON().cells;
@@ -428,16 +442,19 @@ export default defineComponent({
         dependencies: dependencies,
       };
     };
+
     // 查看工作流数据
     const showData = () => {
       transformToJson();
       jsonData.value = JSON.stringify(jsonData.value, null, 2);
       openCodeDialog.value = true;
     };
+
     // 关闭代码dialog
     const closeCode = () => {
       openCodeDialog.value = false;
     };
+
     // 导出工作流数据
     const downloadData = () => {
       $q.dialog({
@@ -465,14 +482,7 @@ export default defineComponent({
         });
       });
     };
-    // 查看帮助
-    const help = () => {
-      openHelpDialog.value = true;
-    };
-    // 关闭帮助
-    const closeHelp = () => {
-      openHelpDialog.value = false;
-    };
+
     // 显示网格
     const shGrid = () => {
       if (showGrid.value === true) graph.hideGrid();
@@ -480,11 +490,23 @@ export default defineComponent({
       showGrid.value = !showGrid.value;
       LocalStorage.set('showGrid', showGrid.value);
     };
+
     // 显示缩略图
     const shMinimap = () => {
       showMinimap.value = !showMinimap.value;
       LocalStorage.set('showMinimap', showMinimap.value);
     };
+
+    // 查看帮助
+    const help = () => {
+      openHelpDialog.value = true;
+    };
+
+    // 关闭帮助
+    const closeHelp = () => {
+      openHelpDialog.value = false;
+    };
+
     // 自动布局
     const layout = () => {
       transformToJson();
@@ -497,6 +519,7 @@ export default defineComponent({
       checkHtc();
       centerContent();
     };
+
     // 显示侧边栏
     const shLeftDrawer = () => {
       showLeftDrawer.value = !showLeftDrawer.value;
@@ -518,11 +541,20 @@ export default defineComponent({
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
       else graph.resize(window.innerWidth, window.innerHeight - 52);
     }
+
     // dnd开始拖动
     const startDrag = (e, prop) => {
       const node = graph.createNode(prop.node);
       dnd.value.start(node, e);
     };
+
+    // 设置节点状态
+    const setNodeStatus = (index, status) => {
+      const node = graph.getNodes()[index];
+      let data = node.getData();
+      node.setData({ name: data.name, status: status });
+    };
+
     // json数据转换成x6数据
     const transformToData = () => {
       if (json.name) flow.value.name = json.name;
@@ -561,6 +593,18 @@ export default defineComponent({
         }
       }
     };
+
+    // 检查是否有htc节点
+    const checkHtc = () => {
+      const nodes = graph.getNodes();
+      for (let i = 0, len = nodes.length; i < len; i++) {
+        if (nodes[i].getData().htc) {
+          nodes[i].setData({ htc: false });
+          nodes[i].setData({ htc: true });
+        }
+      }
+    };
+
     // 导入文件
     const importJson = (result) => {
       json = result;
@@ -576,6 +620,62 @@ export default defineComponent({
         type: 'positive',
       });
     };
+
+    // 保存流程数据到本地
+    const saveData = () => {
+      transformToJson();
+      LocalStorage.set('jsonData', jsonData.value);
+      $q.notify({
+        message: '保存数据成功！',
+        type: 'positive',
+      });
+    };
+
+    // 读取本地数据
+    const loadData = () => {
+      if(LocalStorage.getItem('showMinimap'))
+        showMinimap.value = LocalStorage.getItem('showMinimap');
+      if(LocalStorage.getItem('showGrid'))
+        showGrid.value = LocalStorage.getItem('showGrid');
+      if(LocalStorage.getItem('jsonData')) {
+        json = LocalStorage.getItem('jsonData');
+        transformToData();
+      }
+    };
+
+    // 模拟运行工作流
+    const runWorkFlow = () => {
+      setNodeStatus(0, 'running');
+      setNodeStatus(1, 'default');
+      setNodeStatus(2, 'default');
+      setNodeStatus(3, 'default');
+      setNodeStatus(4, 'default');
+      setNodeStatus(5, 'default');
+      setTimeout(() => {
+        setNodeStatus(0, 'success');
+        setNodeStatus(1, 'running');
+        setNodeStatus(2, 'running');
+        setTimeout(() => {
+          setNodeStatus(1, 'success');
+          setNodeStatus(3, 'running');
+          setNodeStatus(4, 'running');
+          setTimeout(() => {
+            setNodeStatus(3, 'success');
+            setTimeout(() => {
+              setNodeStatus(4, 'warning');
+            }, 3000);
+          }, 1000);
+        }, 1000);
+        setTimeout(() => {
+          setNodeStatus(2, 'success');
+          setNodeStatus(5, 'running');
+          setTimeout(() => {
+            setNodeStatus(5, 'error');
+          }, 1000);
+        }, 3000);
+      }, 2000);
+    };
+
     // 初始化自定义节点、连线形状
     const initShape = () => {
       Graph.registerNode(
@@ -607,6 +707,7 @@ export default defineComponent({
         true
       );
     };
+
     // 初始化工作流
     function initGraph() {
       // 自动布局：使用dagre布局算法，判断data层次
@@ -744,6 +845,7 @@ export default defineComponent({
         },
       }).fromJSON(data);
     }
+    
     // 初始化dnd
     const initDnd = () => {
       dnd.value = new Dnd({
@@ -753,6 +855,7 @@ export default defineComponent({
         },
       });
     };
+
     // 初始化事件
     function initEvent() {
       // 绑定右键点击事件
@@ -842,79 +945,6 @@ export default defineComponent({
       graph.on('edge:added', () => {
         checkHtc();
       });
-    }
-
-    // 设置节点状态
-    const setNodeStatus = (index, status) => {
-      const node = graph.getNodes()[index];
-      let data = node.getData();
-      node.setData({ name: data.name, status: status });
-    };
-
-    // 模拟运行工作流
-    const runWorkFlow = () => {
-      setNodeStatus(0, 'running');
-      setNodeStatus(1, 'default');
-      setNodeStatus(2, 'default');
-      setNodeStatus(3, 'default');
-      setNodeStatus(4, 'default');
-      setNodeStatus(5, 'default');
-      setTimeout(() => {
-        setNodeStatus(0, 'success');
-        setNodeStatus(1, 'running');
-        setNodeStatus(2, 'running');
-        setTimeout(() => {
-          setNodeStatus(1, 'success');
-          setNodeStatus(3, 'running');
-          setNodeStatus(4, 'running');
-          setTimeout(() => {
-            setNodeStatus(3, 'success');
-            setTimeout(() => {
-              setNodeStatus(4, 'warning');
-            }, 3000);
-          }, 1000);
-        }, 1000);
-        setTimeout(() => {
-          setNodeStatus(2, 'success');
-          setNodeStatus(5, 'running');
-          setTimeout(() => {
-            setNodeStatus(5, 'error');
-          }, 1000);
-        }, 3000);
-      }, 2000);
-    };
-
-    // 检查是否有htc节点
-    const checkHtc = () => {
-      const nodes = graph.getNodes();
-      for (let i = 0, len = nodes.length; i < len; i++) {
-        if (nodes[i].getData().htc) {
-          nodes[i].setData({ htc: false });
-          nodes[i].setData({ htc: true });
-        }
-      }
-    };
-
-    // 保存流程数据到本地
-    const saveData = () => {
-      transformToJson();
-      LocalStorage.set('jsonData', jsonData.value);
-      $q.notify({
-        message: '保存数据成功！',
-        type: 'positive',
-      });
-    }
-
-    // 读取本地数据
-    const loadData = () => {
-      if(LocalStorage.getItem('showMinimap'))
-        showMinimap.value = LocalStorage.getItem('showMinimap');
-      if(LocalStorage.getItem('showGrid'))
-        showGrid.value = LocalStorage.getItem('showGrid');
-      if(LocalStorage.getItem('jsonData')) {
-        json = LocalStorage.getItem('jsonData');
-        transformToData();
-      }
     }
 
     onMounted(() => {

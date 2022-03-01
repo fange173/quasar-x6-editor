@@ -13,10 +13,10 @@
         <q-icon name="edit" />
         <div><b>编辑</b></div>
         <q-space />
-        <q-btn dense flat icon="close" @click="shRightDrawer" />
+        <!-- <q-btn dense flat icon="close" @click="shRightDrawer" /> -->
       </q-bar>
       <EditPanel id="edit" ref="editPanel" :flow="flow" />
-      <div class="q-mini-drawer-hide absolute" style="top: 50%; left: -16px">
+      <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; left: -16px">
         <q-btn
           dense
           round
@@ -27,10 +27,9 @@
           style="z-index: 1"
           class="float-button back-blur"
         />
-      </div>
-      <!-- <MiniMap id="minimap" /> -->
+      </div> -->
     </q-drawer>
-    <div class="q-mini-drawer-hide absolute" style="top: 50%; right: 0px">
+    <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; right: 0px">
       <q-btn
         dense
         round
@@ -41,7 +40,7 @@
         style="z-index: 1; margin-top: 25px"
         class="float-button back-blur"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
