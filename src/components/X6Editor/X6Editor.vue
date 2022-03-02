@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :flow="flow" :showGrid="showGrid" :showMinimap="showMinimap" />
+    <Header :flow="flow" :showGrid="showGrid" :showMinimap="showMinimap" :showLeftDrawer="showLeftDrawer" :showRightDrawer="showRightDrawer" />
     <LeftDrawer :showLeftDrawer="showLeftDrawer" />
     <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
     <div id="container">

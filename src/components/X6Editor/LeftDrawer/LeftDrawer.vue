@@ -9,15 +9,14 @@
       bordered
       side="left"
     >
-      <!-- <div id="titleBar">组件库</div> -->
-      <q-bar id="qBarTitle">
-        <q-icon name="inventory" />
-        <div><b>组件库</b></div>
-        <q-space />
-        <!-- <q-btn dense flat icon="close" @click="shLeftDrawer" /> -->
-      </q-bar>
-      <div class="q-pa-md">
-        <q-input outlined dense ref="filterRef" v-model="filter">
+      <div class="absolute-top">
+        <q-bar id="qBarTitle">
+          <q-icon name="inventory" />
+          <div><b>组件库</b></div>
+          <q-space />
+          <!-- <q-btn dense flat icon="close" @click="shLeftDrawer" /> -->
+        </q-bar>
+        <q-input outlined dense ref="filterRef" v-model="filter" class="q-pt-xs q-px-md">
           <template v-slot:prepend>
             <q-icon name="search" />
           </template>
@@ -25,6 +24,8 @@
             <q-icon v-if="filter !== ''" name="clear" class="cursor-pointer" @click="resetFilter" />
           </template>
         </q-input>
+      </div>
+      <q-scroll-area class="q-px-md" style="height: calc(100% - 112px); margin-top: 76px; margin-bottom: 36px">
         <q-tree
           :nodes="nodeList"
           node-key="id"
@@ -33,7 +34,7 @@
           no-nodes-label="没有节点数据！"
           no-results-label="没有找到相关节点！"
           default-expand-all
-          class="q-pt-sm"
+          class="q-pt-sm q-pb-md"
         >
           <template v-slot:default-header="prop">
             <div class="row items-center node-label" v-if="prop.node.icon">
@@ -84,6 +85,9 @@
             </div>
           </template>
         </q-tree>
+      </q-scroll-area>
+      <div class="absolute-bottom">
+        <q-btn align="left" icon="add" label="添加更多组件..." class="text-primary full-width" style="background: #eeeeee" @click="onClick" />
       </div>
       <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
         <q-btn
@@ -254,6 +258,128 @@ export default {
               name: 'Tool3工具',
               cpuCores: '4',
               appUseCase: 'cec670a0-f6af-916f-7a52-ec9cbd102a9a',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+        ],
+      },
+      {
+        id: 'Compute',
+        data: { name: 'Compute计算' },
+        icon: 'developer_board',
+        children: [
+          {
+            id: 'Compute1',
+            shape: 'default-node',
+            data: {
+              name: 'Compute1计算',
+              cpuCores: '4',
+              appUseCase: 'b21871de-75dd-4a39-9c4c-cd2df62eb20b',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute2',
+            shape: 'default-node',
+            data: {
+              name: 'Compute2计算',
+              cpuCores: '4',
+              appUseCase: '40178a7c-b7b8-417a-9cd4-b0277da22374',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute3',
+            shape: 'default-node',
+            data: {
+              name: 'Compute3计算',
+              cpuCores: '4',
+              appUseCase: 'c1dd1643-c630-4073-8b53-68ba8391f9de',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute4',
+            shape: 'default-node',
+            data: {
+              name: 'Compute4计算',
+              cpuCores: '4',
+              appUseCase: '45901e22-3ea9-4499-a481-bf5d33964d8a',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute5',
+            shape: 'default-node',
+            data: {
+              name: 'Compute5计算',
+              cpuCores: '4',
+              appUseCase: 'b7e4ec9b-e094-4c2b-8e34-79c8b09b2e14',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+        ],
+      },
+      {
+        id: 'Test',
+        data: { name: 'Test测试' },
+        icon: 'bug_report',
+        children: [
+          {
+            id: 'Compute1',
+            shape: 'default-node',
+            data: {
+              name: 'Test1测试',
+              cpuCores: '4',
+              appUseCase: '34594c90-fe25-4128-b9c6-66519711e6c8',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute2',
+            shape: 'default-node',
+            data: {
+              name: 'Test2测试',
+              cpuCores: '4',
+              appUseCase: '497153b6-1c4b-473a-a0ec-bea0c5ee42b3',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute3',
+            shape: 'default-node',
+            data: {
+              name: 'Test3测试',
+              cpuCores: '4',
+              appUseCase: '296c38f6-4af1-4bec-8553-ce9afb12bf1e',
+              status: 'default',
+              htc: false,
+            },
+            ports: { ...ports },
+          },
+          {
+            id: 'Compute4',
+            shape: 'default-node',
+            data: {
+              name: 'Test4测试',
+              cpuCores: '4',
+              appUseCase: 'd65db538-3c41-4eaf-b25d-91bd3a334c30',
               status: 'default',
               htc: false,
             },

@@ -2,7 +2,12 @@
   <div>
     <q-header class="my-header">
       <q-toolbar class="text-black">
-        <q-btn flat round dense icon="menu" @click="shLeftDrawer" />
+        <q-btn flat round dense icon="menu" v-if="showLeftDrawer" @click="shLeftDrawer">
+          <q-tooltip :offset="[8, 8]"> 隐藏组件库 </q-tooltip>
+        </q-btn>
+        <q-btn flat round dense icon="menu_open" v-else @click="shLeftDrawer">
+          <q-tooltip :offset="[8, 8]"> 显示组件库 </q-tooltip>
+        </q-btn>
         <!-- <q-avatar style="margin-right: -4px">
           <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-black.svg" />
         </q-avatar> -->
@@ -145,7 +150,12 @@
           </div>
         </q-toolbar-title>
         <q-btn dense push color="primary" icon="autorenew" label="运行" @click="runWorkFlow" />
-        <q-btn flat round dense icon="menu" @click="shRightDrawer" class="q-ml-md" />
+        <q-btn flat round dense icon="menu" v-if="showRightDrawer" @click="shRightDrawer" class="q-ml-md">
+          <q-tooltip :offset="[8, 8]"> 隐藏编辑 </q-tooltip>
+        </q-btn>
+        <q-btn flat round dense icon="menu_open" v-else @click="shRightDrawer" class="q-ml-md">
+          <q-tooltip :offset="[8, 8]"> 显示编辑 </q-tooltip>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -189,6 +199,12 @@ export default {
     },
     flow: {
       type: Object,
+    },
+    showLeftDrawer: {
+      type: Boolean,
+    },
+    showRightDrawer: {
+      type: Boolean,
     },
   },
   setup() {

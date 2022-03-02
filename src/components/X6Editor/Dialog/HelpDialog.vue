@@ -1,10 +1,20 @@
 <template>
   <div>
-    <q-dialog v-model="showHelpDialog" @update:model-value="close" @escape-key="close">
+    <q-dialog v-model="showHelpDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
       <q-card style="width: 600px; max-width: 80vw">
         <q-card-section>
           <div class="text-h6 row">
-            帮助<q-space /><q-btn dense flat icon="close" @click="close" />
+            帮助
+            <q-space />
+            <q-btn dense flat icon="crop_square" v-if="!maximized" @click="maximized = true">
+              <q-tooltip :offset="[8, 8]"> 最大化 </q-tooltip>
+            </q-btn>
+            <q-btn dense flat icon="minimize" v-else @click="maximized = false">
+              <q-tooltip :offset="[8, 8]"> 最小化 </q-tooltip>
+            </q-btn>
+            <q-btn dense flat icon="close" @click="close">
+              <q-tooltip :offset="[8, 8]"> 关闭 </q-tooltip>
+            </q-btn>
           </div>
         </q-card-section>
         <q-card-section class="q-pt-none">
@@ -76,6 +86,7 @@ export default {
     const tab = ref('如何新增');
     const splitterModel = ref(20);
     const _this = getCurrentInstance();
+    const maximized = ref(false);
 
     const showHelpDialog = computed(() => {
       return props.openHelpDialog;
@@ -83,6 +94,7 @@ export default {
 
     const close = () => {
       _this.parent.proxy.closeHelp();
+      maximized.value = false;
     };
 
     return {
@@ -90,6 +102,7 @@ export default {
       tab,
       splitterModel,
       showHelpDialog,
+      maximized,
     };
   },
 };
