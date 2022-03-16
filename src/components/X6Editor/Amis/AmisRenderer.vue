@@ -13,8 +13,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  let amis = amisRequire('amis/embed');
-  console.log(amis);
-  let amisScoped = amis.embed('#box', props.amisData);
+  const amis = amisRequire('amis/embed');
+  const amisScoped = amis.embed('#box', props.amisData);
 });
 </script>

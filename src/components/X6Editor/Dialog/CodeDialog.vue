@@ -60,22 +60,6 @@ export default {
       return JSON.parse(props.data);
     });
 
-    // const copy = () => {
-    //   copyToClipboard(props.data)
-    //     .then(() => {
-    //       Notify.create({
-    //         type: 'positive',
-    //         message: `已复制数据到剪贴板！`,
-    //       });
-    //     })
-    //     .catch(() => {
-    //       Notify.create({
-    //         type: 'negative',
-    //         message: `复制数据失败！`,
-    //       });
-    //     });
-    // };
-
     const close = () => {
       _this.parent.proxy.closeCode();
       maximized.value = false;

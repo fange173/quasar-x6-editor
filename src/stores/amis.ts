@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', {
+export const useAmisStore = defineStore('amisStore', {
   state: () => ({
     showDialog: false,
     jsonData: {},

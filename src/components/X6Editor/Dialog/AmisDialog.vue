@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-dialog
-      v-model="showAmisDialog"
+      v-model="amisStore.showDialog"
       @update:model-value="close"
       @escape-key="close"
       :maximized="maximized"
@@ -24,7 +24,7 @@
           </div>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <AmisRenderer :amisData="amisData"></AmisRenderer>
+          <AmisRenderer :amisData="amisStore.jsonData"></AmisRenderer>
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -33,91 +33,27 @@
 
 <script>
 import { computed, getCurrentInstance, ref, onMounted } from 'vue';
+import { useAmisStore } from 'src/stores/amis';
 import AmisRenderer from '../Amis/AmisRenderer.vue';
 
 export default {
   components: {
     AmisRenderer,
   },
-  props: {
-    openAmisDialog: {
-      type: Boolean,
-    },
-    jsonData: {
-      type: Object,
-    },
-  },
-  setup(props) {
+  setup() {
     const _this = getCurrentInstance();
+    const amisStore = useAmisStore();
     const maximized = ref(false);
 
-    const amisData = {
-      type: 'page',
-      body: [
-        {
-          label: 'name',
-          type: 'input-text',
-          name: 'name',
-          value: props.jsonData.name,
-        },
-        {
-          label: 'externalId',
-          type: 'input-text',
-          name: 'externalId',
-          value: props.jsonData.externalId,
-        },
-        {
-          label: 'materialName',
-          type: 'input-text',
-          name: 'materialName',
-          value: props.jsonData.materialName,
-        },
-
-        {
-          type: 'form',
-          mode: 'horizontal',
-          debug: true,
-          body: [
-            {
-              label: 'name',
-              type: 'input-text',
-              name: 'name',
-              value: props.jsonData.name,
-            },
-            {
-              label: 'externalId',
-              type: 'input-text',
-              name: 'externalId',
-              value: props.jsonData.externalId,
-            },
-            {
-              label: 'materialName',
-              type: 'input-text',
-              name: 'materialName',
-              value: props.jsonData.materialName,
-            },
-          ],
-        },
-      ],
-    };
-
-    const showAmisDialog = computed(() => {
-      return props.openAmisDialog;
-    });
-    // const amisData = computed(() => {
-    //   return JSON.parse(props.data);
-    // });
-
     const close = () => {
-      _this.parent.proxy.closeCode();
+      amisStore.closeDialog();
       maximized.value = false;
     };
 
     return {
       close,
-      showAmisDialog,
-      amisData,
       maximized,
+      amisStore
     };
   },
 };

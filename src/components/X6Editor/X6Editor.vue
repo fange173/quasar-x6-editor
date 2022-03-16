@@ -29,7 +29,7 @@
     <ToolBar :zoom="zoom" :showGrid="showGrid" :showMinimap="showMinimap" />
     <HelpDialog :openHelpDialog="openHelpDialog" />
     <CodeDialog :openCodeDialog="openCodeDialog" :data="jsonData" />
-    <AmisDialog :openAmisDialog="openAmisDialog" :jsonData="json" />
+    <AmisDialog />
   </div>
 </template>
 
@@ -81,7 +81,6 @@ export default defineComponent({
     // 是否显示Dialog
     const openHelpDialog = ref(false);
     const openCodeDialog = ref(false);
-    const openAmisDialog = ref(false);
     const jsonData = ref({});
     // 是否显示缩略图
     const showMinimap = ref(false);
@@ -405,9 +404,6 @@ export default defineComponent({
           message: '选择了 ' + data,
           color: 'primary',
         });
-        if (data === 'opt1') {
-          openAmisDialog.value = true;
-        }
       });
     };
 
@@ -1016,7 +1012,6 @@ export default defineComponent({
       closeHelp,
       closeCode,
       openCodeDialog,
-      openAmisDialog,
       jsonData,
       flow,
       showMinimap,
