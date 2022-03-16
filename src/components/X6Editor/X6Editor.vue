@@ -1,15 +1,35 @@
 <template>
   <div>
-    <Header :flow="flow" :showGrid="showGrid" :showMinimap="showMinimap" :showLeftDrawer="showLeftDrawer" :showRightDrawer="showRightDrawer" />
+    <Header
+      :flow="flow"
+      :showGrid="showGrid"
+      :showMinimap="showMinimap"
+      :showLeftDrawer="showLeftDrawer"
+      :showRightDrawer="showRightDrawer"
+    />
     <LeftDrawer :showLeftDrawer="showLeftDrawer" />
     <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
     <div id="container">
-      <ContextMenu :choiceType="choiceType" @showNode="showNode" @nodeSetting="nodeSetting" @addNode="addNode" @deleteNode="deleteNode" @showEdge="showEdge" @deleteEdge="deleteEdge" @undo="undo" @redo="redo" @showData="showData" @downloadData="downloadData" @refresh="refresh" />
+      <ContextMenu
+        :choiceType="choiceType"
+        @showNode="showNode"
+        @nodeSetting="nodeSetting"
+        @addNode="addNode"
+        @deleteNode="deleteNode"
+        @showEdge="showEdge"
+        @deleteEdge="deleteEdge"
+        @undo="undo"
+        @redo="redo"
+        @showData="showData"
+        @downloadData="downloadData"
+        @refresh="refresh"
+      />
     </div>
     <div id="minimap" v-show="showMinimap" />
     <ToolBar :zoom="zoom" :showGrid="showGrid" :showMinimap="showMinimap" />
     <HelpDialog :openHelpDialog="openHelpDialog" />
     <CodeDialog :openCodeDialog="openCodeDialog" :data="jsonData" />
+    <AmisDialog :openAmisDialog="openAmisDialog" :jsonData="json" />
   </div>
 </template>
 
@@ -27,6 +47,7 @@ import '@antv/x6-vue-shape';
 import DefaultNode from './Node/DefaultNode.vue';
 import HelpDialog from './Dialog/HelpDialog.vue';
 import CodeDialog from './Dialog/CodeDialog.vue';
+import AmisDialog from './Dialog/AmisDialog.vue';
 import ContextMenu from './Container/ContextMenu.vue';
 
 export default defineComponent({
@@ -37,6 +58,7 @@ export default defineComponent({
     RightDrawer,
     HelpDialog,
     CodeDialog,
+    AmisDialog,
     ContextMenu,
   },
   setup() {
@@ -59,6 +81,7 @@ export default defineComponent({
     // 是否显示Dialog
     const openHelpDialog = ref(false);
     const openCodeDialog = ref(false);
+    const openAmisDialog = ref(false);
     const jsonData = ref({});
     // 是否显示缩略图
     const showMinimap = ref(false);
@@ -343,7 +366,7 @@ export default defineComponent({
         });
       });
     };
-    
+
     // 清空
     const refresh = () => {
       $q.dialog({
@@ -382,6 +405,9 @@ export default defineComponent({
           message: '选择了 ' + data,
           color: 'primary',
         });
+        if (data === 'opt1') {
+          openAmisDialog.value = true;
+        }
       });
     };
 
@@ -533,10 +559,8 @@ export default defineComponent({
     };
     const shRightDrawer = () => {
       showRightDrawer.value = !showRightDrawer.value;
-      if (showRightDrawer.value)
-        document.getElementById('minimap').style.right = 'calc(316px)';
-      else
-        document.getElementById('minimap').style.right = 'calc(16px)';
+      if (showRightDrawer.value) document.getElementById('minimap').style.right = 'calc(316px)';
+      else document.getElementById('minimap').style.right = 'calc(16px)';
       if (showLeftDrawer.value === true && showRightDrawer.value === true)
         graph.resize(window.innerWidth - 600, window.innerHeight - 52);
       else if (showLeftDrawer.value === true && showRightDrawer.value === false)
@@ -544,7 +568,7 @@ export default defineComponent({
       else if (showLeftDrawer.value === false && showRightDrawer.value === true)
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
       else graph.resize(window.innerWidth, window.innerHeight - 52);
-    }
+    };
 
     // dnd开始拖动
     const startDrag = (e, prop) => {
@@ -610,7 +634,7 @@ export default defineComponent({
     };
 
     // 导入文件
-    const importJson = (result) => {
+    const importJson = result => {
       json = result;
       transformToData();
       graph.dispose();
@@ -637,11 +661,10 @@ export default defineComponent({
 
     // 读取本地数据
     const loadData = () => {
-      if(LocalStorage.getItem('showMinimap'))
+      if (LocalStorage.getItem('showMinimap'))
         showMinimap.value = LocalStorage.getItem('showMinimap');
-      if(LocalStorage.getItem('showGrid'))
-        showGrid.value = LocalStorage.getItem('showGrid');
-      if(LocalStorage.getItem('jsonData')) {
+      if (LocalStorage.getItem('showGrid')) showGrid.value = LocalStorage.getItem('showGrid');
+      if (LocalStorage.getItem('jsonData')) {
         json = LocalStorage.getItem('jsonData');
         transformToData();
       }
@@ -849,7 +872,7 @@ export default defineComponent({
         },
       }).fromJSON(data);
     }
-    
+
     // 初始化dnd
     const initDnd = () => {
       dnd.value = new Dnd({
@@ -993,6 +1016,7 @@ export default defineComponent({
       closeHelp,
       closeCode,
       openCodeDialog,
+      openAmisDialog,
       jsonData,
       flow,
       showMinimap,
@@ -1002,6 +1026,7 @@ export default defineComponent({
       zoomToFit,
       importJson,
       saveData,
+      json,
     };
   },
 });
