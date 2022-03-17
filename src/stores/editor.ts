@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 
 export const useEditorStore = defineStore('editorStore', {
   state: () => ({
-    showLeftDrawer: false,
-    showRightDrawer: false,
+    showLeftDrawer: true,
+    showRightDrawer: true,
     showGrid: true,
     showMinimap: false,
     openHelpDialog: false,
