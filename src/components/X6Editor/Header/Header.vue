@@ -2,7 +2,7 @@
   <div>
     <q-header class="my-header">
       <q-toolbar class="text-black">
-        <q-btn flat round dense icon="menu" v-if="showLeftDrawer" @click="shLeftDrawer">
+        <q-btn flat round dense icon="menu" v-if="editorStore.showLeftDrawer" @click="shLeftDrawer">
           <q-tooltip :offset="[8, 8]"> 隐藏组件库 </q-tooltip>
         </q-btn>
         <q-btn flat round dense icon="menu_open" v-else @click="shLeftDrawer">
@@ -89,7 +89,7 @@
                       显示缩略图
                     </q-item-section>
                     <q-item-section side>
-                      <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!showMinimap" />
+                      <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!editorStore.showMinimap" />
                       <q-icon left name="check_box" class="q-mr-none" v-else />
                     </q-item-section>
                   </q-item>
@@ -98,7 +98,7 @@
                       显示网点
                     </q-item-section>
                     <q-item-section side>
-                      <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!showGrid" />
+                      <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!editorStore.showGrid" />
                       <q-icon left name="check_box" class="q-mr-none" v-else />
                     </q-item-section>
                   </q-item>
@@ -150,7 +150,7 @@
           </div>
         </q-toolbar-title>
         <q-btn dense push color="primary" icon="autorenew" label="运行" @click="runWorkFlow" />
-        <q-btn flat round dense icon="menu" v-if="showRightDrawer" @click="shRightDrawer" class="q-ml-md">
+        <q-btn flat round dense icon="menu" v-if="editorStore.showRightDrawer" @click="shRightDrawer" class="q-ml-md">
           <q-tooltip :offset="[8, 8]"> 隐藏编辑 </q-tooltip>
         </q-btn>
         <q-btn flat round dense icon="menu_open" v-else @click="shRightDrawer" class="q-ml-md">
@@ -188,29 +188,19 @@
 
 <script>
 import { getCurrentInstance, ref } from 'vue';
+import { useEditorStore } from 'src/stores/editor';
 
 export default {
   props: {
-    showGrid: {
-      type: Boolean,
-    },
-    showMinimap: {
-      type: Boolean,
-    },
     flow: {
       type: Object,
-    },
-    showLeftDrawer: {
-      type: Boolean,
-    },
-    showRightDrawer: {
-      type: Boolean,
     },
   },
   setup() {
     const _this = getCurrentInstance();
     const openFileDialog = ref(false);
     const file = ref(null);
+    const editorStore = useEditorStore();
 
     const undo = () => {
       _this.parent.proxy.undo();
@@ -301,6 +291,7 @@ export default {
       saveData,
       shLeftDrawer,
       shRightDrawer,
+      editorStore,
     };
   },
 };

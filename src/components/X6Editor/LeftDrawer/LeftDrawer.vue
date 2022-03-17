@@ -2,7 +2,7 @@
   <div>
     <q-drawer
       id="leftDrawer"
-      v-model="showLeftDrawerCom"
+      v-model="editorStore.showLeftDrawer"
       show-if-above
       :width="300"
       :breakpoint="500"
@@ -119,15 +119,12 @@
 
 <script>
 import { getCurrentInstance, computed, ref } from 'vue';
+import { useEditorStore } from 'src/stores/editor';
 
 export default {
-  props: {
-    showLeftDrawer: {
-      type: Boolean,
-    },
-  },
-  setup(props) {
+  setup() {
     const _this = getCurrentInstance();
+    const editorStore = useEditorStore();
 
     // 连接桩
     const ports = {
@@ -396,10 +393,6 @@ export default {
       _this.parent.proxy.startDrag(e, prop);
     };
 
-    const showLeftDrawerCom = computed(() => {
-      return props.showLeftDrawer;
-    });
-
     const shLeftDrawer = () => {
       _this.parent.proxy.shLeftDrawer();
     };
@@ -410,7 +403,6 @@ export default {
 
     return {
       shLeftDrawer,
-      showLeftDrawerCom,
       nodeList,
       filter,
       filterRef,
@@ -420,6 +412,7 @@ export default {
       },
       startDrag,
       filterMethod,
+      editorStore,
     };
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-dialog v-model="showHelpDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
+    <q-dialog v-model="editorStore.openHelpDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
       <q-card style="width: 600px; max-width: 80vw">
         <q-card-section>
           <div class="text-h6 row">
@@ -75,25 +75,18 @@
 
 <script>
 import { ref, computed, getCurrentInstance } from 'vue';
+import { useEditorStore } from 'src/stores/editor';
 
 export default {
-  props: {
-    openHelpDialog: {
-      type: Boolean,
-    },
-  },
-  setup(props) {
+  setup() {
     const tab = ref('如何新增');
     const splitterModel = ref(20);
     const _this = getCurrentInstance();
     const maximized = ref(false);
-
-    const showHelpDialog = computed(() => {
-      return props.openHelpDialog;
-    });
+    const editorStore = useEditorStore();
 
     const close = () => {
-      _this.parent.proxy.closeHelp();
+      editorStore.openHelpDialog = false;
       maximized.value = false;
     };
 
@@ -101,7 +94,7 @@ export default {
       close,
       tab,
       splitterModel,
-      showHelpDialog,
+      editorStore,
       maximized,
     };
   },

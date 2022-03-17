@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-dialog v-model="showCodeDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
+    <q-dialog v-model="editorStore.openCodeDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
       <q-card style="min-width: 600px; max-width: 80vw">
         <q-card-section>
           <div class="text-h6 row">
@@ -35,6 +35,7 @@ import { computed, getCurrentInstance, ref } from 'vue';
 // import 'codemirror/mode/javascript/javascript.js';
 import JsonViewer from 'vue-json-viewer';
 import 'vue-json-viewer/style.css';
+import { useEditorStore } from 'src/stores/editor';
 
 export default {
   components: {
@@ -42,9 +43,6 @@ export default {
     JsonViewer,
   },
   props: {
-    openCodeDialog: {
-      type: Boolean,
-    },
     data: {
       type: String,
     },
@@ -52,23 +50,18 @@ export default {
   setup(props) {
     const _this = getCurrentInstance();
     const maximized = ref(false);
+    const editorStore = useEditorStore();
 
-    const showCodeDialog = computed(() => {
-      return props.openCodeDialog;
-    });
     const jsonData = computed(() => {
       return JSON.parse(props.data);
     });
 
     const close = () => {
-      _this.parent.proxy.closeCode();
+      editorStore.openCodeDialog = false;
       maximized.value = false;
     };
 
     return {
-      // copy,
-      close,
-      showCodeDialog,
       // cmOptions: {
       //   mode: 'application/json', // 实现代码高亮
       //   tabSize: 2, // tab的空格个数
@@ -76,8 +69,10 @@ export default {
       //   lineNumbers: true, // 是否显示行数
       //   readOnly: true, // 只读
       // },
+      close,
       jsonData,
       maximized,
+      editorStore,
     };
   },
 };

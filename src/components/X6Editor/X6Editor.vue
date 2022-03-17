@@ -2,13 +2,9 @@
   <div>
     <Header
       :flow="flow"
-      :showGrid="showGrid"
-      :showMinimap="showMinimap"
-      :showLeftDrawer="showLeftDrawer"
-      :showRightDrawer="showRightDrawer"
     />
-    <LeftDrawer :showLeftDrawer="showLeftDrawer" />
-    <RightDrawer ref="rightDrawer" :showRightDrawer="showRightDrawer" :flow="flow" />
+    <LeftDrawer />
+    <RightDrawer ref="rightDrawer" :flow="flow" />
     <div id="container">
       <ContextMenu
         :choiceType="choiceType"
@@ -25,10 +21,10 @@
         @refresh="refresh"
       />
     </div>
-    <div id="minimap" v-show="showMinimap" />
-    <ToolBar :zoom="zoom" :showGrid="showGrid" :showMinimap="showMinimap" />
-    <HelpDialog :openHelpDialog="openHelpDialog" />
-    <CodeDialog :openCodeDialog="openCodeDialog" :data="jsonData" />
+    <div id="minimap" v-show="editorStore.showMinimap" />
+    <ToolBar :zoom="zoom" />
+    <HelpDialog />
+    <CodeDialog :data="jsonData" />
     <AmisDialog />
   </div>
 </template>
@@ -49,6 +45,7 @@ import HelpDialog from './Dialog/HelpDialog.vue';
 import CodeDialog from './Dialog/CodeDialog.vue';
 import AmisDialog from './Dialog/AmisDialog.vue';
 import ContextMenu from './Container/ContextMenu.vue';
+import { useEditorStore } from 'src/stores/editor';
 
 export default defineComponent({
   components: {
@@ -75,17 +72,10 @@ export default defineComponent({
     const rightDrawer = ref();
     // 画布缩放比例
     const zoom = ref(100);
-    // 是否显示侧边栏
-    const showLeftDrawer = ref(true);
-    const showRightDrawer = ref(true);
-    // 是否显示Dialog
-    const openHelpDialog = ref(false);
-    const openCodeDialog = ref(false);
+    // json
     const jsonData = ref({});
-    // 是否显示缩略图
-    const showMinimap = ref(false);
-    // 是否显示网点
-    const showGrid = ref(false);
+    // pinia
+    const editorStore = useEditorStore();
     // 连接桩
     const ports = {
       groups: {
@@ -417,7 +407,7 @@ export default defineComponent({
         null,
         2
       );
-      openCodeDialog.value = true;
+      editorStore.openCodeDialog = true;
     };
 
     // 查看连线数据
@@ -430,7 +420,7 @@ export default defineComponent({
         null,
         2
       );
-      openCodeDialog.value = true;
+      editorStore.openCodeDialog = true;
     };
 
     // x6数据转换成json数据
@@ -469,12 +459,7 @@ export default defineComponent({
     const showData = () => {
       transformToJson();
       jsonData.value = JSON.stringify(jsonData.value, null, 2);
-      openCodeDialog.value = true;
-    };
-
-    // 关闭代码dialog
-    const closeCode = () => {
-      openCodeDialog.value = false;
+      editorStore.openCodeDialog = true;
     };
 
     // 导出工作流数据
@@ -507,26 +492,21 @@ export default defineComponent({
 
     // 显示网格
     const shGrid = () => {
-      if (showGrid.value === true) graph.hideGrid();
+      if (editorStore.showGrid) graph.hideGrid();
       else graph.showGrid();
-      showGrid.value = !showGrid.value;
-      LocalStorage.set('showGrid', showGrid.value);
+      editorStore.showGrid = !editorStore.showGrid;
+      LocalStorage.set('showGrid', editorStore.showGrid);
     };
 
     // 显示缩略图
     const shMinimap = () => {
-      showMinimap.value = !showMinimap.value;
-      LocalStorage.set('showMinimap', showMinimap.value);
+      editorStore.showMinimap = !editorStore.showMinimap;
+      LocalStorage.set('showMinimap', editorStore.showMinimap);
     };
 
     // 查看帮助
     const help = () => {
-      openHelpDialog.value = true;
-    };
-
-    // 关闭帮助
-    const closeHelp = () => {
-      openHelpDialog.value = false;
+      editorStore.openHelpDialog = true;
     };
 
     // 自动布局
@@ -544,24 +524,24 @@ export default defineComponent({
 
     // 显示侧边栏
     const shLeftDrawer = () => {
-      showLeftDrawer.value = !showLeftDrawer.value;
-      if (showLeftDrawer.value === true && showRightDrawer.value === true)
+      editorStore.showLeftDrawer = !editorStore.showLeftDrawer;
+      if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true)
         graph.resize(window.innerWidth - 600, window.innerHeight - 52);
-      else if (showLeftDrawer.value === true && showRightDrawer.value === false)
+      else if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === false)
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
-      else if (showLeftDrawer.value === false && showRightDrawer.value === true)
+      else if (editorStore.showLeftDrawer === false && editorStore.showRightDrawer === true)
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
       else graph.resize(window.innerWidth, window.innerHeight - 52);
     };
     const shRightDrawer = () => {
-      showRightDrawer.value = !showRightDrawer.value;
-      if (showRightDrawer.value) document.getElementById('minimap').style.right = 'calc(316px)';
+      editorStore.showRightDrawer = !editorStore.showRightDrawer;
+      if (editorStore.showRightDrawer) document.getElementById('minimap').style.right = 'calc(316px)';
       else document.getElementById('minimap').style.right = 'calc(16px)';
-      if (showLeftDrawer.value === true && showRightDrawer.value === true)
+      if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true)
         graph.resize(window.innerWidth - 600, window.innerHeight - 52);
-      else if (showLeftDrawer.value === true && showRightDrawer.value === false)
+      else if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === false)
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
-      else if (showLeftDrawer.value === false && showRightDrawer.value === true)
+      else if (editorStore.showLeftDrawer === false && editorStore.showRightDrawer === true)
         graph.resize(window.innerWidth - 300, window.innerHeight - 52);
       else graph.resize(window.innerWidth, window.innerHeight - 52);
     };
@@ -658,8 +638,8 @@ export default defineComponent({
     // 读取本地数据
     const loadData = () => {
       if (LocalStorage.getItem('showMinimap'))
-        showMinimap.value = LocalStorage.getItem('showMinimap');
-      if (LocalStorage.getItem('showGrid')) showGrid.value = LocalStorage.getItem('showGrid');
+        editorStore.showMinimap = LocalStorage.getItem('showMinimap');
+      if (LocalStorage.getItem('showGrid')) editorStore.showGrid = LocalStorage.getItem('showGrid');
       if (LocalStorage.getItem('jsonData')) {
         json = LocalStorage.getItem('jsonData');
         transformToData();
@@ -764,7 +744,7 @@ export default defineComponent({
         },
         grid: {
           size: 10, // 网格大小 10px
-          visible: showGrid.value, // 渲染网格背景
+          visible: editorStore.showGrid, // 渲染网格背景
           type: 'dot',
           args: {
             color: '#a0a0a0', // 网格线/点颜色
@@ -1001,27 +981,20 @@ export default defineComponent({
       layout,
       shLeftDrawer,
       shRightDrawer,
-      showLeftDrawer,
-      showRightDrawer,
       zoom,
       rightDrawer,
       startDrag,
       runWorkFlow,
-      openHelpDialog,
       help,
-      closeHelp,
-      closeCode,
-      openCodeDialog,
       jsonData,
       flow,
-      showMinimap,
       shMinimap,
-      showGrid,
       zoomTo,
       zoomToFit,
       importJson,
       saveData,
       json,
+      editorStore,
     };
   },
 });

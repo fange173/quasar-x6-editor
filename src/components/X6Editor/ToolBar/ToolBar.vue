@@ -14,7 +14,7 @@
               显示缩略图
             </q-item-section>
             <q-item-section side>
-              <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!showMinimap" />
+              <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!editorStore.showMinimap" />
               <q-icon left name="check_box" class="q-mr-none" v-else />
             </q-item-section>
           </q-item>
@@ -23,7 +23,7 @@
               显示网点
             </q-item-section>
             <q-item-section side>
-              <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!showGrid" />
+              <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!editorStore.showGrid" />
               <q-icon left name="check_box" class="q-mr-none" v-else />
             </q-item-section>
           </q-item>
@@ -161,21 +161,17 @@
 
 <script>
 import { getCurrentInstance } from 'vue';
+import { useEditorStore } from 'src/stores/editor';
 
 export default {
   props: {
     zoom: {
       type: Number,
     },
-    showGrid: {
-      type: Boolean,
-    },
-    showMinimap: {
-      type: Boolean,
-    },
   },
   setup() {
     const _this = getCurrentInstance();
+    const editorStore = useEditorStore();
 
     const undo = () => {
       _this.parent.proxy.undo();
@@ -235,6 +231,7 @@ export default {
       shMinimap,
       zoomTo,
       zoomToFit,
+      editorStore,
     };
   },
 };

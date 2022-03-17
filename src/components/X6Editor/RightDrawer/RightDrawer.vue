@@ -2,7 +2,7 @@
   <div>
     <q-drawer
       id="rightDrawer"
-      v-model="showRightDrawerCom"
+      v-model="editorStore.showRightDrawer"
       show-if-above
       :width="300"
       :breakpoint="500"
@@ -52,6 +52,7 @@
 import { getCurrentInstance, computed, ref } from 'vue';
 import MiniMap from './MiniMap.vue';
 import EditPanel from './EditPanel.vue';
+import { useEditorStore } from 'src/stores/editor';
 
 export default {
   components: {
@@ -68,12 +69,9 @@ export default {
   },
   setup(props) {
     const _this = getCurrentInstance();
+    const editorStore = useEditorStore();
 
     const editPanel = ref();
-
-    const showRightDrawerCom = computed(() => {
-      return props.showRightDrawer;
-    });
 
     const shRightDrawer = () => {
       _this.parent.proxy.shRightDrawer();
@@ -97,12 +95,12 @@ export default {
 
     return {
       shRightDrawer,
-      showRightDrawerCom,
       editPanel,
       nodeClickResponse,
       nodeMouseMoveResponse,
       edgeClickResponse,
       blankClickResponse,
+      editorStore,
     };
   },
 };
