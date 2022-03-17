@@ -523,26 +523,35 @@ export default defineComponent({
     // 显示侧边栏
     const shLeftDrawer = () => {
       editorStore.showLeftDrawer = !editorStore.showLeftDrawer;
-      if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true)
-        graph.resize(window.innerWidth - 600, window.innerHeight - 52);
-      else if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === false)
-        graph.resize(window.innerWidth - 300, window.innerHeight - 52);
-      else if (editorStore.showLeftDrawer === false && editorStore.showRightDrawer === true)
-        graph.resize(window.innerWidth - 300, window.innerHeight - 52);
-      else graph.resize(window.innerWidth, window.innerHeight - 52);
+
+      // if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true) {
+      //   editorStore.graphWidth = window.innerWidth - 600;
+      // } else if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === false) {
+      //   editorStore.graphWidth = window.innerWidth - 300;
+      // } else if (editorStore.showLeftDrawer === false && editorStore.showRightDrawer === true) {
+      //   editorStore.graphWidth = window.innerWidth - 300;
+      // } else {
+      //   editorStore.graphWidth = window.innerWidth;
+      // }
+      // graph.resize(editorStore.graphWidth, window.innerHeight - 52);
     };
     const shRightDrawer = () => {
       editorStore.showRightDrawer = !editorStore.showRightDrawer;
+
       if (editorStore.showRightDrawer)
         document.getElementById('minimap').style.right = 'calc(316px)';
       else document.getElementById('minimap').style.right = 'calc(16px)';
-      if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true)
-        graph.resize(window.innerWidth - 600, window.innerHeight - 52);
-      else if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === false)
-        graph.resize(window.innerWidth - 300, window.innerHeight - 52);
-      else if (editorStore.showLeftDrawer === false && editorStore.showRightDrawer === true)
-        graph.resize(window.innerWidth - 300, window.innerHeight - 52);
-      else graph.resize(window.innerWidth, window.innerHeight - 52);
+
+      // if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true) {
+      //   editorStore.graphWidth = window.innerWidth - 600;
+      // } else if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === false) {
+      //   editorStore.graphWidth = window.innerWidth - 300;
+      // } else if (editorStore.showLeftDrawer === false && editorStore.showRightDrawer === true) {
+      //   editorStore.graphWidth = window.innerWidth - 300;
+      // } else {
+      //   editorStore.graphWidth = window.innerWidth;
+      // }
+      // graph.resize(editorStore.graphWidth, window.innerHeight - 52);
     };
 
     // dnd开始拖动
@@ -947,6 +956,10 @@ export default defineComponent({
       graph.on('edge:added', () => {
         checkHtc();
       });
+      // 监听窗口尺寸变化
+      window.onresize = () => {
+        graph.resize(window.innerWidth, window.innerHeight - 52);
+      };
     }
 
     onMounted(() => {

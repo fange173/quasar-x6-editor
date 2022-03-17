@@ -58,8 +58,9 @@
 import { inject, onMounted, ref } from 'vue';
 import { Dialog, Notify } from 'quasar';
 import { useAmisStore } from 'src/stores/amis';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   setup() {
     const amisStore = useAmisStore();
 
@@ -129,7 +130,7 @@ export default {
       nodeSetting,
     };
   },
-};
+});
 </script>
 
 <style scoped>

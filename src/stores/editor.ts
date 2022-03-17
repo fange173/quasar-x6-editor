@@ -8,6 +8,7 @@ export const useEditorStore = defineStore('editorStore', {
     showMinimap: false,
     openHelpDialog: false,
     openCodeDialog: false,
+    graphWidth: window.innerWidth - 600,
   }),
   actions: {},
 });

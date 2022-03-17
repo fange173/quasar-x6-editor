@@ -1,11 +1,10 @@
 <template>
   <div>
     <q-drawer
+      overlay
       id="rightDrawer"
       v-model="editorStore.showRightDrawer"
-      show-if-above
       :width="300"
-      :breakpoint="500"
       bordered
       side="right"
     >
@@ -49,12 +48,12 @@
 </template>
 
 <script>
-import { getCurrentInstance, computed, ref } from 'vue';
+import { getCurrentInstance, computed, ref, defineComponent } from 'vue';
 import MiniMap from './MiniMap.vue';
 import EditPanel from './EditPanel.vue';
 import { useEditorStore } from 'src/stores/editor';
 
-export default {
+export default defineComponent({
   components: {
     MiniMap,
     EditPanel,
@@ -103,7 +102,7 @@ export default {
       editorStore,
     };
   },
-};
+});
 </script>
 
 <style scoped>

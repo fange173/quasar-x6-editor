@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import { computed, getCurrentInstance, ref, onMounted } from 'vue';
+import { defineComponent, computed, getCurrentInstance, ref, onMounted } from 'vue';
 import { useAmisStore } from 'src/stores/amis';
 import AmisRenderer from '../Amis/AmisRenderer.vue';
 
-export default {
+export default defineComponent({
   components: {
     AmisRenderer,
   },
@@ -56,7 +56,7 @@ export default {
       amisStore,
     };
   },
-};
+});
 </script>
 
 <style>

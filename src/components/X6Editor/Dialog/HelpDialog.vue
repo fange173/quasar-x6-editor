@@ -80,10 +80,10 @@
 </template>
 
 <script>
-import { ref, computed, getCurrentInstance } from 'vue';
+import { ref, computed, getCurrentInstance, defineComponent } from 'vue';
 import { useEditorStore } from 'src/stores/editor';
 
-export default {
+export default defineComponent({
   setup() {
     const tab = ref('如何新增');
     const splitterModel = ref(20);
@@ -104,7 +104,7 @@ export default {
       maximized,
     };
   },
-};
+});
 </script>
 
 <style scoped>

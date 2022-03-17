@@ -205,10 +205,10 @@
 </template>
 
 <script>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, defineComponent } from 'vue';
 import { Notify } from 'quasar';
 
-export default {
+export default defineComponent({
   props: {
     flow: {
       type: Object,
@@ -307,7 +307,7 @@ export default {
       saveFlow,
     };
   },
-};
+});
 </script>
 
 <style scoped>

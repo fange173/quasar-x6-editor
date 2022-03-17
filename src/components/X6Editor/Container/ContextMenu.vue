@@ -50,9 +50,9 @@
 </template>
 
 <script>
-// import { getCurrentInstance } from 'vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     choiceType: {
       type: String,
@@ -101,7 +101,7 @@ export default {
       // refresh,
     };
   },
-};
+});
 </script>
 
 <style scoped>

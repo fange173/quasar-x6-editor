@@ -148,10 +148,10 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, defineComponent } from 'vue';
 import { useEditorStore } from 'src/stores/editor';
 
-export default {
+export default defineComponent({
   props: {
     zoom: {
       type: Number,
@@ -222,7 +222,7 @@ export default {
       editorStore,
     };
   },
-};
+});
 </script>
 
 <style scoped>

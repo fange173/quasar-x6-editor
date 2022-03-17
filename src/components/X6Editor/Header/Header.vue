@@ -188,8 +188,9 @@
 <script>
 import { getCurrentInstance, ref } from 'vue';
 import { useEditorStore } from 'src/stores/editor';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     flow: {
       type: Object,
@@ -293,7 +294,7 @@ export default {
       editorStore,
     };
   },
-};
+});
 </script>
 
 <style scoped>

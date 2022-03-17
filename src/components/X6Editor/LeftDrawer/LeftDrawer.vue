@@ -1,11 +1,10 @@
 <template>
   <div>
     <q-drawer
+      overlay
       id="leftDrawer"
       v-model="editorStore.showLeftDrawer"
-      show-if-above
       :width="300"
-      :breakpoint="500"
       bordered
       side="left"
     >
@@ -126,8 +125,9 @@
 <script>
 import { getCurrentInstance, computed, ref } from 'vue';
 import { useEditorStore } from 'src/stores/editor';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   setup() {
     const _this = getCurrentInstance();
     const editorStore = useEditorStore();
@@ -421,7 +421,7 @@ export default {
       editorStore,
     };
   },
-};
+});
 </script>
 
 <style scoped>

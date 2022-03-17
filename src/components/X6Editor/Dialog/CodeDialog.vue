@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { computed, getCurrentInstance, ref } from 'vue';
+import { computed, getCurrentInstance, ref, defineComponent } from 'vue';
 // import { copyToClipboard, Notify } from 'quasar';
 // import Codemirror from 'codemirror-editor-vue3';
 // import 'codemirror/lib/codemirror.css';
@@ -49,7 +49,7 @@ import JsonViewer from 'vue-json-viewer';
 import 'vue-json-viewer/style.css';
 import { useEditorStore } from 'src/stores/editor';
 
-export default {
+export default defineComponent({
   components: {
     // Codemirror,
     JsonViewer,
@@ -87,7 +87,7 @@ export default {
       editorStore,
     };
   },
-};
+});
 </script>
 
 <style>
