@@ -25,7 +25,10 @@
           </template>
         </q-input>
       </div>
-      <q-scroll-area class="q-px-md" style="height: calc(100% - 112px); margin-top: 76px; margin-bottom: 36px">
+      <q-scroll-area
+        class="q-px-md"
+        style="height: calc(100% - 112px); margin-top: 76px; margin-bottom: 36px"
+      >
         <q-tree
           :nodes="nodeList"
           node-key="id"
@@ -48,17 +51,13 @@
               @touchstart.stop="startDrag($event, prop)"
             >
               <div class="left-side">
-                <span class="material-icons status-icons" style="color: #808080;">
-                  task
-                </span>
+                <span class="material-icons status-icons" style="color: #808080"> task </span>
               </div>
               <div class="center">
                 {{ prop.node.data.name }}
               </div>
               <div class="right-side">
-                <span class="material-icons status-icons">
-                  tune
-                </span>
+                <span class="material-icons status-icons"> tune </span>
               </div>
               <q-tooltip anchor="center right" self="center left" :offset="[10, 10]">
                 <!-- <div class="row">
@@ -87,7 +86,14 @@
         </q-tree>
       </q-scroll-area>
       <div class="absolute-bottom">
-        <q-btn align="left" icon="add" label="添加更多组件..." class="text-primary full-width" style="background: #eeeeee" @click="onClick" />
+        <q-btn
+          align="left"
+          icon="add"
+          label="添加更多组件..."
+          class="text-primary full-width"
+          style="background: #eeeeee"
+          @click="onClick"
+        />
       </div>
       <!-- <div class="q-mini-drawer-hide absolute" style="top: 50%; right: -16px">
         <q-btn

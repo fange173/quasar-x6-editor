@@ -1,6 +1,12 @@
 <template>
   <div>
-    <q-dialog v-model="editorStore.openHelpDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
+    <q-dialog
+      v-model="editorStore.openHelpDialog"
+      @update:model-value="close"
+      @escape-key="close"
+      :maximized="maximized"
+      :full-width="maximized"
+    >
       <q-card style="width: 600px; max-width: 80vw">
         <q-card-section>
           <div class="text-h6 row">

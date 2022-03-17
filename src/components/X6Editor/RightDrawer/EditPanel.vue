@@ -69,11 +69,7 @@
           <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
             <q-item-section>
               <span class="row" v-if="scope.opt === 'default'" style="margin-left: -4px">
-                <q-icon
-                  name="task"
-                  class="q-mr-sm text-default"
-                  style="font-size: 20px"
-                />
+                <q-icon name="task" class="q-mr-sm text-default" style="font-size: 20px" />
                 default - 默认
                 <!-- <q-item-label v-html="scope.opt" /> -->
               </span>
@@ -86,19 +82,11 @@
                 success - 成功
               </span>
               <span class="row" v-else-if="scope.opt === 'error'" style="margin-left: -4px">
-                <q-icon
-                  name="cancel"
-                  class="q-mr-sm text-red"
-                  style="font-size: 20px"
-                />
+                <q-icon name="cancel" class="q-mr-sm text-red" style="font-size: 20px" />
                 error - 错误
               </span>
               <span class="row" v-else-if="scope.opt === 'warning'" style="margin-left: -4px">
-                <q-icon
-                  name="error_outline"
-                  class="q-mr-sm text-warning"
-                  style="font-size: 20px"
-                />
+                <q-icon name="error_outline" class="q-mr-sm text-warning" style="font-size: 20px" />
                 warning - 警告
               </span>
               <span class="row" v-else-if="scope.opt === 'running'" style="margin-left: -4px">
@@ -268,7 +256,7 @@ export default {
     }
 
     // 左键点击事件响应方法
-    const nodeClickResponse = (node) => {
+    const nodeClickResponse = node => {
       clickType.value = 'node';
       clickNodeSelf.value = node;
       const data = clickNodeSelf.value.getData();
@@ -288,14 +276,14 @@ export default {
       //   return ele.id == node.id;
       // });
     };
-    const nodeMouseMoveResponse = (node) => {
+    const nodeMouseMoveResponse = node => {
       clickNodeSelf.value = node;
       if (clickNode.value) {
         clickNode.value.x = clickNodeSelf.value.store.data.position.x;
         clickNode.value.y = clickNodeSelf.value.store.data.position.y;
       }
     };
-    const edgeClickResponse = (edge) => {
+    const edgeClickResponse = edge => {
       clickType.value = 'edge';
       clickEdge.value = edge;
     };

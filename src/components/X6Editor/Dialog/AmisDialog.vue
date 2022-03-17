@@ -53,7 +53,7 @@ export default {
     return {
       close,
       maximized,
-      amisStore
+      amisStore,
     };
   },
 };

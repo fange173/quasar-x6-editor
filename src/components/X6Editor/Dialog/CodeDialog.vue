@@ -1,6 +1,12 @@
 <template>
   <div>
-    <q-dialog v-model="editorStore.openCodeDialog" @update:model-value="close" @escape-key="close" :maximized="maximized" :full-width="maximized">
+    <q-dialog
+      v-model="editorStore.openCodeDialog"
+      @update:model-value="close"
+      @escape-key="close"
+      :maximized="maximized"
+      :full-width="maximized"
+    >
       <q-card style="min-width: 600px; max-width: 80vw">
         <q-card-section>
           <div class="text-h6 row">
@@ -20,7 +26,13 @@
         </q-card-section>
         <q-card-section class="q-pt-none">
           <!-- <Codemirror v-model:value="data" :options="cmOptions" /> -->
-          <json-viewer :value="jsonData" :expand-depth="3" :copyable="{copyText: '复制到剪贴板', copiedText: '复制成功!', timeout: 2000}" :boxed="true" :expanded="true"></json-viewer>
+          <json-viewer
+            :value="jsonData"
+            :expand-depth="3"
+            :copyable="{ copyText: '复制到剪贴板', copiedText: '复制成功!', timeout: 2000 }"
+            :boxed="true"
+            :expanded="true"
+          ></json-viewer>
         </q-card-section>
       </q-card>
     </q-dialog>

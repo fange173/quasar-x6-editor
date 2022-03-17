@@ -8,22 +8,28 @@
         <q-tooltip :offset="[8, 8]"> 帮助 </q-tooltip>
       </q-btn> -->
       <q-btn-dropdown flat dense icon="settings" class="q-ml-xs">
-        <q-list dense style="min-width: 100px;">
+        <q-list dense style="min-width: 100px">
           <q-item clickable @click="shMinimap">
-            <q-item-section>
-              显示缩略图
-            </q-item-section>
+            <q-item-section> 显示缩略图 </q-item-section>
             <q-item-section side>
-              <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!editorStore.showMinimap" />
+              <q-icon
+                left
+                name="check_box_outline_blank"
+                class="q-mr-none"
+                v-if="!editorStore.showMinimap"
+              />
               <q-icon left name="check_box" class="q-mr-none" v-else />
             </q-item-section>
           </q-item>
           <q-item clickable @click="shGrid">
-            <q-item-section>
-              显示网点
-            </q-item-section>
+            <q-item-section> 显示网点 </q-item-section>
             <q-item-section side>
-              <q-icon left name="check_box_outline_blank" class="q-mr-none" v-if="!editorStore.showGrid" />
+              <q-icon
+                left
+                name="check_box_outline_blank"
+                class="q-mr-none"
+                v-if="!editorStore.showGrid"
+              />
               <q-icon left name="check_box" class="q-mr-none" v-else />
             </q-item-section>
           </q-item>
@@ -33,52 +39,34 @@
       <q-separator vertical inset />
 
       <q-btn-dropdown flat dense :label="zoom + '%'" class="q-ml-xs" style="width: 68px">
-        <q-list dense style="min-width: 100px;">
+        <q-list dense style="min-width: 100px">
           <q-item clickable @click="zoomTo(0.5)">
-            <q-item-section>
-              50%
-            </q-item-section>
+            <q-item-section> 50% </q-item-section>
           </q-item>
           <q-item clickable @click="zoomTo(0.75)">
-            <q-item-section>
-              75%
-            </q-item-section>
+            <q-item-section> 75% </q-item-section>
           </q-item>
           <q-item clickable @click="zoomTo(1)">
-            <q-item-section>
-              100%
-            </q-item-section>
+            <q-item-section> 100% </q-item-section>
           </q-item>
           <q-item clickable @click="zoomTo(1.25)">
-            <q-item-section>
-              125%
-            </q-item-section>
+            <q-item-section> 125% </q-item-section>
           </q-item>
           <q-item clickable @click="zoomTo(1.5)">
-            <q-item-section>
-              150%
-            </q-item-section>
+            <q-item-section> 150% </q-item-section>
           </q-item>
           <q-item clickable @click="zoomTo(2)">
-            <q-item-section>
-              200%
-            </q-item-section>
+            <q-item-section> 200% </q-item-section>
           </q-item>
           <q-item clickable @click="zoomTo(3)">
-            <q-item-section>
-              300%
-            </q-item-section>
+            <q-item-section> 300% </q-item-section>
           </q-item>
           <q-separator />
           <q-item clickable @click="zoomTo(1)">
-            <q-item-section>
-              重置比例
-            </q-item-section>
+            <q-item-section> 重置比例 </q-item-section>
           </q-item>
           <q-item clickable @click="zoomToFit">
-            <q-item-section>
-              适应内容
-            </q-item-section>
+            <q-item-section> 适应内容 </q-item-section>
           </q-item>
         </q-list>
       </q-btn-dropdown>
@@ -209,7 +197,7 @@ export default {
     const help = () => {
       _this.parent.proxy.help();
     };
-    const zoomTo = (num) => {
+    const zoomTo = num => {
       _this.parent.proxy.zoomTo(num);
     };
     const zoomToFit = () => {

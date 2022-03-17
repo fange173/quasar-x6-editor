@@ -1,8 +1,6 @@
 <template>
   <div>
-    <Header
-      :flow="flow"
-    />
+    <Header :flow="flow" />
     <LeftDrawer />
     <RightDrawer ref="rightDrawer" :flow="flow" />
     <div id="container">
@@ -535,7 +533,8 @@ export default defineComponent({
     };
     const shRightDrawer = () => {
       editorStore.showRightDrawer = !editorStore.showRightDrawer;
-      if (editorStore.showRightDrawer) document.getElementById('minimap').style.right = 'calc(316px)';
+      if (editorStore.showRightDrawer)
+        document.getElementById('minimap').style.right = 'calc(316px)';
       else document.getElementById('minimap').style.right = 'calc(16px)';
       if (editorStore.showLeftDrawer === true && editorStore.showRightDrawer === true)
         graph.resize(window.innerWidth - 600, window.innerHeight - 52);
