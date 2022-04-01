@@ -203,69 +203,69 @@ export default defineComponent({
     const editorStore = useEditorStore();
 
     const undo = () => {
-      _this.parent.proxy.undo();
+      _this.parent.parent.proxy.undo();
     };
     const redo = () => {
-      _this.parent.proxy.redo();
+      _this.parent.parent.proxy.redo();
     };
     const zoomIn = () => {
-      _this.parent.proxy.zoomIn();
+      _this.parent.parent.proxy.zoomIn();
     };
     const zoomOut = () => {
-      _this.parent.proxy.zoomOut();
+      _this.parent.parent.proxy.zoomOut();
     };
     const centerContent = () => {
-      _this.parent.proxy.centerContent();
+      _this.parent.parent.proxy.centerContent();
     };
     const shGrid = () => {
-      _this.parent.proxy.shGrid();
+      _this.parent.parent.proxy.shGrid();
     };
     const shMinimap = () => {
-      _this.parent.proxy.shMinimap();
+      _this.parent.parent.proxy.shMinimap();
     };
     const layout = () => {
-      _this.parent.proxy.layout();
+      _this.parent.parent.proxy.layout();
     };
     const showData = () => {
-      _this.parent.proxy.showData();
+      _this.parent.parent.proxy.showData();
     };
     const downloadData = () => {
-      _this.parent.proxy.downloadData();
+      _this.parent.parent.proxy.downloadData();
     };
     const runWorkFlow = () => {
-      _this.parent.proxy.runWorkFlow();
+      _this.parent.parent.proxy.runWorkFlow();
     };
     const help = () => {
-      _this.parent.proxy.help();
+      _this.parent.parent.proxy.help();
     };
     const zoomTo = num => {
-      _this.parent.proxy.zoomTo(num);
+      _this.parent.parent.proxy.zoomTo(num);
     };
     const zoomToFit = () => {
-      _this.parent.proxy.zoomToFit();
+      _this.parent.parent.proxy.zoomToFit();
     };
     const refresh = () => {
-      _this.parent.proxy.refresh();
+      _this.parent.parent.proxy.refresh();
     };
     const cancel = () => {
       file.value = null;
     };
     const saveData = () => {
-      _this.parent.proxy.saveData();
+      _this.parent.parent.proxy.saveData();
     };
     const importJson = () => {
       let reader = new FileReader();
       reader.readAsText(file.value);
       reader.onload = () => {
-        _this.parent.proxy.importJson(JSON.parse(reader.result));
+        _this.parent.parent.proxy.importJson(JSON.parse(reader.result));
         file.value = null;
       };
     };
     const shLeftDrawer = () => {
-      _this.parent.proxy.shLeftDrawer();
+      _this.parent.parent.proxy.shLeftDrawer();
     };
     const shRightDrawer = () => {
-      _this.parent.proxy.shRightDrawer();
+      _this.parent.parent.proxy.shRightDrawer();
     };
 
     return {

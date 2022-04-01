@@ -73,7 +73,7 @@ export default defineComponent({
     const editPanel = ref();
 
     const shRightDrawer = () => {
-      _this.parent.proxy.shRightDrawer();
+      _this.parent.parent.proxy.shRightDrawer();
     };
 
     const nodeClickResponse = node => {

@@ -1,5 +1,7 @@
 <template>
+<div class="full-width" style="height: calc(100vh - 50px)">
   <X6Editor />
+  </div>
 </template>
 
 <script lang="ts">

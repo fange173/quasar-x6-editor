@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-layout view="hHh lpR fFf" container class="full-width full-height">
     <Header :flow="flow" />
     <LeftDrawer />
     <RightDrawer ref="rightDrawer" :flow="flow" />
@@ -24,7 +24,7 @@
     <HelpDialog />
     <CodeDialog :data="jsonData" />
     <AmisDialog />
-  </div>
+  </q-layout>
 </template>
 
 <script>

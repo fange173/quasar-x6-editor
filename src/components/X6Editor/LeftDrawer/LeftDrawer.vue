@@ -495,11 +495,11 @@ export default defineComponent({
     const filterRef = ref(null);
 
     const startDrag = (e, prop) => {
-      _this.parent.proxy.startDrag(e, prop);
+      _this.parent.parent.proxy.startDrag(e, prop);
     };
 
     const shLeftDrawer = () => {
-      _this.parent.proxy.shLeftDrawer();
+      _this.parent.parent.proxy.shLeftDrawer();
     };
 
     const filterMethod = (node, filter) => {
