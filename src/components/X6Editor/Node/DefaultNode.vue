@@ -57,13 +57,10 @@
 <script>
 import { inject, onMounted, ref } from 'vue';
 import { Dialog, Notify } from 'quasar';
-import { useAmisStore } from 'src/stores/amis';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {
-    const amisStore = useAmisStore();
-
     const getNode = inject('getNode');
     const node = getNode();
     const data = ref({ name: '', status: '' });
@@ -113,8 +110,6 @@ export default defineComponent({
             ],
           },
         };
-        amisStore.setJsonData(nodeJson);
-        amisStore.openDialog();
       });
     };
 

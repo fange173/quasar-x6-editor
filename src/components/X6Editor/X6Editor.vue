@@ -23,7 +23,6 @@
     <ToolBar :zoom="zoom" />
     <HelpDialog />
     <CodeDialog :data="jsonData" />
-    <AmisDialog />
   </q-layout>
 </template>
 
@@ -41,7 +40,6 @@ import '@antv/x6-vue-shape';
 import DefaultNode from './Node/DefaultNode.vue';
 import HelpDialog from './Dialog/HelpDialog.vue';
 import CodeDialog from './Dialog/CodeDialog.vue';
-import AmisDialog from './Dialog/AmisDialog.vue';
 import ContextMenu from './Container/ContextMenu.vue';
 import { useEditorStore } from 'src/stores/editor';
 
@@ -53,7 +51,6 @@ export default defineComponent({
     RightDrawer,
     HelpDialog,
     CodeDialog,
-    AmisDialog,
     ContextMenu,
   },
   setup() {
@@ -746,7 +743,7 @@ export default defineComponent({
           height: 150,
         },
         // width: window.innerWidth,
-        height: window.innerHeight - 52,
+        height: window.innerHeight,
         background: {
           color: '#f7f7fa', // 设置画布背景颜色
         },
@@ -958,7 +955,7 @@ export default defineComponent({
       });
       // 监听窗口尺寸变化
       window.onresize = () => {
-        graph.resize(window.innerWidth, window.innerHeight - 52);
+        graph.resize(window.innerWidth, window.innerHeight);
       };
     }
 
